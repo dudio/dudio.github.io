@@ -1,0 +1,18 @@
+.multiple, .copylast {
+	padding: 20px;
+	border: 1px solid rgba(74,134,232,1);
+	-webkit-border-radius: 7px;
+	border-radius: 7px;
+	color: rgba(255,255,255,1);
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	background: #0199d9;
+	-webkit-box-shadow: 3px 3px 6px 1px rgba(0,0,0,0.3) ;
+	box-shadow: 3px 3px 6px 1px rgba(0,0,0,0.3) ;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.2) ;
+	margin: 5px;
+}
+
+.copylast {
+	text-align: center;
+}
