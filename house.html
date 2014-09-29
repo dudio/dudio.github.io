@@ -27,11 +27,17 @@ body {
 }
 
 .ondo {
+	display:none;
 	background-color:lightgray;
 	color:gray;
 }
 .ondo input{
 	color:gray;
+}
+
+#buyYear {
+	width:87%;
+	margin: 0 8% 0 5%;
 }
 </style>
 </head>
@@ -41,7 +47,7 @@ body {
 <!--詢問欄位數量 多 普通 少-->
 
 <div class="question">
-你認為下列哪一點最重要？
+你比較想知道下列哪個問題的答案？
 </div>
 <div class="questionBox">
 	<h3><input type="radio" name="important" value="spent" checked="checked"/>這輩子能買多少東西？</h3>
@@ -59,7 +65,6 @@ body {
 			<input type="radio" name="howRich" value="avg" checked="checked"/>每日平均擁有的資產總額<br/>
 <!--				是否用物價指數修正回原始物價？<br/> (相當於2014年的XXXX) -->
 			<input type="radio" name="howRich" value="avg"/>掛掉時擁有的資產總額<br/>
-	</div>
 	</div>
 </div>
 </div>
@@ -144,6 +149,8 @@ body {
 <!--買屋資產變化-->
 <div id="highchartContent-house">
 </div>
+<div style="text-align:center;">預計幾歲買屋？</div>
+<div id="buyYear"></div>
 <!--租屋買屋資產比較圖-->
 <div id="highchartContent-compare">
 </div>
@@ -195,6 +202,7 @@ $(function(){
 			$("#life").val(Math.ceil(Math.max(80+age/5,age+10)));
 	});
 
+	$("#waitYear").slider();
 	countProperty();
 	$("input").change(countProperty);
 
