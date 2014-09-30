@@ -1,5 +1,4 @@
-xAxis = [];
-$("#report").html("");
+var xAxis;
 var year,month;
 var yearIncome, yearOutgoing;
 var nowSalary, nowOutgoing, nowCash;
@@ -37,7 +36,6 @@ function getData(){
 
 	//可購房產資料
 	buyYear			= buyYear || age;
-	house["cost"]		= parseInt($("#house .cost").val());//總價
 	house["priceChange"]	= 1+$("#house .priceChange").val()/100;//房價漲幅
 	house["loanRatePerYear"]	= 1+$("#house .loanRatePerYear").val()/100;//貸款年利率
 }
@@ -80,7 +78,7 @@ function rentTo(y, data) {
 		data['income'].push(Math.round(yearIncome));
 		data['outgoing'].push(Math.round(yearOutgoing));
 		data['property'].push(Math.round(nowCash));
-		data['loan'].push(0);
+		data['loan'].push(null);
 	}
 
 }
@@ -105,7 +103,7 @@ function buyHouseFrom(y, data) {
 			nowCash = saveMoney;
 		}
 	}
-			
+	
 	for(year=y;year<=life;year++){
 		yearIncome = yearOutgoing = perYearPaidLoan = 0;
 			
@@ -176,11 +174,12 @@ function buyHouseOn(buyOn){
 	data = {'cash':[],'income':[],'outgoing':[],'property':[],'loan':[]};
 
 	//資產計算
-	nowSalary = salary;
-	nowOutgoing = outgoing;
-	nowCash = cash;
+	nowSalary = salary; //當前月薪
+	nowOutgoing = outgoing; //當前每月支出
+	nowCash = cash; //現金
 
 	if(buyOn) {
+		house["cost"] = parseInt($("#house .cost").val());//總價
 		rentTo(buyYear-1, data);
 		buyHouseFrom(buyYear, data);
 	} else
@@ -201,12 +200,26 @@ function countProperty(){
 		}
 	});
 
+	//設定座標軸
+	xAxis = [];
 	for(year=age;year<=life;year++)
 		xAxis.push(year);
+
+	$("#report").html("");
 
 	houseData = buyHouseOn(true);
 	rentData = buyHouseOn(false);
 
 	report("每年工作日數："+Math.round(workDayPerYear));
+
+	//計算最佳買房時機
+	bestData = [];
+	for(buyYear=age;buyYear<=life;buyYear++) {
+		var tempData = {};
+		tempData = buyHouseOn(true);
+		var i = tempData['property'].length;
+		bestData.push(tempData['property'][i-1]);
+	}
 	drawHighchart();
+
 }

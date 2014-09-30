@@ -35,13 +35,37 @@ body {
 	color:gray;
 }
 
-#buyYear {
-	width:87%;
-	margin: 0 8% 0 5%;
+#showOndo {
+	width:30px;
+	height:30px;
 }
+#buyYear {
+	width:86.1%;
+	margin: 0 8.4% 0 5.5%;
+}
+
 </style>
 </head>
 <body>
+<div id="report" class="ondo">
+</div>
+<!--租屋資產變化-->
+<!--
+<div id="highchartContent-rent">
+</div>-->
+<!--最佳買屋時機圖-->
+<div id="highchartContent-best">
+</div>
+<hr/>
+<!--買屋資產變化-->
+<div id="highchartContent-house">
+</div>
+<div id="buyYear"></div>
+<div style="text-align:center;margin-top:3px;">預計幾歲買屋？</div>
+<!--租屋買屋資產比較圖-->
+<!--
+<div id="highchartContent-compare">
+</div>-->
 
 <div class="ondo">
 <!--詢問欄位數量 多 普通 少-->
@@ -100,12 +124,12 @@ body {
 		
 	現有資金:<input class="money" id="cash" value="500000"/>
 	支出(不含住宿/工作通勤)：<input class="money" id="outgoing" value="20000"/>(by 日/月/年)
-	閒錢投資年報酬率：<input class="percentage" id="invest" value="1.3"/>
+	閒錢投資年報酬率：<input class="percentage" id="invest" value="1.3"/>%
 	<div class="ondo">
 		套用：定存年利率(%)     1.3
 	</div>
-	最低現金額度：<input class="money" id="saveMoney" value="100000" />元
-		(可投資金額/頭期款 = 現金 - 最低現金額度)
+	最低手頭現金額度：<input class="money" id="saveMoney" value="100000" />元
+		(現金 - 最低現金額度 = 可投資金額/頭期款)
 	<div class="ondo">
 		也可考慮用百分比作設定
 	是否有額外支出(多筆)
@@ -126,7 +150,7 @@ body {
 <div id="house" class="multiple">
 可購買房產資料
 	目標房價(現值)：<input class="money cost" value="8000000" /> 元
-	預期房價漲幅：<input class="percentage priceChange" value="2" /> %/年
+	預期房價漲幅：<input class="percentage priceChange" value="1.6" /> %/年
 	<div class="ondo">
 	持屋每年額外成本(%)     0.5
 	</div>
@@ -141,19 +165,9 @@ body {
 
 
 </pre>
-<div id="report" class="ondo">
-</div>
-<!--租屋資產變化-->
-<div id="highchartContent-rent">
-</div>
-<!--買屋資產變化-->
-<div id="highchartContent-house">
-</div>
-<div style="text-align:center;">預計幾歲買屋？</div>
-<div id="buyYear"></div>
-<!--租屋買屋資產比較圖-->
-<div id="highchartContent-compare">
-</div>
+<hr/>
+顯示未完成功能<input type="checkbox" id="showOndo" />
+
 
 </body>
 
@@ -187,6 +201,9 @@ $(function(){
 	});*/
 
 	$(".ondo :input").attr("disabled","disabled");
+	$("#showOndo").change(function(){
+		$(".ondo").toggle();
+	});
 
 	$("input").css("text-align","right");
 	$("input.money").attr("size","10");
