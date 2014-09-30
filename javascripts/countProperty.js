@@ -220,6 +220,7 @@ function countProperty(){
 		var i = tempData['property'].length;
 		bestData.push(tempData['property'][i-1]);
 	}
+
 	drawHighchart();
 
 }

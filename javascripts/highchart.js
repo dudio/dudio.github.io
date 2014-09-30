@@ -145,10 +145,15 @@ function createChart() {
 	});
 	$('#highchartContent-best').highcharts({
 		title: {
-			text: '買房時機計算(圖表最高點即最佳買房年紀)',
+			text: '買房時間點(圖表最高點即最佳買房年紀)',
 			x: -20 //center
 		},
-		xAxis: { categories: xAxis },
+		xAxis: {
+			title: {
+				text: '買房年紀'
+			},
+			categories: xAxis
+		},
 		yAxis: {
 			title: {
 				text: '預期最終資產總額(NT)'

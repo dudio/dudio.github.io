@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <!--
+BUG:
+修改欄位後~圖表資料沒有馬上正確更新
+
 <<網站流程>>
 詢問使用者對生活品質的定義 (想最佳化什麼東西？生活品質還是資產還是...)
 將選擇(租屋1/租屋2/買屋1/買屋2...)全部列出來
@@ -20,6 +23,7 @@
 <style type="text/css">
 body {
 	font: normal 16px/1 "Times New Roman", Times, serif;
+	margin:10px 8% 50px 8%;
 }
 
 #report {
@@ -61,12 +65,23 @@ body {
 <div id="highchartContent-house">
 </div>
 <div id="buyYear"></div>
-<div style="text-align:center;margin-top:3px;">預計幾歲買屋？</div>
+<div style="text-align:center;margin-top:3px;">預計幾歲買屋？(調整上方拉bar可查看不同年紀買房時的資產變化)</div>
 <!--租屋買屋資產比較圖-->
 <!--
 <div id="highchartContent-compare">
 </div>-->
 
+<br/>
+<div id="inputTabs">
+	<ul>
+		<li><a href="#tabs-1">個人</a></li>
+		<li><a href="#tabs-2">工作</a></li>
+		<li><a href="#tabs-3">收支</a></li>
+		<li><a href="#tabs-4">可租房產</a></li>
+		<li><a href="#tabs-5">可購房產</a></li>
+		<li><a href="#tabs-6">外在環境</a></li>
+	</ul>
+	<div id="tabs-1">
 <div class="ondo">
 <!--詢問欄位數量 多 普通 少-->
 
@@ -92,22 +107,14 @@ body {
 	</div>
 </div>
 </div>
-
-<pre>
-外在環境估計	
-	物價指數漲幅:<input class="percentage" id="priceIndex" value="1.5"/>% / 年
-	<div class="ondo">
-		支出是否隨之調漲
-			<input type="radio" checked="checked"/>Yes
-			<input type="radio" />No
-	</div>
-個人資料
+		<pre>
 	現在年齡:<input class="year" id="age" value="30"/>
 	預期壽命:<input class="year" id="life" value="86"/>
-
-	
+		</pre>
+	</div>
+	<div id="tabs-2">
+		<pre>
 	<div class="work multiple">
-	工作資料(可多筆)
 		薪水：<input class="money" id="salary" value="42000"/>/月
 		年終：<input class="month" id="bonus"  value="1.5">月
 		<input class="ondo" type="radio" checked="checked"/> 調薪幅度(年)：<input class="percentage" id="salaryAdjust" value="3">%/年
@@ -121,7 +128,10 @@ body {
 		週休<input class="day" id="restPerWeek" value="2"/>日 + 月休<input class="day" id="restPerMonth" value="0"/>日 + 年休<input class="day" id="restPerYear" value="10"/>日
 		</div>
 	</div>
-		
+		</pre>
+	</div>
+	<div id="tabs-3">
+		<pre>
 	現有資金:<input class="money" id="cash" value="500000"/>
 	支出(不含住宿/工作通勤)：<input class="money" id="outgoing" value="20000"/>(by 日/月/年)
 	閒錢投資年報酬率：<input class="percentage" id="invest" value="1.3"/>%
@@ -135,10 +145,11 @@ body {
 	是否有額外支出(多筆)
 		時間/金額
 	</div>
-	
-
+		</pre>
+	</div>
+	<div id="tabs-4">
+		<pre>
 <div id="rent" class="multiple">
-可租房產資料
 	月租：<input class="money cost" value="6000"/>
 	預期月租漲幅：<input class="percentage priceChange" value="1.5" /> %/年
 	<div class="ondo">
@@ -146,9 +157,11 @@ body {
 	通勤支出(日)：<input class="money" id="transCost" value="100"/>
 	</div>
 </div>
-	
+		</pre>
+	</div>
+	<div id="tabs-5">
+		<pre>
 <div id="house" class="multiple">
-可購買房產資料
 	目標房價(現值)：<input class="money cost" value="8000000" /> 元
 	預期房價漲幅：<input class="percentage priceChange" value="1.6" /> %/年
 	<div class="ondo">
@@ -162,10 +175,20 @@ body {
 		願付多少月租入住
 	</div>
 </div>
+		</pre>
+	</div>
+	<div id="tabs-6">
+	<pre>
+	物價指數漲幅:<input class="percentage" id="priceIndex" value="1.5"/>% / 年
+	<div class="ondo">
+		支出是否隨之調漲
+			<input type="radio" checked="checked"/>Yes
+			<input type="radio" />No
+	</div>
+	</pre>
+	</div>
+</div>
 
-
-</pre>
-<hr/>
 顯示未完成功能<input type="checkbox" id="showOndo" />
 
 
@@ -188,23 +211,18 @@ function report(msg){
 
 $(function(){
 
+	
 
-//	var seriesOptionsRent = [];
-//	var seriesOptionsHouse = [];
-//	var seriesOptionsCompare = [];
-
-//檢查未使用欄位
-/*	$("input").each(function(){
-		var id = $(this).attr("id");
-		if(id==""||id==undefined)
-			$(this).css("border","2px solid violet");
-	});*/
-
+	//設定未完成功能樣式
 	$(".ondo :input").attr("disabled","disabled");
 	$("#showOndo").change(function(){
 		$(".ondo").toggle();
 	});
 
+	//設定分頁
+	$("#inputTabs").tabs();
+
+	//設定基本輸入欄位
 	$("input").css("text-align","right");
 	$("input.money").attr("size","10");
 	$("input.day").attr("size","3");
@@ -219,6 +237,7 @@ $(function(){
 			$("#life").val(Math.ceil(Math.max(80+age/5,age+10)));
 	});
 
+	//買房年紀拉bar
 	$("#waitYear").slider();
 	countProperty();
 	$("input").change(countProperty);
