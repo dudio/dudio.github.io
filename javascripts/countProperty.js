@@ -5,7 +5,7 @@ var nowSalary, nowOutgoing, nowCash;
 
 var priceIndex;
 var age, life, cash, outgoing, invest, saveMoney;
-var retireAge, salary, bonus, salaryAdjust, workHourPerDay, restPerWeek, restPerMonth, restPerYear, workDayPerYear;
+var retireAge, salary, bonus, salaryAdjust, workHourPerDay, restPerWeek, restPerMonth, restPerYear, workDayPerYear;//工作資料
 var house = {};//可買房產資料
 var buyYear;
 
@@ -37,7 +37,8 @@ function getData(){
 	//可購房產資料
 	buyYear			= buyYear || age;
 	house["priceChange"]	= 1+$("#house .priceChange").val()/100;//房價漲幅
-	house["loanRatePerYear"]	= 1+$("#house .loanRatePerYear").val()/100;//貸款年利率
+	house["loanRatePerYear"] = 1+$("#house .loanRatePerYear").val()/100;//貸款年利率
+	house["equalRent"]	= parseInt($("#house .equalRent").val());
 }
 
 //租房子到y歲的時候
