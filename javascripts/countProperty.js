@@ -150,7 +150,6 @@ function buyHouseFrom(y, data) {
 			nowCash += yearInvenstIncome;
 		}
 
-
 		//調整物價指數
 		nowOutgoing *= priceIndex;
 		//report(year+"歲：年收入"+Math.round(yearIncome)+"，年支出"+Math.round(yearOutgoing)+"，累計資產"+Math.round(cash));
@@ -159,6 +158,7 @@ function buyHouseFrom(y, data) {
 			yearOutgoing += parseInt(firstPay);
 			firstPay = 0;
 		}
+
 		data['cash'].push(Math.round(nowCash));
 		data['income'].push(Math.round(yearIncome));
 		data['outgoing'].push(Math.round(yearOutgoing));
@@ -166,8 +166,6 @@ function buyHouseFrom(y, data) {
 			data['loan'].push(Math.round(loan));
 		data['property'].push(Math.round(house["cost"]-loan+nowCash));
 	}
-
-}
 
 /* 從<buyOn>歲開始買房子 在這之前都是租房子 */
 function buyHouseOn(buyOn){
@@ -186,7 +184,6 @@ function buyHouseOn(buyOn){
 		rentTo(life, data);
 	return data;
 } 
-
 
 function countProperty(){
 	getData();
@@ -214,12 +211,14 @@ function countProperty(){
 
 	//計算最佳買房時機
 	bestData = [];
+	var oriBuyYear = buyYear;
 	for(buyYear=age;buyYear<=life;buyYear++) {
 		var tempData = {};
 		tempData = buyHouseOn(true);
 		var i = tempData['property'].length;
 		bestData.push(tempData['property'][i-1]);
 	}
+	buyYear = oriBuyYear; //算完最佳解後要還原原本的buyYear值
 
 	drawHighchart();
 

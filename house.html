@@ -35,6 +35,8 @@ body {
 </style>
 </head>
 <body>
+<script src="javascripts/googleAnalytics.js"></script>
+
 <div id="report" class="ondo">
 </div>
 <!--租屋資產變化-->
@@ -177,7 +179,6 @@ body {
 
 
 </body>
-<script src="javascripts/googleAnalytics.js"></script>
 
 <script src="javascripts/jquery-2.1.1.min.js"></script>
 <script src="javascripts/jquery-ui-1.11.1.custom/jquery-ui.min.js"></script>
@@ -215,7 +216,7 @@ $(function(){
 	$("input.year").attr("size","3");
 	$("input.percentage").attr("size","5");
 
-	//自動計算
+	//自動計算預期壽命
 	$("#age").change(function(){
 		var age = parseInt($(this).val());
 		if($(this).val()>0)
