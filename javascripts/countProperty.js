@@ -167,6 +167,7 @@ function buyHouseFrom(y, data) {
 		data['property'].push(Math.round(house["cost"]-loan+nowCash));
 	}
 
+}
 /* 從<buyOn>歲開始買房子 在這之前都是租房子 */
 function buyHouseOn(buyOn){
 	data = {'cash':[],'income':[],'outgoing':[],'property':[],'loan':[]};
