@@ -10,10 +10,6 @@ body {
 	margin:10px 8% 50px 8%;
 }
 
-#report {
-	border:2px solid green;
-}
-
 .ondo {
 	display:none;
 	background-color:lightgray;
@@ -37,8 +33,6 @@ body {
 <body>
 <script src="javascripts/googleAnalytics.js"></script>
 
-<div id="report" class="ondo">
-</div>
 <!--租屋資產變化-->
 <!--
 <div id="highchartContent-rent">
@@ -68,31 +62,6 @@ body {
 		<li><a href="#tabs-6">外在環境</a></li>
 	</ul>
 	<div id="tabs-1">
-<div class="ondo">
-<!--詢問欄位數量 多 普通 少-->
-
-<div class="question">
-你比較想知道下列哪個問題的答案？
-</div>
-<div class="questionBox">
-	<h3><input type="radio" name="important" value="spent" checked="checked"/>這輩子能買多少東西？</h3>
-	<div>
-<!--		是否用物價指數修正回原始物價？<br/>(強制修正就好)-->
-		在<input class="year" value="20"/>年後，希望至少擁有<input class="money" value="0">的資產<br/>
-			<input type="radio" name="includeHouse" value="include" checked="checked"/>含房子<br/>
-			<input type="radio" name="includeHouse" value="notInclude"/>不含房子<br/>
-	</div>
-	<h3><input type="radio" name="important" value="own"/>這輩子能存多少錢？</h3>
-	<div>
-		對你來說，擁有一棟一千萬的房子跟擁有<input class="money" value="10000000"/>現金有相等的幸福感<br/>
-		你希望在<input class="year" value="20"/>年後，房子佔自己資產比例，不能高於<input class="percentage" value="100"/>%<br/>
-		你認為用如何衡量富有程度比較正確？<br/>
-			<input type="radio" name="howRich" value="avg" checked="checked"/>每日平均擁有的資產總額<br/>
-<!--				是否用物價指數修正回原始物價？<br/> (相當於2014年的XXXX) -->
-			<input type="radio" name="howRich" value="avg"/>掛掉時擁有的資產總額<br/>
-	</div>
-</div>
-</div>
 		<pre>
 	現在年齡:<input class="year" id="age" value="30"/>
 	預期壽命:<input class="year" id="life" value="86"/>
@@ -103,11 +72,8 @@ body {
 	<div class="work multiple">
 		薪水：<input class="money" id="salary" value="42000"/>/月
 		年終：<input class="month" id="bonus"  value="1.5">月
-		<input class="ondo" type="radio" checked="checked"/> 調薪幅度(年)：<input class="percentage" id="salaryAdjust" value="3">%/年
-		<div class="ondo">
-			<input type="radio"/> 退休時年薪(可用以替代調薪幅度)：<input/>
-		</div>
-		預期退休年齡：<input class="year" id="retireAge" value="60"/>
+		調薪幅度(年)：<input class="percentage" id="salaryAdjust" value="3">%/年 <span style="color:rgb(200,57,57);">=</span> 退休時年薪：<input class="money" id="finalYearSalary"/>
+		預期退休年齡：<input class="year" id="retireAge" value="65"/>
 		<div class="ondo">
 		退休金(一次領/月領)
 		每日工時(不含通勤)：<input class="hour" id="workHourPerDay" value="9"/>小時
@@ -119,7 +85,7 @@ body {
 	<div id="tabs-3">
 		<pre>
 	現有資金:<input class="money" id="cash" value="500000"/>
-	支出(不含住宿/工作通勤)：<input class="money" id="outgoing" value="20000"/>(by 日/月/年)
+	支出(不含住宿/工作通勤)：<input class="money" id="outgoing" value="20000"/> /月
 	閒錢投資年報酬率：<input class="percentage" id="invest" value="1.3"/>%
 	<div class="ondo">
 		套用：定存年利率(%)     1.3
@@ -165,11 +131,6 @@ body {
 	<div id="tabs-6">
 	<pre>
 	物價指數漲幅:<input class="percentage" id="priceIndex" value="1.5"/>% / 年
-	<div class="ondo">
-		支出是否隨之調漲
-			<input type="radio" checked="checked"/>Yes
-			<input type="radio" />No
-	</div>
 	</pre>
 	</div>
 </div>
@@ -190,8 +151,24 @@ body {
 <script src="javascripts/highchart.js"></script>
 <script src="javascripts/countProperty.js"></script>
 <script type="text/javascript">
-function report(msg){
-	$("#report").append(msg+"<br/>");
+
+function getWorkData(){
+	age             = parseInt($("#age").val());//當前年齡
+        retireAge       = $("#retireAge").val();//退休年齡
+        salary          = parseInt($("#salary").val());//月薪
+        bonus           = parseFloat($("#bonus").val());//年終
+}
+
+function countFinalSalary(){
+	getWorkData();
+        salaryAdjust    = 1+$("#salaryAdjust").val()/100;//調薪
+	$("#finalYearSalary").val(Math.round(salary * (12+bonus) * Math.pow( salaryAdjust, retireAge - age)));
+}
+
+function countSalaryAdjust(){
+	getWorkData();
+	var finalYearSalary = $("#finalYearSalary").val();
+	$("#salaryAdjust").val(Math.round((Math.pow(finalYearSalary / (salary * (12+bonus)), 1/(retireAge - age))-1)*100000)/1000);
 }
 
 $(function(){
@@ -221,6 +198,11 @@ $(function(){
 		if($(this).val()>0)
 			$("#life").val(Math.ceil(Math.max(80+age/5,age+10)));
 	});
+
+	//自動計算最終年薪/調薪
+	countFinalSalary();
+	$("#finalYearSalary").change(countSalaryAdjust);
+	$("#salaryAdjust").change(countFinalSalary);
 
 	//買房年紀拉bar
 	$("#waitYear").slider();

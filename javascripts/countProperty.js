@@ -1,16 +1,18 @@
 var xAxis;
 var year,month;
 var yearIncome, yearOutgoing;
-var nowSalary, nowOutgoing, nowCash;
+var nowSalary, nowOutgoing, nowCash, nowPriceIndex;
 
 var priceIndex;
 var age, life, cash, outgoing, invest, saveMoney;
 var retireAge, salary, bonus, salaryAdjust, workHourPerDay, restPerWeek, restPerMonth, restPerYear, workDayPerYear;//工作資料
 var house = {};//可買房產資料
 var buyYear;
+var totalMaterialLife;
 
 function getData(){
 	priceIndex		= 1+$("#priceIndex").val()/100;//物價指數
+	nowPriceIndex		= 1;
 
 	//個人資料
 	age		= parseInt($("#age").val());//當前年齡
@@ -44,11 +46,13 @@ function getData(){
 //租房子到y歲的時候
 function rentTo(y, data) {
 	//住宿資料
-	var rent		= {};//可租房產資料
-	rent["cost"]		= parseInt($("#rent .cost").val());//租金
+	var rent	= {};//可租房產資料
+	var yearMaterialLife;
+	rent["cost"]	= parseInt($("#rent .cost").val());//租金
+	nowPriceIndex	= priceIndex;
 
 	for(year=age;year<=y;year++){
-		yearIncome = yearOutgoing = 0;
+		yearIncome = yearOutgoing = yearMaterialLife = 0;
 			
 		//計算每月收支
 		for(month = 1;month<=12;month++) {
@@ -56,6 +60,8 @@ function rentTo(y, data) {
 				yearIncome += nowSalary;
 			yearOutgoing += nowOutgoing;
 			yearOutgoing += rent['cost'];
+			yearMaterialLife += outgoing;
+			yearMaterialLife += rent['cost'];
 		}
 		//領年終 調薪
 		if(year<=retireAge) {
@@ -69,17 +75,21 @@ function rentTo(y, data) {
 		nowCash = parseFloat(nowCash) + parseFloat(yearIncome) - parseFloat(yearOutgoing);
 
 		//調整物價指數
-		nowOutgoing *= priceIndex;
+		nowPriceIndex *= priceIndex;
+		nowOutgoing = nowPriceIndex * outgoing;
 
 		//計算房價漲幅
 		house["cost"] *= house["priceChange"];
 
-		//report(year+"歲：年收入"+Math.round(yearIncome)+"，年支出"+Math.round(yearOutgoing)+"，累計資產"+Math.round(cash));
+		//物質生活累計
+		totalMaterialLife += yearMaterialLife;
+
 		data['cash'].push(Math.round(nowCash));
 		data['income'].push(Math.round(yearIncome));
 		data['outgoing'].push(Math.round(yearOutgoing));
 		data['property'].push(Math.round(nowCash));
 		data['loan'].push(null);
+		data['life'].push(Math.round(yearMaterialLife));
 	}
 
 }
@@ -87,6 +97,7 @@ function rentTo(y, data) {
 //從y歲開始買房子
 function buyHouseFrom(y, data) {
 	var loan = house["cost"];//貸款
+	var yearMaterialLife;
 
 	//買屋-資產計算
 	var perYearPaidLoan;//每年繳交貸款
@@ -106,13 +117,15 @@ function buyHouseFrom(y, data) {
 	}
 	
 	for(year=y;year<=life;year++){
-		yearIncome = yearOutgoing = perYearPaidLoan = 0;
+		yearIncome = yearOutgoing = perYearPaidLoan = yearMaterialLife = 0;
 			
 		//計算每月收支
 		for(month = 1;month<=12;month++) {
 			if(year<=retireAge)
 				yearIncome += nowSalary;
 			yearOutgoing += nowOutgoing;
+			yearMaterialLife += outgoing;
+			yearMaterialLife += house["equalRent"];
 		}
 
 		//領年終 調薪
@@ -152,13 +165,16 @@ function buyHouseFrom(y, data) {
 		}
 
 		//調整物價指數
-		nowOutgoing *= priceIndex;
-		//report(year+"歲：年收入"+Math.round(yearIncome)+"，年支出"+Math.round(yearOutgoing)+"，累計資產"+Math.round(cash));
+		nowPriceIndex *= priceIndex;
+		nowOutgoing = nowPriceIndex * outgoing;
 
 		if(firstPay) {
 			yearOutgoing += parseInt(firstPay);
 			firstPay = 0;
 		}
+
+		//物質生活累計
+		totalMaterialLife += yearMaterialLife;
 
 		data['cash'].push(Math.round(nowCash));
 		data['income'].push(Math.round(yearIncome));
@@ -166,17 +182,19 @@ function buyHouseFrom(y, data) {
 		if(perYearPaidLoan)
 			data['loan'].push(Math.round(loan));
 		data['property'].push(Math.round(house["cost"]-loan+nowCash));
+		data['life'].push(Math.round(yearMaterialLife));
 	}
 
 }
 /* 從<buyOn>歲開始買房子 在這之前都是租房子 */
 function buyHouseOn(buyOn){
-	data = {'cash':[],'income':[],'outgoing':[],'property':[],'loan':[]};
+	data = {'cash':[],'income':[],'outgoing':[],'property':[],'loan':[],'life':[]};
 
 	//資產計算
 	nowSalary = salary; //當前月薪
 	nowOutgoing = outgoing; //當前每月支出
 	nowCash = cash; //現金
+	totalMaterialLife = 0;//一生物質生活累計
 
 	if(buyOn) {
 		house["cost"] = parseInt($("#house .cost").val());//總價
@@ -204,21 +222,21 @@ function countProperty(){
 	for(year=age;year<=life;year++)
 		xAxis.push(year);
 
-	$("#report").html("");
-
 	houseData = buyHouseOn(true);
 	rentData = buyHouseOn(false);
 
-	report("每年工作日數："+Math.round(workDayPerYear));
-
 	//計算最佳買房時機
 	bestData = [];
+	finalCash = [];
+	bestLife = [];
 	var oriBuyYear = buyYear;
 	for(buyYear=age;buyYear<=life;buyYear++) {
 		var tempData = {};
 		tempData = buyHouseOn(true);
 		var i = tempData['property'].length;
 		bestData.push(tempData['property'][i-1]);
+		finalCash.push(tempData['cash'][i-1]);
+		bestLife.push(totalMaterialLife);
 	}
 	buyYear = oriBuyYear; //算完最佳解後要還原原本的buyYear值
 

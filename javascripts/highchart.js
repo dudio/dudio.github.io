@@ -1,6 +1,8 @@
 var rentData = {};
 var houseData = {};
 var bestData = [];
+var finalCash = [];
+var bestLife= [];
 
 function drawHighchart() {
 	seriesOptionsRent = [{
@@ -28,6 +30,9 @@ function drawHighchart() {
 	},{
 		name: "剩餘貸款",
 		data: houseData['loan']
+	},{
+		name: "生活水平",
+		data: houseData['life']
 	}];
 	seriesOptionsCompare = [{
 		name: "租屋資產",
@@ -39,6 +44,12 @@ function drawHighchart() {
 	seriesOptionsBest= [{
 		name: "最終資產",
 		data: bestData
+	},{
+		name: "最終現金",
+		data: finalCash
+	},{
+		name: "實值物質<br/>生活總計",
+		data: bestLife
 	}];
 	createChart();
 }
@@ -49,7 +60,6 @@ function createChart() {
 	//直接新增一個圖表區塊~置於body後方
 //	$('<div>').insertAfter("body").highcharts({});
 
-	//var colors = Highcharts.getOptions().colors;
 	$('#highchartContent-rent').highcharts({
 		title: {
 			text: '租屋資產變化',
@@ -143,11 +153,14 @@ function createChart() {
 		},
 		series: seriesOptionsCompare
 	});
+	//var colors = Highcharts.getOptions().colors;
+	//console.log(colors);
 	$('#highchartContent-best').highcharts({
 		title: {
 			text: '買房時間點(圖表最高點即最佳買房年紀)',
 			x: -20 //center
 		},
+		colors: ['#7cb5ec','#434348','#f15c80'],
 		xAxis: {
 			title: {
 				text: '買房年紀'
