@@ -12,12 +12,13 @@
 html {
 	margin: 0;
 	padding: 0;
+	background-color: rgb(250, 243, 230);
 	}
 body { 
 	font: 75% georgia, sans-serif;
 	line-height: 1.88889;
 	color: #555753; 
-	background: #fff url(blossoms.jpg) no-repeat bottom right; 
+	background: url(blossoms.jpg) no-repeat bottom right; 
 	margin: 0; 
 	padding: 0;
 	}
@@ -77,22 +78,22 @@ font-style: italic;
 font-variant: normal;
 font-weight: normal;
 	}
-header h2 { 
+header h2 {
 	background: transparent url(h2.gif) no-repeat top left; 
-	margin-top: 58px; 
-	margin-bottom: 40px; 
+	margin: 58px auto 40px auto;
 	width: 200px; 
-	height: 18px; 
-	float: right;
+	height: 500px; 
 
 	text-indent: 100%;
 	white-space: nowrap;
-	overflow: hidden;
+	background-image: url(http://www.csszengarden.com/218/img-bottle.png);
+	background-size: auto 400px;
 	}
 header {
 	padding-top: 20px;
-	height: 87px;
+	height: auto;
 }
+
 
 .summary {
 	clear: both; 
@@ -142,7 +143,6 @@ footer a:link, footer a:visited {
 
 	text-indent: 100%;
 	white-space: nowrap;
-	overflow: hidden;
 	}
 .sidebar h3.archives { 
 	background: transparent url(h5.gif) no-repeat top left; 
@@ -152,7 +152,6 @@ footer a:link, footer a:visited {
 
 	text-indent: 100%;
 	white-space: nowrap;
-	overflow: hidden;
 	}
 .sidebar h3.resources { 
 	background: transparent url(h6.gif) no-repeat top left; 
@@ -162,7 +161,6 @@ footer a:link, footer a:visited {
 
 	text-indent: 100%;
 	white-space: nowrap;
-	overflow: hidden;
 	}
 
 
