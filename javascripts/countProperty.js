@@ -5,7 +5,7 @@ var nowSalary, nowOutgoing, nowCash, nowPriceIndex;
 
 var priceIndex;
 var age, life, cash, outgoing, invest, saveMoney;
-var retireAge, salary, bonus, salaryAdjust, workHourPerDay, restPerWeek, restPerMonth, restPerYear, workDayPerYear;//工作資料
+var retireAge, salary, bonus, salaryAdjust, workHourPerDay, restPerWeek, restPerMonth, restPerYear, workDayPerYear, retirementPayOnce, retirementPayMonthly;//工作資料
 var house = {};//可買房產資料
 var buyYear;
 var totalMaterialLife;
@@ -27,6 +27,8 @@ function getData(){
 	salary		= parseInt($("#salary").val());//月薪
 	bonus		= parseFloat($("#bonus").val());//年終
 	salaryAdjust	= 1+$("#salaryAdjust").val()/100;//調薪
+	retirementPayOnce	= parseInt($("#retirementPayOnce").val());//退休金 - 一次領
+	retirementPayMonthly	= parseInt($("#retirementPayMonthly").val());//退休金 - 月領
 	workHourPerDay	= parseFloat($("#workHourPerDay").val());//每日工時
 	restPerWeek	= parseFloat($("#restPerWeek").val());//每週休假日數
 	restPerMonth	= parseFloat($("#restPerMonth").val());//每月休假日數
@@ -58,6 +60,8 @@ function rentTo(y, data) {
 		for(month = 1;month<=12;month++) {
 			if(year<=retireAge)
 				yearIncome += nowSalary;
+			else
+				yearIncome += retirementPayMonthly;
 			yearOutgoing += nowOutgoing;
 			yearOutgoing += rent['cost'];
 			yearMaterialLife += outgoing;
@@ -68,6 +72,12 @@ function rentTo(y, data) {
 			yearIncome += bonus*nowSalary;
 			nowSalary *= salaryAdjust;
 		}
+
+		//退休金 一次領
+		if(year==retireAge) {
+			yearIncome += retirementPayOnce;
+		}
+
 		//投資所得(定存)
 		if(nowCash > saveMoney)
 			yearIncome += invest*(nowCash-saveMoney);
@@ -123,6 +133,8 @@ function buyHouseFrom(y, data) {
 		for(month = 1;month<=12;month++) {
 			if(year<=retireAge)
 				yearIncome += nowSalary;
+			else
+				yearIncome += retirementPayMonthly;
 			yearOutgoing += nowOutgoing;
 			yearMaterialLife += outgoing;
 			yearMaterialLife += house["equalRent"];
@@ -132,6 +144,11 @@ function buyHouseFrom(y, data) {
 		if(year<=retireAge) {
 			yearIncome += bonus*nowSalary;
 			nowSalary *= salaryAdjust;
+		}
+
+		//退休金 一次領
+		if(year==retireAge) {
+			yearIncome += retirementPayOnce;
 		}
 
 		//計算貸款利息
