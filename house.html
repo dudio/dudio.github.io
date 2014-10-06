@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
 <link rel="stylesheet" type="text/css" href="stylesheets/questionbox.css">
 <link rel="stylesheet" type="text/css" href="stylesheets/multiple.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/summary.css">
 <style type="text/css">
 .ondo {
 	display:none;
@@ -32,6 +33,7 @@
 	<span id="title">丟丟買屋時機計算網</span><br/>
 	<span id="intro">何時購買房子，才能兼顧生活品質及經濟狀況？</span>
 </div>
+<div id="summary"></div>
 <div id="basicData">
 <pre>
 1.目前年齡<input class="year" id="copy-age" />
@@ -114,11 +116,6 @@
 	預期月租漲幅：<input class="percentage priceChange" value="1.5" /> %/年
 	<div class="ondo">
 	通勤時間(分/日)：<input class="minite" id="transTime" value="60"/>
-<div id="rent" class="multiple">
-	月租：<input class="money cost" value="6000"/>
-	預期月租漲幅：<input class="percentage priceChange" value="1.5" /> %/年
-	<div class="ondo">
-	通勤時間(分/日)：<input class="minite" id="transTime" value="60"/>
 	通勤支出(日)：<input class="money" id="transCost" value="100"/>
 	</div>
 </div>
@@ -163,6 +160,7 @@
 <script src="javascripts/multiple.js"></script>
 <script src="javascripts/highchart.js"></script>
 <script src="javascripts/countProperty.js"></script>
+<script src="javascripts/summary.js"></script>
 <script type="text/javascript">
 function countYearSalary(){
 	$("#yearSalary").val($("#copy-salary").val()*$("#salaryMonth").val());

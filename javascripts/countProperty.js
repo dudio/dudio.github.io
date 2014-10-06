@@ -257,6 +257,7 @@ function countProperty(){
 	}
 	buyYear = oriBuyYear; //算完最佳解後要還原原本的buyYear值
 
+	writeSummary();
 	drawHighchart();
 
 }
