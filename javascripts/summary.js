@@ -38,5 +38,5 @@ function writeSummary(){
 	report += "<br/>";
 	report += "建議：在<span style='color:blue;'>"+bestAge+"</span>歲的時候購買房產，可兼顧生活及實值享受及投資需求";
 
-	$summary.html(report).append($(".fb-like-box"));
+	$summary.html(report);
 }
