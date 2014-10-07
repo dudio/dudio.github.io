@@ -1,5 +1,4 @@
 function writeSummary(){
-	var $summary = $("#summary");
 	var l = bestData.length;
 
 	var bestAge = 0;
@@ -38,9 +37,5 @@ function writeSummary(){
 	report += "<br/>";
 	report += "建議：在<span style='color:blue;'>"+bestAge+"</span>歲的時候購買房產，可兼顧生活及實值享受及投資需求";
 
-	report += "<br/>";
-	report += '網站插圖由<span style="color:green;">小森一點</span>協助製作';
-	report += "<br/>";
-
-	$summary.html(report).append($(".fb-like-box"));
+	$("#report").html(report);
 }
