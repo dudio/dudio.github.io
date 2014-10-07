@@ -38,5 +38,10 @@ function writeSummary(){
 	report += "<br/>";
 	report += "建議：在<span style='color:blue;'>"+bestAge+"</span>歲的時候購買房產，可兼顧生活及實值享受及投資需求";
 
+	report += "<br/>";
+	report += '網站插圖由<span style="color:green;">小森一點</span>協助製作';
+	report += "<br/>";
+	report += '<div class="fb-like-box" data-href="https://www.facebook.com/foresttranquille" data-height="100" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>';
+
 	$summary.html(report);
 }
