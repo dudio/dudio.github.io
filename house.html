@@ -33,12 +33,12 @@
 <script src="javascripts/googleAnalytics.js"></script>
 <div id="banner">
 	<span id="title">丟丟買屋時機計算網</span><br/>
-	<span id="intro">何時購買房子，才能兼顧生活品質及經濟狀況？</span>
+	<span id="subtitle">何時購買房子，才能兼顧生活品質及經濟狀況？</span>
 </div>
 <div id="summary">
 	<div id="report"></div>
-	<div>網站插圖由<span style="color:green;">小森一點</span>協助製作</div>
-	<div class="fb-like-box" data-href="https://www.facebook.com/foresttranquille" data-height="100" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
+	<div>本站插圖由<span style="color:green;">小森一點</span>協助製作，問題回報請mail至 <span style='color:rgb(223,72,72);'>dudiolin@gmail.com</span></div>
+	<div class="fb-like-box" data-href="https://www.facebook.com/foresttranquille" data-height="60" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
 </div>
 <div id="basicData">
 <pre>
@@ -49,23 +49,17 @@
 </pre>
 </div>
 
-<!--租屋資產變化-->
-<!--
-<div id="highchartContent-rent">
-</div>-->
 <!--最佳買屋時機圖-->
 <div id="highchartContent-best">
 </div>
 <hr/>
+<div class="graphicIntro">
+</div>
 <!--買屋資產變化-->
 <div id="highchartContent-house">
 </div>
 <div id="buyYear"></div>
 <div style="text-align:center;margin-top:3px;">預計幾歲買屋？(調整上方拉bar可查看不同年紀買房時的資產變化)</div>
-<!--租屋買屋資產比較圖-->
-<!--
-<div id="highchartContent-compare">
-</div>-->
 
 <br/>
 <div id="inputTabs">
@@ -234,7 +228,8 @@ $(function(){
 	$("#basicData").dialog({
 		title:"基本資料",
 		width:"auto",
-		close: copyBasicData
+		close: copyBasicData,
+		modal: true
 	});
 
 	//設定分頁
