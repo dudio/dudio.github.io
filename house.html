@@ -29,11 +29,21 @@
 </head>
 <body>
 <script src="javascripts/googleAnalytics.js"></script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=175510612479767&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div id="banner">
 	<span id="title">丟丟買屋時機計算網</span><br/>
 	<span id="intro">何時購買房子，才能兼顧生活品質及經濟狀況？</span>
 </div>
-<div id="summary"></div>
+<div id="summary">
+</div>
+	<div class="fb-like-box" data-href="https://www.facebook.com/foresttranquille" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
 <div id="basicData">
 <pre>
 1.目前年齡<input class="year" id="copy-age" />
