@@ -5,6 +5,16 @@ var finalCash = [];
 var bestLife= [];
 
 function drawHighchart() {
+	seriesOptionsBest= [{
+		name: "最終資產",
+		data: bestData
+	},{
+		name: "實值物質<br/>生活總計",
+		data: bestLife
+	},{
+		name: "最終現金",
+		data: finalCash
+	}];
 	seriesOptionsHouse = [{
 		name: "累計資產",
 		data: houseData['property']
@@ -24,16 +34,6 @@ function drawHighchart() {
 		name: "生活水平",
 		data: houseData['life']
 	}];
-	seriesOptionsBest= [{
-		name: "最終資產",
-		data: bestData
-	},{
-		name: "實值物質<br/>生活總計",
-		data: bestLife
-	},{
-		name: "最終現金",
-		data: finalCash
-	}];
 	createChart();
 }
 
@@ -43,37 +43,6 @@ function createChart() {
 	//直接新增一個圖表區塊~置於body後方
 //	$('<div>').insertAfter("body").highcharts({});
 
-	$('#highchartContent-house').highcharts({
-		title: {
-			text: '買屋資產變化',
-			x: -20 //center
-		},
-//		subtitle: {
-//			text: 'Source: WorldClimate.com',
-//			x: -20
-//		},
-		xAxis: { categories: xAxis },
-		yAxis: {
-			title: {
-				text: '資產/現金總額(NT)'
-			},
-			plotLines: [{
-				value: 0,
-				width: 1,
-				color: '#808080'
-			}]
-		},
-		tooltip: {
-			valueSuffix: 'NT'
-		},
-		legend: {
-			layout: 'vertical',
-			align: 'right',
-			verticalAlign: 'middle',
-			borderWidth: 0
-		},
-		series: seriesOptionsHouse
-	});
 	//var colors = Highcharts.getOptions().colors;
 	//console.log(colors);
 	$('#highchartContent-best').highcharts({
@@ -108,5 +77,37 @@ function createChart() {
 			borderWidth: 0
 		},
 		series: seriesOptionsBest
+	});
+
+	$('#highchartContent-house').highcharts({
+		title: {
+			text: buyYear+'歲買屋資產變化圖',
+			x: -20 //center
+		},
+//		subtitle: {
+//			text: 'Source: WorldClimate.com',
+//			x: -20
+//		},
+		xAxis: { categories: xAxis },
+		yAxis: {
+			title: {
+				text: '資產/現金總額(NT)'
+			},
+			plotLines: [{
+				value: 0,
+				width: 1,
+				color: '#808080'
+			}]
+		},
+		tooltip: {
+			valueSuffix: 'NT'
+		},
+		legend: {
+			layout: 'vertical',
+			align: 'right',
+			verticalAlign: 'middle',
+			borderWidth: 0
+		},
+		series: seriesOptionsHouse
 	});
 }

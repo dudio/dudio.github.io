@@ -114,7 +114,7 @@
 	月租：<input class="money cost" value="6000"/>
 	預期月租漲幅：<input class="percentage priceChange" value="1.5" /> %/年
 	<div class="ondo">
-	通勤時間(分/日)：<input class="minite" id="transTime" value="60"/>
+	通勤時間(分/日)：<input class="minite" id="transTime" vaenlue="60"/>
 	通勤支出(日)：<input class="money" id="transCost" value="100"/>
 	</div>
 </div>
@@ -143,10 +143,11 @@
 	</pre>
 	</div>
 </div>
-
 顯示未完成功能<input type="checkbox" id="showOndo" />
-
-<div class="fb-comments" data-href="https://dudio.github.io/house.html" data-numposts="7" data-colorscheme="light"></div>
+<hr/>
+<div style="text-align:center;">
+	<div class="fb-comments" data-href="https://dudio.github.io/house.html" data-numposts="7" data-colorscheme="light"></div>
+</div>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -159,110 +160,16 @@
 
 <script src="javascripts/jquery-2.1.1.min.js"></script>
 <script src="javascripts/jquery-ui-1.11.1.custom/jquery-ui.min.js"></script>
-
 <script src="javascripts/highchart/highcharts.js"></script>
 <script src="javascripts/highchart/modules/exporting.js"></script>
 
 <script src="javascripts/questionbox.js"></script>
-<script src="javascripts/multiple.js"></script>
 <script src="javascripts/highchart.js"></script>
-<script src="javascripts/countProperty.js"></script>
 <script src="javascripts/summary.js"></script>
-<script type="text/javascript">
-function countYearSalary(){
-	$("#yearSalary").val($("#copy-salary").val()*$("#salaryMonth").val());
-}
 
-function setBasicData(){
-	$("#copy-age").val($("#age").val());
-	$("#copy-salary").val($("#salary").val());
-	$("#salaryMonth").val(parseFloat($("#bonus").val())+12);
-	countYearSalary();
-	$("#copy-salary, #salaryMonth").change(countYearSalary);
-	$("#yearSalary").change(function(){
-		$("#copy-salary").val(Math.round($("#yearSalary").val()/$("#salaryMonth").val()));
-	});
-	$("#rentCost").val($("#rent .cost").val());
-	$("#houseCost").val($("#house .cost").val());
-}
-
-function copyBasicData(){
-	$("#age").val($("#copy-age").val());
-	$("#salary").val($("#copy-salary").val());
-	$("#bonus").val(parseFloat($("#salaryMonth").val())-12);
-	$("#rent .cost").val($("#rentCost").val());
-	$("#house .cost").val($("#houseCost").val());
-	countProperty();
-}
-
-function getWorkData(){
-	age             = parseInt($("#age").val());//當前年齡
-        retireAge       = $("#retireAge").val();//退休年齡
-        salary          = parseInt($("#salary").val());//月薪
-        bonus           = parseFloat($("#bonus").val());//年終
-}
-
-function countFinalSalary(){
-	getWorkData();
-        salaryAdjust    = 1+$("#salaryAdjust").val()/100;//調薪
-	$("#finalYearSalary").val(Math.round(salary * (12+bonus) * Math.pow( salaryAdjust, retireAge - age)));
-}
-
-function countSalaryAdjust(){
-	getWorkData();
-	var finalYearSalary = $("#finalYearSalary").val();
-	$("#salaryAdjust").val(Math.round((Math.pow(finalYearSalary / (salary * (12+bonus)), 1/(retireAge - age))-1)*100000)/1000);
-}
-
-$(function(){
-
-	//設定未完成功能樣式
-	$(".ondo :input").attr("disabled","disabled");
-	$("#showOndo").change(function(){
-		$(".ondo").toggle();
-	});
-
-	//設定初始資料
-	setBasicData();
-	$("#basicData").dialog({
-		title:"基本資料",
-		width:"auto",
-		close: copyBasicData,
-		modal: true
-	});
-
-	//設定分頁
-	$("#inputTabs").tabs();
-
-	//設定基本輸入欄位
-	$("input").css("text-align","right");
-	$("input.money").attr("size","10");
-	$("input.day").attr("size","3");
-	$("input.month").attr("size","4");
-	$("input.year").attr("size","3");
-	$("input.percentage").attr("size","5");
-
-	//自動計算預期壽命
-	$("#age").change(function(){
-		var age = parseInt($(this).val());
-		if($(this).val()>0)
-			$("#life").val(Math.ceil(Math.max(80+age/5,age+10)));
-	});
-
-	//自動計算最終年薪/調薪
-	countFinalSalary();
-	$("#finalYearSalary").change(countSalaryAdjust);
-	$("#salaryAdjust").change(countFinalSalary);
-
-	//買房年紀拉bar
-	$("#waitYear").slider();
-	countProperty();
-	$("input").not("#basicData input").change(countProperty);
-
-        $('#container').highcharts({});
-
-
-});
-</script>
+<script src="javascripts/basicData.js"></script>
+<script src="javascripts/inputSetting.js"></script>
+<script src="javascripts/multiple.js"></script>
+<script src="javascripts/countProperty.js"></script>
 </html>
 

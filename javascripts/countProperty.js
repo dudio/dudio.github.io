@@ -260,4 +260,15 @@ function countProperty(){
 	writeSummary();
 	drawHighchart();
 
+	//hide some legend
+	//把圖表中第3,4,6條折線先行隱藏
+	$(".highcharts-legend").each(function(){
+		$(this).find(".highcharts-legend-item").each(function(i){
+			if(i==2||i==3||i==5) $(this).click();
+		});
+	});
 }
+
+$(function(){
+	$(":input").not("#basicData :input,#showOndo").change(countProperty);
+});
