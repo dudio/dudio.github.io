@@ -124,10 +124,8 @@
 		<pre>
 <div id="house" class="multiple">
 	目標房價(現值)：<input class="money cost" value="8000000" /> 元
-	預期房價漲幅：<input class="percentage priceChange" value="1.6" /> %/年
-	<div class="ondo">
-	持屋每年額外成本(%)     0.5
-	</div>
+	預期房價漲幅：<input class="percentage priceChange" value="2.0" /> %/年
+	持屋成本(稅金及維護費用)：<input class="percentage maintainCost" value="0.5" /> %/年
 	貸款年利率：<input class="percentage loanRatePerYear" value="3"/> % / 年
 	<div class="ondo">
 	通勤時間(分/日)：<input class="minite" id="transTime" value="60"/>
@@ -171,5 +169,21 @@
 <script src="javascripts/inputSetting.js"></script>
 <script src="javascripts/multiple.js"></script>
 <script src="javascripts/countProperty.js"></script>
+<script>
+function setDimensions(){
+	var w = $(window).width();
+	if(w > 1428)
+		$("body").width("70%");
+	else if(w>1000)
+		$("body").width(1000);
+	else 
+		$("body").width("100%");
+}
+
+$(function(){
+	setDimensions();
+	window.onresize=setDimensions;
+});
+</script>
 </html>
 

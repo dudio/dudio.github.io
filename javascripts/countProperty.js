@@ -41,6 +41,7 @@ function getData(){
 	//可購房產資料
 	buyYear			= buyYear || age;
 	house["priceChange"]	= 1+$("#house .priceChange").val()/100;//房價漲幅
+	house["maintainCost"]	= $("#house .maintainCost").val()/100;//維護成本
 	house["loanRatePerYear"] = 1+$("#house .loanRatePerYear").val()/100;//貸款年利率
 	house["equalRent"]	= parseInt($("#house .equalRent").val());
 }
@@ -51,6 +52,8 @@ function rentTo(y, data) {
 	var rent	= {};//可租房產資料
 	var yearMaterialLife;
 	rent["cost"]	= parseInt($("#rent .cost").val());//租金
+	var rentValue	= rent["cost"];
+	rent["priceChange"] = 1+parseFloat($("#rent .priceChange").val())/100;//租金漲幅
 	nowPriceIndex	= priceIndex;
 
 	for(year=age;year<=y;year++){
@@ -63,9 +66,9 @@ function rentTo(y, data) {
 			else
 				yearIncome += retirementPayMonthly;
 			yearOutgoing += nowOutgoing;
-			yearOutgoing += rent['cost'];
+			yearOutgoing += parseInt(rent['cost']);
 			yearMaterialLife += outgoing;
-			yearMaterialLife += rent['cost'];
+			yearMaterialLife += rentValue;
 		}
 		//領年終 調薪
 		if(year<=retireAge) {
@@ -90,6 +93,7 @@ function rentTo(y, data) {
 
 		//計算房價漲幅
 		house["cost"] *= house["priceChange"];
+		rent["cost"] *= rent["priceChange"];
 
 		//物質生活累計
 		totalMaterialLife += yearMaterialLife;
@@ -136,6 +140,7 @@ function buyHouseFrom(y, data) {
 			else
 				yearIncome += retirementPayMonthly;
 			yearOutgoing += nowOutgoing;
+			yearOutgoing += house["cost"]*house["maintainCost"]/12;
 			yearMaterialLife += outgoing;
 			yearMaterialLife += house["equalRent"];
 		}

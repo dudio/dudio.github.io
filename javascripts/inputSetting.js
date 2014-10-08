@@ -1,3 +1,7 @@
+function countHouseEqual(){
+	$("#house .equalRent").val(Math.round($("#house .cost").val()/1000));
+}
+
 $(function(){
 
 	//設定未完成功能樣式
@@ -29,4 +33,6 @@ $(function(){
 	$("#finalYearSalary").change(countSalaryAdjust);
 	$("#salaryAdjust").change(countFinalSalary);
 
+	//自動計算房產感受價值
+	$("#house .cost").change(countHouseEqual);
 });

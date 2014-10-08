@@ -1,8 +1,9 @@
 body {
         font: normal 16px/1;
 	font-family: "微軟正黑體", "Microsoft JhengHei", "標楷體", "DFKai-sb", "Times New Roman", Times, serif;
-        margin:10px 15% 50px 15%;
+        margin:10px auto 50px auto;
 	background-color:#e8ecf0;
+	width:70%;
 }
 
 #banner {

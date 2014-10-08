@@ -21,6 +21,7 @@ function copyBasicData(){
 	$("#bonus").val(parseFloat($("#salaryMonth").val())-12);
 	$("#rent .cost").val($("#rentCost").val());
 	$("#house .cost").val($("#houseCost").val());
+	countHouseEqual();
 	countProperty();
 }
 
