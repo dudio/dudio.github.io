@@ -114,7 +114,8 @@ function buyHouseFrom(y, data) {
 	var yearMaterialLife;
 
 	//買屋-資產計算
-	var perYearPaidLoan;//每年繳交貸款
+	var perYearPaidLoan;//每年實繳交貸款
+	var firstLoanPay=0;//用第一年能繳出的金額預估本息均攤額度
 
 	//繳頭期款
 	var firstPay;
@@ -171,8 +172,15 @@ function buyHouseFrom(y, data) {
 				perYearPaidLoan = loan;
 				loan = 0;
 			} else{
+				//預設使用本息均攤;
+				if(firstLoanPay) {
+					perYearPaidLoan = firstLoanPay;
+					loan -= firstLoanPay;
+				}else firstLoanPay = (nowCash-saveMoney);
+
+				/* 有多少閒錢還多少
 				perYearPaidLoan = (nowCash-saveMoney);
-				loan -= (nowCash-saveMoney);
+				loan -= (nowCash-saveMoney); */
 			}
 			yearOutgoing += perYearPaidLoan;
 			nowCash = parseFloat(nowCash) - parseFloat(perYearPaidLoan);
