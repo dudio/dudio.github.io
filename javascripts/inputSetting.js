@@ -35,4 +35,6 @@ $(function(){
 
 	//自動計算房產感受價值
 	$("#house .cost").change(countHouseEqual);
+
+	
 });
