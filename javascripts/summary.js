@@ -47,4 +47,5 @@ function writeSummary(){
 		report += "<span style='color:rgb(255,49,49);font-size: 1.1em;line-height: 2em;'>本站建議：在<span style='color:blue;'>"+bestAge+"</span>歲的時候購買房產，較能兼顧生活品質及投資需求</span>";
 
 	$("#report").html(report);
+	return bestAge;
 }

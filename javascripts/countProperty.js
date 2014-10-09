@@ -232,7 +232,7 @@ function buyHouseOn(buyOn){
 	return data;
 } 
 
-function countProperty(){
+function countProperty(setBestAge){
 	getData();
 	
 	$("#buyYear").slider({
@@ -249,9 +249,6 @@ function countProperty(){
 	for(year=age;year<=life;year++)
 		xAxis.push(year);
 
-	houseData = buyHouseOn(true);
-	rentData = buyHouseOn(false);
-
 	//計算最佳買房時機
 	bestData = [];
 	finalCash = [];
@@ -267,7 +264,15 @@ function countProperty(){
 	}
 	buyYear = oriBuyYear; //算完最佳解後要還原原本的buyYear值
 
-	writeSummary();
+	var bestAge = writeSummary();
+
+	if(setBestAge) {
+		buyYear = bestAge;
+		$("#buyYear").slider({"value":bestAge});
+	}
+	houseData = buyHouseOn(true);
+	rentData = buyHouseOn(false);
+
 	drawHighchart();
 
 	//hide some legend
