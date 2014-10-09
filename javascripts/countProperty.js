@@ -173,10 +173,9 @@ function buyHouseFrom(y, data) {
 				loan = 0;
 			} else{
 				//預設使用本息均攤;
-				if(firstLoanPay) {
-					perYearPaidLoan = firstLoanPay;
-					loan -= firstLoanPay;
-				}else firstLoanPay = (nowCash-saveMoney);
+				if(!firstLoanPay) firstLoanPay = (nowCash-saveMoney);
+				perYearPaidLoan = firstLoanPay;
+				loan -= firstLoanPay;
 
 				/* 有多少閒錢還多少
 				perYearPaidLoan = (nowCash-saveMoney);
@@ -202,7 +201,6 @@ function buyHouseFrom(y, data) {
 			yearOutgoing += parseInt(firstPay);
 			firstPay = 0;
 		}
-
 		//物質生活累計
 		totalMaterialLife += yearMaterialLife;
 
@@ -214,7 +212,6 @@ function buyHouseFrom(y, data) {
 		data['property'].push(Math.round(house["cost"]-loan+nowCash));
 		data['life'].push(Math.round(yearMaterialLife));
 	}
-
 }
 /* 從<buyOn>歲開始買房子 在這之前都是租房子 */
 function buyHouseOn(buyOn){
