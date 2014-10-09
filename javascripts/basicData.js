@@ -6,15 +6,20 @@ function countYearSalary(){
 function countHouseMulti(){
 	$("#houseMulti").val(Math.round(Math.pow(1+$("#copy-priceChange").val()/100,20)*10)/10);
 }
+
 function setBasicData(){
 	$("#copy-age").val($("#age").val());
 	$("#copy-salary").val($("#salary").val());
+
+	//月薪年薪設定
 	$("#salaryMonth").val(parseFloat($("#bonus").val())+12);
 	countYearSalary();
 	$("#copy-salary, #salaryMonth").change(countYearSalary);
 	$("#yearSalary").change(function(){
 		$("#copy-salary").val(Math.round($("#yearSalary").val()/$("#salaryMonth").val()));
 	});
+
+	//房租
 	$("#rentCost").val($("#rent .cost").val());
 	$("#houseCost").val($("#house .cost").val());
 
@@ -65,7 +70,7 @@ $(function(){
 	//設定初始資料
 	setBasicData();
 	$("#basicData").dialog({
-		title:"基本資料",
+		title:"丟丟買屋時機計算網-填寫基本資料",
 		width:"auto",
 		close: copyBasicData,
 		position: { my: "center", at: "center", of: window },
