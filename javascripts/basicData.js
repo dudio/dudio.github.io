@@ -38,6 +38,7 @@ function copyBasicData(){
 	$("#rent .cost").val($("#rentCost").val());
 	$("#house .cost").val($("#houseCost").val());
 	$("#house .priceChange").val($("#copy-priceChange").val());
+	$("#house .houseMulti").val($("#houseMulti").val());
 	countHouseEqual();
 
 	//自動計算每月支出 ~= (月薪-房租-15000)^0.8*2+15000

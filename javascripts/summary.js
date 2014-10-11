@@ -20,7 +20,7 @@ function writeSummary(){
 	for (i=0; i<l; i++) {
 		if(bestLifeV < bestLife[i]) {
 			bestAge = i;
-			bestLiveV = bestLife[i];
+			bestLifeV = bestLife[i];
 		}
 	}
 	bestAge = bestAge + parseInt(age);
