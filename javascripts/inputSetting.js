@@ -1,5 +1,5 @@
 function countHouseEqual(){
-	$("#house .equalRent").val(Math.round(parseFloat($("#house .cost").val())*10));
+	$("#house .equalRent").val(Math.round(parseFloat($("#house .cost").val())*15));//租金房價比
 }
 
 $(function(){
