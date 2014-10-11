@@ -71,7 +71,7 @@ $(function(){
 	//設定初始資料
 	setBasicData();
 	$("#basicData").dialog({
-		title:"丟丟買屋時機計算網-填寫基本資料",
+		title:"買屋時機計算網-填寫基本資料",
 		width:"auto",
 		close: copyBasicData,
 		position: { my: "center", at: "center", of: window },
