@@ -1,11 +1,12 @@
 var xAxis;
 var year,month;
 var yearIncome, yearOutgoing;
-var nowSalary, nowOutgoing, nowCash, nowPriceIndex;
+var nowSalary=[], nowOutgoing, nowCash, nowPriceIndex;
 
 var priceIndex;
 var age, life, cash, outgoing, invest, saveMoney;
-var retireAge, salary, bonus, salaryAdjust, workHourPerDay, workDayPerYear, retirementPayOnce, retirementPayMonthly;//工作資料
+var work = [];//工作資料
+var workNum;
 var house = {};//可買房產資料
 var buyYear;
 var totalMaterialLife;
@@ -23,17 +24,24 @@ function getData(){
 	saveMoney	= $("#saveMoney").val();//最低現金
 
 	//工作資料
-	retireAge	= $("#retireAge").val();//退休年齡
-	salary		= parseInt($("#salary").val());//月薪
-	bonus		= parseFloat($("#bonus").val());//年終
-	salaryAdjust	= 1+$("#salaryAdjust").val()/100;//調薪
-	retirementPayOnce	= parseInt($("#retirementPayOnce").val());//退休金 - 一次領
-	retirementPayMonthly	= parseInt($("#retirementPayMonthly").val());//退休金 - 月領
-	workHourPerDay	= parseFloat($("#workHourPerDay").val());//每日工時
-	var restPerWeek	= parseFloat($("#restPerWeek").val());//每週休假日數
-	var restPerMonth	= parseFloat($("#restPerMonth").val());//每月休假日數
-	var restPerYear	= parseFloat($("#restPerYear").val());//每年休假日數
-	workDayPerYear	= 365.2425*(7-restPerWeek)/7 - 12*restPerMonth - restPerYear;
+	work = [];
+	$(".work").each(function(i){
+		var thisWork = {};
+		var $t = $(this);
+		thisWork['retireAge']		= $t.find(".retireAge").val();//退休年齡
+		thisWork['salary']		= parseInt($t.find(".salary").val());//月薪
+		thisWork['bonus']		= parseFloat($t.find(".bonus").val());//年終
+		thisWork['salaryAdjust']	= 1+$t.find(".salaryAdjust").val()/100;//調薪
+		thisWork['retirementPayOnce']	= parseInt($t.find(".retirementPayOnce").val());//退休金 - 一次領
+		thisWork['retirementPayMonthly'] = parseInt($t.find(".retirementPayMonthly").val());//退休金 - 月領
+		thisWork['workHourPerDay']	= parseFloat($t.find(".workHourPerDay").val());//每日工時
+		var restPerWeek			= parseFloat($t.find(".restPerWeek").val());//每週休假日數
+		var restPerMonth		= parseFloat($t.find(".restPerMonth").val());//每月休假日數
+		var restPerYear			= parseFloat($t.find(".restPerYear").val());//每年休假日數
+		thisWork['workDayPerYear']	= 365.2425*(7-restPerWeek)/7 - 12*restPerMonth - restPerYear;
+		work[i]	= thisWork;
+	});
+	workNum = work.length;
 
 	//可購房產資料
 	buyYear			= buyYear || age;
@@ -44,8 +52,11 @@ function getData(){
 	house["equalRent"]	= parseInt($("#house .equalRent").val());
 	house["transTime"] = parseFloat($("#house .transTime").val());//每上班日通勤時間(分)
 	house["transCost"] = parseFloat($("#house .transCost").val());//每上班日通勤支出
-	house["transCostPerMonth"] = Math.round(workDayPerYear*house["transCost"]/12);//每月通勤支出
-	house["transTimeRatio"] = house["transTime"]/(workHourPerDay*60+house["transTime"]);//通勤佔工時比例
+	house["transCostPerMonth"] = Math.round(work[0]['workDayPerYear']*house["transCost"]/12);//每月通勤支出
+//	house["transTimeRatio"] = [];
+//	for(var i=0;i<workNum;i++)
+//		house["transTimeRatio"][i] = house["transTime"]/(work[i]['workHourPerDay']*60+house["transTime"]);//通勤佔工時比例
+	house["transTimeRatio"] = house["transTime"]/(work[0]['workHourPerDay']*60+house["transTime"]);//通勤佔工時比例
 }
 
 //租房子到y歲的時候
@@ -58,38 +69,40 @@ function rentTo(y, data) {
 	nowPriceIndex	= priceIndex;
 	rent["transTime"] = parseFloat($("#rent .transTime").val());//每上班日通勤時間(分)
 	rent["transCost"] = parseFloat($("#rent .transCost").val());//每上班日通勤支出
-	rent["transCostPerMonth"] = Math.round(workDayPerYear*rent["transCost"]/12);//每月通勤支出
-	var transTimeRatio = rent["transTime"]/(workHourPerDay*60+rent["transTime"]);//通勤佔工時比例
+	rent["transCostPerMonth"] = Math.round(work[0]['workDayPerYear']*rent["transCost"]/12);//每月通勤支出
+	var transTimeRatio = rent["transTime"]/(work[0]['workHourPerDay']*60+rent["transTime"]);//通勤佔工時比例
 	
 	for(year=age;year<=y;year++){
 		yearIncome = yearOutgoing = yearMaterialLife = 0;
 			
 		//計算每月收支
 		for(month = 1;month<=12;month++) {
-			if(year<=retireAge)
-				yearIncome += nowSalary;
-			else
-				yearIncome += retirementPayMonthly;
+			for(var i=0;i<workNum;i++){
+				if(year<=work[i]['retireAge'])
+					yearIncome += nowSalary[i];
+				else
+					yearIncome += work[i]['retirementPayMonthly'];
+			}
 			yearOutgoing += nowOutgoing;
 			yearOutgoing += parseInt(rent['cost']);
-			if(year<=retireAge)
+			for(var i=0;i<workNum;i++) if(year<=work[i]['retireAge'])
 				yearOutgoing += parseInt(rent['transCostPerMonth']);
 			yearMaterialLife += outgoing;
 			yearMaterialLife += rentValue;
 		}
 		
 		//領年終 調薪
-		if(year<=retireAge) {
-			yearIncome += bonus*nowSalary;
-			nowSalary *= salaryAdjust;
+		for(var i=0;i<workNum;i++) if(year<=work[i]['retireAge']) {
+			yearIncome += work[i]['bonus']*nowSalary[i];
+			nowSalary[i] *= work[i]['salaryAdjust'];
 		}
 		
 		//將實值生活品質扣除通勤時間成本
 		yearMaterialLife -= yearIncome * transTimeRatio / nowPriceIndex;
 		
 		//退休金 一次領
-		if(year==retireAge)
-			yearIncome += retirementPayOnce;
+		for(var i=0;i<workNum;i++) if(year<=work[i]['retireAge'])
+			yearIncome += work[i]['retirementPayOnce'];
 
 		//投資所得(定存)
 		if(nowCash > saveMoney)
@@ -123,6 +136,7 @@ function rentTo(y, data) {
 }
 
 //從y歲開始買房子
+
 function buyHouseFrom(y, data) {
 	var loan = house["cost"];//貸款
 	var yearMaterialLife;
@@ -150,31 +164,34 @@ function buyHouseFrom(y, data) {
 			
 		//計算每月收支
 		for(month = 1;month<=12;month++) {
-			if(year<=retireAge)
-				yearIncome += nowSalary;
-			else
-				yearIncome += retirementPayMonthly;
+			for(var i=0;i<workNum;i++) {
+				if(year<=work[i]['retireAge'])
+					yearIncome += nowSalary[i];
+				else
+					yearIncome += work[i]['retirementPayMonthly'];
+			}
 			yearOutgoing += nowOutgoing;
 			yearOutgoing += house["cost"]*house["maintainCost"]/12;
-			if(year<=retireAge)
+			for(var i=0;i<workNum;i++) if(year<=work[i]['retireAge'])
 				yearOutgoing += houseTransCostPerMonth;
 			yearMaterialLife += outgoing;
 			yearMaterialLife += house["equalRent"];
 		}
 
 		//領年終 調薪
-		if(year<=retireAge) {
-			yearIncome += bonus*nowSalary;
-			nowSalary *= salaryAdjust;
+		for(var i=0;i<workNum;i++) {
+			if(year<=work[i]['retireAge']) {
+				yearIncome += work[i]['bonus']*nowSalary[i];
+				nowSalary[i] *= work[i]['salaryAdjust'];
+			}
 		}
 		
 		//將實值生活品質扣除通勤時間成本
 		yearMaterialLife -= yearIncome * house["transTimeRatio"]  / nowPriceIndex;
 
 		//退休金 一次領
-		if(year==retireAge) {
-			yearIncome += retirementPayOnce;
-		}
+		for(var i=0;i<workNum;i++) if(year<=work[i]['retireAge'])
+			yearIncome += work[i]['retirementPayOnce'];
 
 		//計算貸款利息
 		loan *= house['loanRatePerYear'];
@@ -235,14 +252,17 @@ function buyHouseFrom(y, data) {
 			data['loan'].push(Math.round(loan));
 		data['property'].push(Math.round(house["cost"]-loan+nowCash));
 		data['life'].push(Math.round(yearMaterialLife));
+
 	}
 }
-/* 從<buyOn>歲開始買房子 在這之前都是租房子 */
+
+// 從<buyOn>歲開始買房子 在這之前都是租房子
 function buyHouseOn(buyOn){
 	data = {'cash':[],'income':[],'outgoing':[],'property':[],'loan':[],'life':[]};
 
 	//資產計算
-	nowSalary = salary; //當前月薪
+	for(var i=0;i<workNum;i++)
+		nowSalary[i] = work[i]['salary']; //當前月薪
 	nowOutgoing = outgoing; //當前每月支出
 	nowCash = cash; //現金
 	totalMaterialLife = 0;//一生物質生活累計
@@ -259,7 +279,7 @@ function buyHouseOn(buyOn){
 
 function countProperty(setBestAge){
 	getData();
-	
+
 	$("#buyYear").slider({
 		min: age,
 		max: life,

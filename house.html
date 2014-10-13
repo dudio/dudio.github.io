@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>買屋時機計算網</title>
 <link rel="stylesheet" type="text/css" href="javascripts/jquery-ui-1.11.1.custom/jquery-ui.min.css">
 <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
 <link rel="stylesheet" type="text/css" href="stylesheets/questionbox.css">
@@ -80,14 +81,16 @@
 	</div>
 	<div id="tabs-2">
 		<pre>
-	<div class="work multiple">
-		薪水：<input class="money" id="salary" value="42000"/>/月
-		年終：<input class="month" id="bonus"  value="1.5">月
-		調薪幅度(年)：<input class="percentage" id="salaryAdjust" value="3">%/年 <span style="color:rgb(200,57,57);">=</span> 退休時年薪：<input class="money" id="finalYearSalary"/>
-		預期退休年齡：<input class="year" id="retireAge" value="65"/>
-		退休金：一次領<input class="money" id="retirementPayOnce" value="0"/> <span style="color:rgb(200,57,57);">+</span> 月領<input class="money" id="retirementPayMonthly" value="0"/>
-		每日工時(不含通勤)：<input class="hour" id="workHourPerDay" value="9"/>小時
-		週休<input class="day" id="restPerWeek" value="2"/>日 + 月休<input class="day" id="restPerMonth" value="0"/>日 + 年休<input class="day" id="restPerYear" value="10"/>日
+		<div class="work multiple">
+	薪水：<input class="money salary" value="42000"/>/月
+	年終：<input class="month bonus"  value="1.5">月
+	調薪幅度(年)：<input class="percentage salaryAdjust" value="3">%/年 <span style="color:rgb(200,57,57);">=</span> 退休時年薪：<input class="money finalYearSalary"/>
+	預期退休年齡：<input class="year retireAge" value="65"/>
+	退休金：一次領<input class="money retirementPayOnce" value="0"/> <span style="color:rgb(200,57,57);">+</span> 月領<input class="money retirementPayMonthly" value="0"/>
+			<div class="dontCopy">
+	每日工時(不含通勤)：<input class="hour workHourPerDay" value="9"/>小時
+	週休<input class="day restPerWeek" value="2"/>日 + 月休<input class="day restPerMonth" value="0"/>日 + 年休<input class="day restPerYear" value="10"/>日
+			</div>
 		</div>
 		</pre>
 	</div>
@@ -110,7 +113,7 @@
 	</div>
 	<div id="tabs-4">
 		<pre>
-<div id="rent" class="multiple">
+<div id="rent" class="multipleXX">
 	月租：<input class="money cost" value="6000"/>
 	預期月租漲幅：<input class="percentage priceChange" value="1.5" /> %/年
 	通勤時間(含往返)：<input class="minite transTime" value="60"/>分/日
@@ -120,7 +123,7 @@
 	</div>
 	<div id="tabs-5">
 		<pre>
-<div id="house" class="multiple">
+<div id="house" class="multipleXX">
 	目標房價(現值)：<input class="money cost" value="600" /> 萬元
 	願付多少月租入住：<input class="money equalRent" value="9000"/>
 	預期20年後房價是現在的<input class="houseMulti" size="4"/>倍 = <input class="percentage priceChange" value="1.5" />%/年

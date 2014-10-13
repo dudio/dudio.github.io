@@ -9,10 +9,10 @@ function countHouseMulti(){
 
 function setBasicData(){
 	$("#copy-age").val($("#age").val());
-	$("#copy-salary").val($("#salary").val());
+	$("#copy-salary").val($(".salary").val());
 
 	//月薪年薪設定
-	$("#salaryMonth").val(parseFloat($("#bonus").val())+12);
+	$("#salaryMonth").val(parseFloat($(".bonus").val())+12);
 	countYearSalary();
 	$("#copy-salary, #salaryMonth").change(countYearSalary);
 	$("#yearSalary").change(function(){
@@ -33,8 +33,8 @@ function setBasicData(){
 
 function copyBasicData(){
 	$("#age").val($("#copy-age").val());
-	$("#salary").val($("#copy-salary").val());
-	$("#bonus").val(parseFloat($("#salaryMonth").val())-12);
+	$(".salary").val($("#copy-salary").val());
+	$(".bonus").val(parseFloat($("#salaryMonth").val())-12);
 	$("#rent .cost").val($("#rentCost").val());
 	$("#house .cost").val($("#houseCost").val());
 	$("#house .priceChange").val($("#copy-priceChange").val());
@@ -45,25 +45,7 @@ function copyBasicData(){
 	$("#outgoing").val(Math.min(Math.round(Math.pow(Math.max($("#yearSalary").val()/12-$("#rentCost").val()-15000,0),0.8)/50)*100+15000,$("#copy-salary").val()-$("#rentCost").val()));
 
 	countProperty(true);
-}
-
-function getWorkData(){
-	age             = parseInt($("#age").val());//當前年齡
-        retireAge       = $("#retireAge").val();//退休年齡
-        salary          = parseInt($("#salary").val());//月薪
-        bonus           = parseFloat($("#bonus").val());//年終
-}
-
-function countFinalSalary(){
-	getWorkData();
-        salaryAdjust    = 1+$("#salaryAdjust").val()/100;//調薪
-	$("#finalYearSalary").val(Math.round(salary * (12+bonus) * Math.pow( salaryAdjust, retireAge - age)));
-}
-
-function countSalaryAdjust(){
-	getWorkData();
-	var finalYearSalary = $("#finalYearSalary").val();
-	$("#salaryAdjust").val(Math.round((Math.pow(finalYearSalary / (salary * (12+bonus)), 1/(retireAge - age))-1)*100000)/1000);
+	countFinalSalary();
 }
 
 $(function(){

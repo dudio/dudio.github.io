@@ -2,6 +2,27 @@ function countHouseEqual(){
 	$("#house .equalRent").val(Math.round(parseFloat($("#house .cost").val())*15));//租金房價比
 }
 
+function countFinalSalary(){
+	age = parseInt($("#age").val());//當前年齡
+	$(".work").each(function(i){
+		var $t = $(this);
+		work[i]['retireAge']	= $t.find(".retireAge").val();//退休年齡
+		work[i]['salary']	= parseInt($t.find(".salary").val());//月薪
+		work[i]['bonus']	= parseFloat($t.find(".bonus").val());//年終
+	        work[i]['salaryAdjust']    = 1+$t.find(".salaryAdjust").val()/100;//調薪
+		$t.find(".finalYearSalary").val(Math.round(work[i]['salary'] * (12+work[i]['bonus']) * Math.pow( work[i]['salaryAdjust'], work[i]['retireAge'] - age)));
+	});
+}
+
+function countSalaryAdjust(){
+	$(".work").each(function(i){
+		var $t = $(this);
+		var finalYearSalary = $t.find(".finalYearSalary").val();
+		$t.find(".salaryAdjust").val(Math.round((Math.pow(finalYearSalary / (work[i]['salary'] * (12+work[i]['bonus'])), 1/(work[i]['retireAge'] - age))-1)*100000)/1000);
+	});
+}
+
+
 $(function(){
 
 	//設定未完成功能樣式
@@ -32,9 +53,8 @@ $(function(){
 	});
 
 	//自動計算最終年薪/調薪
-	countFinalSalary();
-	$("#finalYearSalary").change(countSalaryAdjust);
-	$("#salaryAdjust").change(countFinalSalary);
+	$(".finalYearSalary").change(countSalaryAdjust);
+	$("#age, .retireAge, .salary, .bonus, .salaryAdjust").change(countFinalSalary);
 
 	//自動計算房價漲幅 & 倍數
 	$("#house .priceChange").change(function(){
