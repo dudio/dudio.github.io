@@ -3,12 +3,17 @@ body {
 	font-family: "微軟正黑體", "Microsoft JhengHei", "標楷體", "DFKai-sb", "Times New Roman", Times, serif;
 	margin:10px auto 50px auto;
 	background-color:#e8ecf0;
-	width:70%;
+	width:100%;
 }
 
 #banner {
-        text-align:center;
-	padding:2em;
+    text-align:center;
+	padding:5em 2em;
+	background-image:url('../images/banner.jpg');
+	background-repeat: no-repeat;
+	background-position:50% 50%;
+	min-height:378px;
+	box-sizing:border-box;
 }
 
 #title {
@@ -25,6 +30,20 @@ body {
 	color:#333;
 }
 
+#background {
+	background-image:url('../images/background.jpg');
+	background-repeat: no-repeat;
+	background-position:50% 50%;
+	background-size:100% auto;
+}
+#content{
+	width:55%;
+	margin-left:35%;
+}
+#inputTabs {
+	width: 64%;
+	margin-left: 25%;
+}
 .fb-comments {
 	margin-top:15px;
 }
