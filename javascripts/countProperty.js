@@ -50,9 +50,11 @@ function getData(){
 	house["loanRatePerYear"] = 1+$("#house .loanRatePerYear").val()/100;//貸款年利率
 	house["loanType"] = $("[name='loanType']:checked").val();//還款方式
 	house["equalRent"]	= parseInt($("#house .equalRent").val());
-	house["transTime"] = parseFloat($("#house .transTime").val());//每上班日通勤時間(分)
+
 	house["transCost"] = parseFloat($("#house .transCost").val());//每上班日通勤支出
 	house["transCostPerMonth"] = Math.round(work[0]['workDayPerYear']*house["transCost"]/12);//每月通勤支出
+
+	house["transTime"] = parseFloat($("#house .transTime").val());//每上班日通勤時間(分)
 //	house["transTimeRatio"] = [];
 //	for(var i=0;i<workNum;i++)
 //		house["transTimeRatio"][i] = house["transTime"]/(work[i]['workHourPerDay']*60+house["transTime"]);//通勤佔工時比例
@@ -67,9 +69,11 @@ function rentTo(y, data) {
 	var rentValue	= rent["cost"];
 	rent["priceChange"] = 1+parseFloat($("#rent .priceChange").val())/100;//租金漲幅
 	nowPriceIndex	= priceIndex;
-	rent["transTime"] = parseFloat($("#rent .transTime").val());//每上班日通勤時間(分)
+
 	rent["transCost"] = parseFloat($("#rent .transCost").val());//每上班日通勤支出
 	rent["transCostPerMonth"] = Math.round(work[0]['workDayPerYear']*rent["transCost"]/12);//每月通勤支出
+
+	rent["transTime"] = parseFloat($("#rent .transTime").val());//每上班日通勤時間(分)
 	var transTimeRatio = rent["transTime"]/(work[0]['workHourPerDay']*60+rent["transTime"]);//通勤佔工時比例
 	
 	for(year=age;year<=y;year++){
