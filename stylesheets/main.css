@@ -33,7 +33,7 @@ body {
 #background {
 	background-image:url('../images/background.jpg');
 	background-repeat: no-repeat;
-	background-position:50% 50%;
+	background-position:50% 0%;
 	background-size:100% auto;
 }
 #content{
