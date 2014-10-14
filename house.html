@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>買屋時機計算網</title>
+<title>買屋時機估算網</title>
 <link rel="stylesheet" type="text/css" href="javascripts/jquery-ui-1.11.1.custom/jquery-ui.min.css">
 <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
 <link rel="stylesheet" type="text/css" href="stylesheets/questionbox.css">
@@ -31,13 +31,13 @@
 <body>
 <script src="javascripts/googleAnalytics.js"></script>
 <div id="banner">
-	<span id="title">買屋時機計算網</span><br/>
+	<span id="title">買屋時機估算網</span><br/>
 	<span id="subtitle">何時購買房子，才能兼顧生活品質及經濟狀況？</span>
 </div>
 <div id="summary">
 	<div id="report"></div>
 	<div>本站插圖由<span style="color:green;">小森一點</span>協助製作，問題回報請mail至 <span style='color:rgb(223,72,72);'>dudiolin@gmail.com</span></div>
-	<div class="fb-like-box" data-href="https://www.facebook.com/foresttranquille" data-height="60" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
+	<div class="fb-like-box" data-href="https://www.facebook.com/foresttranquille" data-height="60" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false" style="height:70px;"></div>
 </div>
 <div id="basicData">
 <pre>
@@ -48,6 +48,7 @@
 3.當前房租：<input class="money" id="rentCost"/>/月
 4.想購買的房產當前價格：<input class="wanMoney" id="houseCost"/>萬元
 5.預期20年後房價是現在的<input id="houseMulti" size="4"/>倍 = <input class="percentage" id="copy-priceChange" />%/年
+<div style="text-align:center;margin-top:1em;"><button id="closeBasicData" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" ><span class="ui-button-text">開始估算</span></button></div>
 </pre>
 </div>
 <div id="background">
@@ -148,12 +149,12 @@
 		</div>
 		顯示未完成功能<input type="checkbox" id="showOndo" />
 	</div>
-</div>
-<hr/>
-<div style="text-align:center;">
-	<div class="fb-like" data-href="https://dudio.github.io/house.html" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-	<br/>
-	<div class="fb-comments" data-href="https://dudio.github.io/house.html" data-numposts="7" data-colorscheme="light"></div>
+	<hr/>
+	<div style="text-align:center;">
+		<div class="fb-like" data-href="https://dudio.github.io/house.html" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+		<br/>
+		<div class="fb-comments" data-href="https://dudio.github.io/house.html" data-numposts="7" data-colorscheme="light"></div>
+	</div>
 </div>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -181,14 +182,25 @@
 <script>
 function setDimensions(){
 	var w = $(window).width();
-	/*if(w > 1428)
-		$("body").width("70%");
-	else if(w>1000)
-		$("body").width(1000);
-	else 
-		$("body").width("100%");*/
+
+	if(w > 1000)
+		$("#summary").css("text-align","center");
+	else
+		$("#summary").css("text-align","left");
+
+	if(w > 1428)
+		$("#content").width("55%").css("margin-left","35%");
+	else if(w>785)
+		$("#content").width("785").css("margin-left",(w-785)*7/9);
+	else
+		$("#content").width("100%").css("margin-left","0");
+
+/*	if(w > 1428)
+		$("#inputTabs").width("64%").("margin-left","25%");
+	else if(w > 862)
+		$("#inputTabs").width("862").("margin-left","25%");*/
+
 	$("#topM").height(w*0.53);
-	$("#background").height(w*4/3);
 }
 
 $(function(){

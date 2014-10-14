@@ -49,7 +49,6 @@ function copyBasicData(){
 }
 
 $(function(){
-
 	//設定初始資料
 	setBasicData();
 	$("#basicData").dialog({
@@ -60,4 +59,5 @@ $(function(){
 		modal: true
 	});
 
+	$("#closeBasicData").click(function(){$("#basicData").dialog("close");});
 });
