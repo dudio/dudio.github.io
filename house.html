@@ -30,16 +30,18 @@
 </head>
 <body>
 <script src="javascripts/googleAnalytics.js"></script>
-<div id="banner">
-	<span id="title">買屋時機估算網</span><br/>
-	<span id="subtitle">何時購買房子，才能兼顧生活品質及經濟狀況？</span>
-</div>
 <div id="background">
+	<div id="banner">
+		<span id="title">買屋時機估算網</span><br/>
+		<span id="subtitle">何時購買房子，才能兼顧生活品質及經濟狀況？</span>
+	</div>
+	<div class="topM"></div>
 	<div id="summary">
 		<div id="report"></div>
 		<div>本站插圖由<span style="color:green;">小森一點</span>協助製作，問題回報請mail至 <span style='color:rgb(223,72,72);'>dudiolin@gmail.com</span></div>
 		<div class="fb-like-box" data-href="https://www.facebook.com/foresttranquille" data-height="60" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false" style="height:70px;"></div>
 	</div>
+	<div class="topM"></div>
 	<div id="basicData">
 	<pre>
 	本站適用目前正在租屋，但有意買屋的人，根據個人經濟情況計算出較佳的買房時間點
@@ -52,7 +54,6 @@
 	<div style="text-align:center;margin-top:1em;"><button id="closeBasicData" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" ><span class="ui-button-text">開始估算</span></button></div>
 	</pre>
 	</div>
-	<div id="topM"></div>
 	<div id="content">
 		<!--最佳買屋時機圖-->
 		<div id="highchartContent-best">
@@ -201,7 +202,7 @@ function setDimensions(){
 		$("#inputTabs").width("862").("margin-left","25%");*/
 
 	//$("#topM").height(w*0.53);
-	$("#topM").height(w*0.35);
+	$(".topM").height(w*0.06);
 }
 
 $(function(){
