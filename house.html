@@ -43,16 +43,14 @@
 	</div>
 	<div class="topM"></div>
 	<div id="basicData">
-	<pre>
-	本站適用目前正在租屋，但有意買屋的人，根據個人經濟情況計算出較佳的買房時間點
-	<hr/>
-	1.目前年齡：<input class="year" id="copy-age" />
-	2.月薪：<input class="money" id="copy-salary" /> x 薪水月數<input class="month" id="salaryMonth"/> = 年薪<input class="money" id="yearSalary"/>
-	3.當前房租：<input class="money" id="rentCost"/>/月
-	4.想購買的房產當前價格：<input class="wanMoney" id="houseCost"/>萬元
-	5.預期20年後房價是現在的<input id="houseMulti" size="4"/>倍 = <input class="percentage" id="copy-priceChange" />%/年
-	<div style="text-align:center;margin-top:1em;"><button id="closeBasicData" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" ><span class="ui-button-text">開始估算</span></button></div>
-	</pre>
+		本站適用目前正在租屋，但有意買屋的人，根據個人經濟情況計算出較佳的買房時間點
+		<hr/>
+		1.目前年齡：<input class="year" id="copy-age" /><br/>
+		2.月薪：<input class="money" id="copy-salary" /> x 薪水月數<input class="month" id="salaryMonth"/> = 年薪<input class="money" id="yearSalary"/><br/>
+		3.當前房租：<input class="money" id="rentCost"/>/月<br/>
+		4.想購買的房產當前價格：<input class="wanMoney" id="houseCost"/>萬元<br/>
+		5.預期20年後房價是現在的<input id="houseMulti" size="4"/>倍 = <input class="percentage" id="copy-priceChange" />%/年<br/>
+		<div style="text-align:center;margin-top:1em;"><button id="closeBasicData" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" ><span class="ui-button-text">開始估算</span></button></div>
 	</div>
 	<div id="content">
 		<!--最佳買屋時機圖-->
@@ -78,72 +76,59 @@
 				<li><a href="#tabs-6">外在環境</a></li>
 			</ul>
 			<div id="tabs-1">
-				<pre>
-現在年齡:<input class="year" id="age" value="30"/>歲
-預期壽命:<input class="year" id="life" value="86"/>歲
-				</pre>
+				現在年齡:<input class="year" id="age" value="30"/>歲<br/>
+				預期壽命:<input class="year" id="life" value="86"/>歲
 			</div>
 			<div id="tabs-2">
-				<pre>
 				<div class="work multiple">
-薪水：<input class="money salary" value="40000"/>元/月
-年終：<input class="month bonus"  value="1.5">個月
-預期退休年齡：<input class="year retireAge" value="65"/>歲
-調薪幅度(年)：<input class="percentage salaryAdjust" value="3">%/年 <span style="color:rgb(200,57,57);">=</span> 退休時年薪：<input class="wanMoney finalYearSalary"/>萬元
-退休金：一次領<input class="money retirementPayOnce" value="0"/>元 <span style="color:rgb(200,57,57);">+</span> 月領<input class="money retirementPayMonthly" value="0"/>元
+					薪水：<input class="money salary" value="40000"/>元/月<br/>
+					年終：<input class="month bonus"  value="1.5">個月<br/>
+					預期退休年齡：<input class="year retireAge" value="65"/>歲<br/>
+					調薪幅度(年)：<input class="percentage salaryAdjust" value="3">%/年 <span style="color:rgb(200,57,57);">=</span> 退休時年薪：<input class="wanMoney finalYearSalary"/>萬元<br/>
+					退休金：一次領<input class="money retirementPayOnce" value="0"/>元 <span style="color:rgb(200,57,57);">+</span> 月領<input class="money retirementPayMonthly" value="0"/>元<br/>
 				</div>
-每日工時(不含通勤)：<input class="hour" id="workHourPerDay" value="9"/>小時
-週休<input class="day" id="restPerWeek" value="2"/>日 + 月休<input class="day" id="restPerMonth" value="0"/>日 + 年休<input class="day" id="restPerYear" value="10"/>日
-				</pre>
+				每日工時(不含通勤)：<input class="hour" id="workHourPerDay" value="9"/>小時<br/>
+				週休<input class="day" id="restPerWeek" value="2"/>日 + 月休<input class="day" id="restPerMonth" value="0"/>日 + 年休<input class="day" id="restPerYear" value="10"/>日
 			</div>
 			<div id="tabs-3">
-				<pre>
-現有資金:<input class="money" id="cash" value="300000"/>
-支出(不含住宿/工作通勤)：<input class="money" id="outgoing"/> /月
-閒錢投資年報酬率：<input class="percentage" id="invest" value="1.3"/>%
-<div class="ondo">
-	套用：定存年利率(%)     1.3
-</div>
-最低手頭現金額度：<input class="money" id="saveMoney" value="100000" />元
-	(現金 - 最低現金額度 = 可投資金額/頭期款)
-<div class="ondo">
-	考慮隨收入及物價波動
-	額外支出(多筆)
-	時間/金額
-</div>
-				</pre>
+				現有資金:<input class="money" id="cash" value="300000"/><br/>
+				支出(不含住宿/工作通勤)：<input class="money" id="outgoing"/> /月<br/>
+				閒錢投資年報酬率：<input class="percentage" id="invest" value="1.3"/>%<br/>
+				<div class="ondo">
+					套用：定存年利率(%)     1.3
+				</div>
+				最低手頭現金額度：<input class="money" id="saveMoney" value="100000" />元<br/>
+				(現金 - 最低現金額度 = 可投資金額/頭期款)
+				<div class="ondo">
+					額外支出(多筆)
+					年紀(含月份)/金額
+				</div>
 			</div>
 			<div id="tabs-4">
-				<pre>
-		<div id="rent" class="multipleXX">
-月租：<input class="money cost" value="8000"/>元
-預期月租漲幅：<input class="percentage priceChange" value="1.5" /> %/年
-通勤時間(含往返)：<input class="minite transTime" value="60"/>分/日
-通勤支出(含往返)：<input class="money transCost" value="100"/>元/日
-		</div>
-				</pre>
+				<div id="rent" class="multipleXX">
+					月租：<input class="money cost" value="8000"/>元<br/>
+					預期月租漲幅：<input class="percentage priceChange" value="1.5" /> %/年<br/>
+					通勤時間(含往返)：<input class="minite transTime" value="60"/>分/日<br/>
+					通勤支出(含往返)：<input class="money transCost" value="100"/>元/日<br/>
+				</div>
 			</div>
 			<div id="tabs-5">
-				<pre>
-		<div id="house" class="multipleXX">
-目標房價(現值)：<input class="money cost" value="600" /> 萬元
-願付多少月租入住：<input class="money equalRent" value="12000"/>元
-預期20年後房價是現在的<input class="houseMulti" size="4"/>倍 = <input class="percentage priceChange" value="1.5" />%/年
-持屋成本(稅金及維護費用)：<input class="percentage maintainCost" value="0.5" /> %/年
-貸款年利率：<input class="percentage loanRatePerYear" value="3"/> % / 年
-還款方式：<input type="radio" name="loanType" checked=true value="1"/>本息均攤+一次清償 <input type="radio" name="loanType" value="2"/>有多少閒錢還多少<span class="ondo"><input type="radio" name="loanType" value="3"/> 本金均攤</span>
-<div class="ondo">
-允許提前一次清償貸款<input type="checkbox" checked=true/>
-</div>
-通勤時間(含往返)：<input class="minite transTime" value="60"/>分/日
-通勤支出(含往返)：<input class="money transCost" value="100"/>元/日
-		</div>
-				</pre>
+				<div id="house" class="multipleXX">
+					目標房價(現值)：<input class="money cost" value="600" /> 萬元<br/>
+					願付多少月租入住：<input class="money equalRent" value="12000"/>元<br/>
+					預期20年後房價是現在的<input class="houseMulti" size="4"/>倍 = <input class="percentage priceChange" value="1.5" />%/年<br/>
+					持屋成本(稅金及維護費用)：<input class="percentage maintainCost" value="0.5" /> %/年<br/>
+					貸款年利率：<input class="percentage loanRatePerYear" value="3"/> % / 年<br/>
+					還款方式：<input type="radio" name="loanType" checked=true value="1"/>本息均攤+一次清償 <input type="radio" name="loanType" value="2"/>有多少閒錢還多少<span class="ondo"><input type="radio" name="loanType" value="3"/> 本金均攤</span><br/>
+					<div class="ondo">
+						允許提前一次清償貸款<input type="checkbox" checked=true/>
+					</div>
+					通勤時間(含往返)：<input class="minite transTime" value="60"/>分/日<br/>
+					通勤支出(含往返)：<input class="money transCost" value="100"/>元/日<br/>
+				</div>
 			</div>
 			<div id="tabs-6">
-			<pre>
-物價指數漲幅:<input class="percentage" id="priceIndex" value="1.5"/>% / 年
-			</pre>
+				物價指數漲幅:<input class="percentage" id="priceIndex" value="1.5"/>% / 年
 			</div>
 		</div>
 		顯示未完成功能<input type="checkbox" id="showOndo" />

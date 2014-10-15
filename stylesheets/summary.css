@@ -11,9 +11,8 @@
 	text-align: center;
 	-o-text-overflow: ellipsis;
 	text-overflow: ellipsis;
-	background: rgba(255,217,102,0.7);
+	background: rgba(255,217,102,0.8);
 	-webkit-box-shadow: 3px 3px 6px 1px rgba(0,0,0,0.3) ;
 	box-shadow: 3px 3px 6px 1px rgba(0,0,0,0.3) ;
-	text-shadow: 1px 1px 1px rgba(0,0,0,0.2) ;
 	margin:10px auto;
 }
