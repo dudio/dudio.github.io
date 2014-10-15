@@ -6,7 +6,9 @@ $(function(){
 	});
 	$(".copylast").click(function(){
 		var $t = $(this);
-		$t.prev().clone(true).insertBefore($t);
+		var $c = $t.prev().clone(true);
+		$c.find(".salary,.finalYearSalary").val(0);
+		$c.insertBefore($t);
 		countProperty();
 	});
 });

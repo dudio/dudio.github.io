@@ -1,5 +1,6 @@
 function countHouseEqual(){
-	$("#house .equalRent").val(Math.round(parseFloat($("#house .cost").val())*15));//租金房價比
+	//租金房價比目前設定為 20:10000 = 1：500 為高房價
+	$("#house .equalRent").val(Math.round(parseFloat($("#house .cost").val())*20));
 }
 
 function countFinalSalary(){
@@ -45,11 +46,18 @@ $(function(){
 	$("input.year").attr("size","3");
 	$("input.percentage").attr("size","5");
 
-	//自動計算預期壽命
 	$("#age").change(function(){
 		var age = parseInt($(this).val());
-		if($(this).val()>0)
+		if(age>0) {
+			//自動計算預期壽命
 			$("#life").val(Math.ceil(Math.max(80+age/5,age+10)));
+			//調整最低買房年紀
+			var $buyYear = $("#buyYear");
+			if(age > $buyYear.slider( "option", "value" ))
+				$buyYear.slider({"value":age});
+			else
+				countProperty();//如果有重設buyYear 就會重算 但沒設的話 只好補呼叫一次countProperty
+		}
 	});
 
 	//自動計算最終年薪/調薪

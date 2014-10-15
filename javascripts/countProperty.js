@@ -86,7 +86,7 @@ function rentTo(y, data) {
 			for(var i=0;i<workNum;i++){
 				if(year<=work[i]['retireAge']) {
 					yearIncome += nowSalary[i];
-					working = true;
+					if(nowSalary[i]>0) working = true;
 				} else
 					yearIncome += work[i]['retirementPayMonthly'];
 			}
@@ -174,7 +174,7 @@ function buyHouseFrom(y, data) {
 			for(var i=0;i<workNum;i++) {
 				if(year<=work[i]['retireAge']) {
 					yearIncome += nowSalary[i];
-					working = true;
+					if(nowSalary[i]>0) working = true;
 				} else
 					yearIncome += work[i]['retirementPayMonthly'];
 			}
@@ -287,6 +287,7 @@ function buyHouseOn(buyOn){
 } 
 
 function countProperty(setBestAge){
+console.log("count");
 	getData();
 
 	$("#buyYear").slider({
@@ -342,5 +343,5 @@ function countProperty(setBestAge){
 $(function(){
 	//$(":input").not("#basicData :input,#showOndo,#buyYear").change(countProperty);
 	//delay0.1秒 在切換input時會比較順暢
-	$(":input").not("#basicData :input,#showOndo,#buyYear").change(function(){setTimeout(function(){countProperty();},100);});
+	$(":input").not("#age,#basicData :input,#showOndo,#buyYear").change(function(){setTimeout(function(){countProperty();},100);});
 });

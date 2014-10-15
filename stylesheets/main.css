@@ -40,10 +40,14 @@ body {
 	width:55%;
 	margin-left:35%;
 }
-#inputTabs {
-/*	width: 64%;
-	margin-left: 25%;*/
+/*#inputTabs {
+	width: 64%;
+	margin-left: 25%;
+}*/
+#inputTabs li {
+	font-size:0.9em;
 }
+
 .fb-comments {
 	margin-top:15px;
 }
