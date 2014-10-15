@@ -113,9 +113,15 @@ function rentTo(y, data) {
 			yearIncome += work[i]['retirementPayOnce'];
 
 		//投資所得(定存)
-		if(nowCash > saveMoney)
-			yearIncome += invest*(nowCash-saveMoney);
+		if(nowCash > saveMoney) {
+			var yearInvestIncome = invest*(nowCash-saveMoney);
+			yearIncome += yearInvestIncome;
+			//將實值生活品質扣除通勤時間成本
+			if(working)
+				yearMaterialLife -= yearInvestIncome * transTimeRatio / nowPriceIndex;
+		}
 		nowCash = parseFloat(nowCash) + parseFloat(yearIncome) - parseFloat(yearOutgoing);
+
 
 		//調整物價指數
 		nowPriceIndex *= priceIndex;
@@ -235,9 +241,13 @@ function buyHouseFrom(y, data) {
 		//投資所得(定存) 繳完貸款才考慮其它投資
 		//應該要考慮投報率高於貸款利率的情況....
 		if(nowCash > saveMoney) {
-			var yearInvenstIncome = invest*(nowCash-saveMoney);
-			yearIncome += yearInvenstIncome;
-			nowCash += yearInvenstIncome;
+			var yearInvestIncome = invest*(nowCash-saveMoney);
+			yearIncome += yearInvestIncome;
+			nowCash += yearInvestIncome;
+			//將實值生活品質扣除通勤時間成本
+			if(working)
+				yearMaterialLife -= yearInvestIncome * house["transTimeRatio"]  / nowPriceIndex;
+
 		}
 
 		//調整物價指數
@@ -287,7 +297,6 @@ function buyHouseOn(buyOn){
 } 
 
 function countProperty(setBestAge){
-console.log("count");
 	getData();
 
 	$("#buyYear").slider({
