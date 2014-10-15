@@ -4,7 +4,7 @@ var yearIncome, yearOutgoing;
 var nowSalary=[], nowOutgoing, nowCash, nowPriceIndex;
 
 var priceIndex;
-var age, life, cash, outgoing, invest, saveMoney;
+var age, life, cash, outgoing, betterLife, invest, saveMoney;
 var work = [];//工作資料
 var workNum;
 var workHourPerDay, workDayPerYear;
@@ -21,6 +21,7 @@ function getData(){
 	life		= parseInt($("#life").val());//預期壽命
 	cash		= parseInt($("#cash").val());//當前現金
 	outgoing	= parseInt($("#outgoing").val());//支出/月
+	betterLife	= 1+$("#betterLife").val()/100;//生活水平改善幅度
 	invest		= $("#invest").val()/100;//投資報酬率
 	saveMoney	= $("#saveMoney").val();//最低現金
 
@@ -91,7 +92,8 @@ function rentTo(y, data) {
 					yearIncome += work[i]['retirementPayMonthly'];
 			}
 			yearOutgoing += nowOutgoing;
-			yearOutgoing += parseInt(rent['cost']);
+			if($(".home:checked").val()!="1")
+				yearOutgoing += parseInt(rent['cost']);
 			if(working)
 				yearOutgoing += parseInt(rent['transCostPerMonth']);
 			yearMaterialLife += outgoing;
@@ -122,6 +124,8 @@ function rentTo(y, data) {
 		}
 		nowCash = parseFloat(nowCash) + parseFloat(yearIncome) - parseFloat(yearOutgoing);
 
+		//調整生活水平
+		outgoing *= betterLife;
 
 		//調整物價指數
 		nowPriceIndex *= priceIndex;
@@ -250,6 +254,9 @@ function buyHouseFrom(y, data) {
 
 		}
 
+		//調整生活水平
+		outgoing *= betterLife;
+
 		//調整物價指數
 		nowPriceIndex *= priceIndex;
 		nowOutgoing = nowPriceIndex * outgoing;
@@ -282,7 +289,7 @@ function buyHouseOn(buyOn){
 	//資產計算
 	for(var i=0;i<workNum;i++)
 		nowSalary[i] = work[i]['salary']; //當前月薪
-	nowOutgoing = outgoing; //當前每月支出
+	nowOutgoing = outgoing = parseInt($("#outgoing").val());//當前每月支出
 	nowCash = cash; //現金
 	totalMaterialLife = 0;//一生物質生活累計
 	houseTransCostPerMonth = house['transCostPerMonth'];

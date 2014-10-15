@@ -69,6 +69,15 @@ body {
 	line-height:2em;
 }
 
+.homeWord{
+	display:none;
+}
+
 .fb-comments {
 	margin-top:15px;
+}
+
+input[type='checkbox'],input[type='radio'] {
+	width:30px;
+	height:30px;
 }

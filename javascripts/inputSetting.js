@@ -64,6 +64,11 @@ $(function(){
 	$(".finalYearSalary").change(countSalaryAdjust);
 	$("#age, .retireAge, .salary, .bonus, .salaryAdjust").change(countFinalSalary);
 
+	//切換住家裡文字顯示
+	$(".home").change(function(){
+		$(".homeWord").toggle();
+	});
+
 	//自動計算房價漲幅 & 倍數
 	$("#house .priceChange").change(function(){
 		$("#house .houseMulti").val(Math.round(Math.pow(1+$("#house .priceChange").val()/100,20)*10)/10);
