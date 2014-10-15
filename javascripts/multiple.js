@@ -6,9 +6,7 @@ $(function(){
 	});
 	$(".copylast").click(function(){
 		var $t = $(this);
-		var $c = $t.prev().clone(true);
-		$c.find(".dontCopy").remove();
-		$c.insertBefore($t);
+		$t.prev().clone(true).insertBefore($t);
 		countProperty();
 	});
 });
