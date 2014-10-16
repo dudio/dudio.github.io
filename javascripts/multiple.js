@@ -9,7 +9,9 @@ $(function(){
 		var $c = $t.prev().clone(true);
 		$c.find(".salary,.finalYearSalary,.retirementPayOnce,.retirementPayMonthly").val(0);
 		$c.insertBefore($t);
-		//目前上面都塞0 先不用呼叫countProperty()
+
+		//目前上面都塞0 先不用呼叫countProperty() 但要getData() 重建work
+		getData();
 		//countProperty();
 	});
 });

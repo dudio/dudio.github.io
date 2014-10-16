@@ -18,6 +18,12 @@ function drawHighchart1() {
 		data: finalCash
 	}];
 
+	var showLegend = [1,1,0];
+	$("#highchartContent-best .highcharts-legend").each(function(){
+		$(this).find(".highcharts-legend-item").each(function(i){
+			showLegend[i] = ($(this).children("text").css("color")=="rgb(51, 51, 51)");
+		});
+	});
 	//var colors = Highcharts.getOptions().colors;
 	//console.log(colors);
 	$('#highchartContent-best').highcharts({
@@ -60,7 +66,7 @@ function drawHighchart1() {
 	//把圖表中第3條折線先行隱藏
 	$("#highchartContent-best .highcharts-legend").each(function(){
 		$(this).find(".highcharts-legend-item").each(function(i){
-			if(i==2) $(this).click();
+			if(!showLegend[i]) $(this).click();
 		});
 	});
 }
@@ -85,6 +91,13 @@ function drawHighchart2() {
 		name: "生活水平",
 		data: houseData['life']
 	}];
+
+	var showLegend = [1,1,0,0,1,0];
+	$("#highchartContent-house .highcharts-legend").each(function(){
+		$(this).find(".highcharts-legend-item").each(function(i){
+			showLegend[i] = ($(this).children("text").css("color")=="rgb(51, 51, 51)");
+		});
+	});
 
 	$('#highchartContent-house').highcharts({
 		chart: {
@@ -124,7 +137,7 @@ function drawHighchart2() {
 	//把圖表中第3,4,6條折線先行隱藏
 	$("#highchartContent-house .highcharts-legend").each(function(){
 		$(this).find(".highcharts-legend-item").each(function(i){
-			if(i==2||i==3||i==5) $(this).click();
+			if(!showLegend[i]) $(this).click();
 		});
 	});
 }

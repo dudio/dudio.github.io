@@ -48,30 +48,9 @@ $(function(){
 
 	$("#age").change(function(){
 		var age = parseInt($(this).val());
-		if(age>0) {
-			//自動計算預期壽命
-			$("#life").val(Math.ceil(Math.max(80+age/5,age+10)));
-			//調整最低買房年紀
-			var $buyYear = $("#buyYear");
-			var buyYear = $buyYear.slider( "option", "value" );
-			if(age > buyYear){
-				getData();
-
-				//設定座標軸
-				xAxis = [];
-				for(year=age;year<=life;year++)
-					xAxis.push(year);
-
-				countChart1();
-
-				$buyYear.slider({
-					min: age,
-					max: life,
-					value: age
-				});
-			} else
-				countProperty();//如果有重設buyYear 就會重算 但沒設的話 只好補呼叫一次countProperty
-		}
+		//自動計算預期壽命
+		$("#life").val(Math.ceil(Math.max(80+age/5,age+10)));
+		countProperty();
 	});
 
 	//自動計算最終年薪/調薪
@@ -98,8 +77,7 @@ $(function(){
 	$("#buyYear").slider({
 		change: function(e, ui){
 			buyYear = ui.value;
-			countChart2(false);
-//			countProperty();
+			countChart2(buyYear);
 		}
 	});
 	

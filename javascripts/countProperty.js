@@ -19,11 +19,11 @@ function getData(){
 	//個人資料
 	age		= parseInt($("#age").val());//當前年齡
 	life		= parseInt($("#life").val());//預期壽命
-	cash		= parseInt($("#cash").val());//當前現金
+	cash		= parseFloat($("#cash").val())*10000;//當前現金
 	outgoing	= parseInt($("#outgoing").val());//支出/月
 	betterLife	= 1+$("#betterLife").val()/100;//生活水平改善幅度
 	invest		= $("#invest").val()/100;//投資報酬率
-	saveMoney	= $("#saveMoney").val();//最低現金
+	saveMoney	= parseFloat($("#saveMoney").val())*10000;//最低現金
 
 	//工作資料
 	work = [];
@@ -43,7 +43,7 @@ function getData(){
 	var restPerWeek	= parseFloat($("#restPerWeek").val());//每週休假日數
 	var restPerMonth = parseFloat($("#restPerMonth").val());//每月休假日數
 	var restPerYear	= parseFloat($("#restPerYear").val());//每年休假日數
-	workDayPerYear	= 365.2425*(7-restPerWeek)/7 - 12*restPerMonth - restPerYear;
+	workDayPerYear	= (365.2425-19)*(7-restPerWeek)/7 - 12*restPerMonth - restPerYear;//扣除年假及國定假日共19天
 
 	//可購房產資料
 	buyYear			= buyYear || age;
@@ -326,18 +326,14 @@ function countChart1(){
 	return bestAge;
 }
 
-function countChart2(setBestAge, bestAge){
-	//目前這邊會造成countProperty被呼叫兩次 第一次先計算bestAge 第二次才能設定第二張圖表 之後要將這兩塊切割避免重複計算
-	if(setBestAge) {
-		buyYear = bestAge;
-		$("#buyYear").slider({"value":bestAge});
-	}
+function countChart2(bestAge){
+	buyYear = bestAge;
 	houseData = buyHouseOn(true);
 	rentData = buyHouseOn(false);
 	drawHighchart2();
 }
 
-function countProperty(setBestAge){
+function countProperty(){
 	getData();
 
 	$("#buyYear").slider({
@@ -351,8 +347,7 @@ function countProperty(setBestAge){
 		xAxis.push(year);
 
 	var bestAge = countChart1();
-	countChart2(setBestAge, bestAge);
-
+	$("#buyYear").slider({"value":bestAge}); //用調動buyYear來觸發countChart2
 }
 
 $(function(){

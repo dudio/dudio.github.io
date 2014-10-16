@@ -44,7 +44,10 @@ function copyBasicData(){
 	//自動計算每月支出 ~= (月薪-房租-15000)^0.8*2+15000
 	$("#outgoing").val(Math.min(Math.round(Math.pow(Math.max($("#yearSalary").val()/12-$("#rentCost").val()-15000,0),0.8)/50)*100+15000,$("#copy-salary").val()-$("#rentCost").val()));
 
-	countProperty(true);
+	//自動計算現有資金 ~= (年薪 - 12*(月支出+房租)) * (年齡-24)
+	$("#cash").val(Math.round(($("#yearSalary").val()-12*(parseInt($("#outgoing").val())+parseInt($("#rentCost").val())))*($("#age").val()-24)/10000));
+
+	countProperty();
 	countFinalSalary();
 }
 
