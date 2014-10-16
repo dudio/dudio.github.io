@@ -10,7 +10,7 @@ body {
 #banner {
 	text-align:center;
 	padding:5em 2em;
-	background-image:url('../images/banner.jpg');
+	/*background-image:url('../images/banner.jpg');*/
 	background-repeat: no-repeat;
 	background-position:50% 50%;
 	min-height:378px;
@@ -33,7 +33,7 @@ body {
 }
 
 #background {
-	background-image:url('../images/background.jpg');
+	background-image:url('../images/background-1.jpg');
 	background-repeat: no-repeat;
 	background-position:50% 0%;
 	background-size:100% auto;
