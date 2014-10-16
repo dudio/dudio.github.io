@@ -44,8 +44,6 @@ http://thenuschool.com/how-much/#/after
 
 說明)針對各欄位寫計算說明
 
-tempSummary高度計算可能有問題 scroll時版面會有跳動的感覺
-
 欄位檢查功能
 	遇到錯誤數值要恢復成預設值
 
