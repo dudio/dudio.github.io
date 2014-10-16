@@ -10,16 +10,12 @@ http://thenuschool.com/how-much/#/after
 將life設成低於buyYear 會有顯示bug
 
 ====<<改善操作&介面>>====
-basic data dialog有不正常scroll bar跑出來
+(on windows)basic data dialog有不正常scroll bar跑出來
 
 完成多筆工作的計算
 	工作要有起始年紀(有多筆工作時才顯示)
 	(待考慮)介面改進 也改成tab
 	刪除功能 (剩一筆時不能刪除)
-
-重新調整排版
-	修正#buyYear
-	修正tabs寬度
 
 願付多少月租入住
 	後面新增欄位 房價租金比
@@ -36,6 +32,9 @@ basic data dialog有不正常scroll bar跑出來
 
 隱藏折線在第一次載入時作一次就好 之後要偵測哪些已打開 哪些關起來 並保留當時設定
 
+重新調整排版
+	修正#buyYear精準度
+
 修正tab內排版
 	改善折行問題
 
@@ -44,6 +43,8 @@ basic data dialog有不正常scroll bar跑出來
 	要改善拉bar 在窄螢幕時考慮切換成直接輸入數字
 
 說明)針對各欄位寫計算說明
+
+tempSummary高度計算可能有問題 scroll時版面會有跳動的感覺
 
 欄位檢查功能
 	遇到錯誤數值要恢復成預設值
