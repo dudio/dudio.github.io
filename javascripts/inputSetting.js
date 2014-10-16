@@ -53,9 +53,23 @@ $(function(){
 			$("#life").val(Math.ceil(Math.max(80+age/5,age+10)));
 			//調整最低買房年紀
 			var $buyYear = $("#buyYear");
-			if(age > $buyYear.slider( "option", "value" ))
-				$buyYear.slider({"value":age});
-			else
+			var buyYear = $buyYear.slider( "option", "value" );
+			if(age > buyYear){
+				getData();
+
+				//設定座標軸
+				xAxis = [];
+				for(year=age;year<=life;year++)
+					xAxis.push(year);
+
+				countChart1();
+
+				$buyYear.slider({
+					min: age,
+					max: life,
+					value: age
+				});
+			} else
 				countProperty();//如果有重設buyYear 就會重算 但沒設的話 只好補呼叫一次countProperty
 		}
 	});
@@ -79,6 +93,14 @@ $(function(){
 	
 	//自動計算房產感受價值
 	$("#house .cost").change(countHouseEqual);
-
+	
+	//應該只需要更新第二張圖表
+	$("#buyYear").slider({
+		change: function(e, ui){
+			buyYear = ui.value;
+			countChart2(false);
+//			countProperty();
+		}
+	});
 	
 });

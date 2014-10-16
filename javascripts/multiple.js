@@ -7,8 +7,9 @@ $(function(){
 	$(".copylast").click(function(){
 		var $t = $(this);
 		var $c = $t.prev().clone(true);
-		$c.find(".salary,.finalYearSalary").val(0);
+		$c.find(".salary,.finalYearSalary,.retirementPayOnce,.retirementPayMonthly").val(0);
 		$c.insertBefore($t);
-		countProperty();
+		//目前上面都塞0 先不用呼叫countProperty()
+		//countProperty();
 	});
 });

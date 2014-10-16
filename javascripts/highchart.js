@@ -1,10 +1,12 @@
-var rentData = {};
-var houseData = {};
+//圖表一
 var bestData = [];
 var finalCash = [];
 var bestLife= [];
+//圖表二
+var rentData = {};
+var houseData = {};
 
-function drawHighchart() {
+function drawHighchart1() {
 	seriesOptionsBest= [{
 		name: "最終資產",
 		data: bestData
@@ -15,40 +17,13 @@ function drawHighchart() {
 		name: "最終現金",
 		data: finalCash
 	}];
-	seriesOptionsHouse = [{
-		name: "累計資產",
-		data: houseData['property']
-	},{
-		name: "累計現金",
-		data: houseData['cash']
-	},{
-		name: "年收入",
-		data: houseData['income']
-	},{
-		name: "年支出",
-		data: houseData['outgoing']
-	},{
-		name: "剩餘貸款",
-		data: houseData['loan']
-	},{
-		name: "生活水平",
-		data: houseData['life']
-	}];
-	createChart();
-}
-
-
-// create the chart when all data is loaded
-function createChart() {
-	//直接新增一個圖表區塊~置於body後方
-//	$('<div>').insertAfter("body").highcharts({});
 
 	//var colors = Highcharts.getOptions().colors;
 	//console.log(colors);
 	$('#highchartContent-best').highcharts({
 		chart: {
-            height: 300
-        },
+			height: 300
+		},
 		title: {
 			text: '買房時間點比較圖(藍線/紅線高點為適合買房的時間點)',
 			x: -20 //center
@@ -81,11 +56,40 @@ function createChart() {
 		},
 		series: seriesOptionsBest
 	});
+	//hide some legend
+	//把圖表中第3條折線先行隱藏
+	$("#highchartContent-best .highcharts-legend").each(function(){
+		$(this).find(".highcharts-legend-item").each(function(i){
+			if(i==2) $(this).click();
+		});
+	});
+}
+
+function drawHighchart2() {
+	seriesOptionsHouse = [{
+		name: "累計資產",
+		data: houseData['property']
+	},{
+		name: "累計現金",
+		data: houseData['cash']
+	},{
+		name: "年收入",
+		data: houseData['income']
+	},{
+		name: "年支出",
+		data: houseData['outgoing']
+	},{
+		name: "剩餘貸款",
+		data: houseData['loan']
+	},{
+		name: "生活水平",
+		data: houseData['life']
+	}];
 
 	$('#highchartContent-house').highcharts({
 		chart: {
-            height: 300
-        },
+			height: 300
+		},
 		title: {
 			text: buyYear+'歲買屋資產變化圖',
 			x: -20 //center
@@ -116,4 +120,15 @@ function createChart() {
 		},
 		series: seriesOptionsHouse
 	});
+	//hide some legend
+	//把圖表中第3,4,6條折線先行隱藏
+	$("#highchartContent-house .highcharts-legend").each(function(){
+		$(this).find(".highcharts-legend-item").each(function(i){
+			if(i==2||i==3||i==5) $(this).click();
+		});
+	});
 }
+
+
+
+

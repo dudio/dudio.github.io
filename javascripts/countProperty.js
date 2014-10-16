@@ -301,24 +301,9 @@ function buyHouseOn(buyOn){
 	} else
 		rentTo(life, data);
 	return data;
-} 
+}
 
-function countProperty(setBestAge){
-	getData();
-
-	$("#buyYear").slider({
-		min: age,
-		max: life,
-		change: function(e, ui){
-			buyYear = ui.value;
-			countProperty();
-		}
-	});
-	
-	//設定座標軸
-	xAxis = [];
-	for(year=age;year<=life;year++)
-		xAxis.push(year);
+function countChart1(){
 
 	//計算最佳買房時機
 	bestData = [];
@@ -336,7 +321,12 @@ function countProperty(setBestAge){
 	buyYear = oriBuyYear; //算完最佳解後要還原原本的buyYear值
 
 	var bestAge = writeSummary();
+	drawHighchart1();
 
+	return bestAge;
+}
+
+function countChart2(setBestAge, bestAge){
 	//目前這邊會造成countProperty被呼叫兩次 第一次先計算bestAge 第二次才能設定第二張圖表 之後要將這兩塊切割避免重複計算
 	if(setBestAge) {
 		buyYear = bestAge;
@@ -344,16 +334,25 @@ function countProperty(setBestAge){
 	}
 	houseData = buyHouseOn(true);
 	rentData = buyHouseOn(false);
+	drawHighchart2();
+}
 
-	drawHighchart();
+function countProperty(setBestAge){
+	getData();
 
-	//hide some legend
-	//把圖表中第3,4,6條折線先行隱藏
-	$(".highcharts-legend").each(function(){
-		$(this).find(".highcharts-legend-item").each(function(i){
-			if(i==2||i==3||i==5) $(this).click();
-		});
+	$("#buyYear").slider({
+		min: age,
+		max: life
 	});
+	
+	//設定座標軸
+	xAxis = [];
+	for(year=age;year<=life;year++)
+		xAxis.push(year);
+
+	var bestAge = countChart1();
+	countChart2(setBestAge, bestAge);
+
 }
 
 $(function(){

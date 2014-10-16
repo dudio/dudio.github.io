@@ -55,13 +55,11 @@ $(function(){
 		var $window = $(window);
 		if($("#tempSummary").length==0) {
 			if(($window.scrollTop()>$summary.offset().top)&&($window.height()>$summary.height()+550)) {
-				console.log("Add");
 				var $temp = $("<div id='tempSummary'></div>").height($summary.height()).insertAfter($summary);
 				$summary.css("position","fixed");
 			}
 		} else if($("#tempSummary").length) {
 			if(($window.scrollTop()<=$("#tempSummary").offset().top)||($window.height()<=$("#tempSummary").height()+550)) {
-				console.log("Remove");
 				$("#tempSummary").remove();
 				$summary.css("position","initial");
 			}
