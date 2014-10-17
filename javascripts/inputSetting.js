@@ -34,6 +34,7 @@ $(function(){
 
 	//設定分頁
 	$("#inputTabs").tabs();
+	$("#tabs-2").tabs();
 
 	//設定基本輸入欄位
 	$("input").css("text-align","right");
