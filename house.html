@@ -75,7 +75,11 @@
 				預期壽命:<input class="year" id="life" value="86"/>歲
 			</div>
 			<div id="tabs-2">
-				<div class="work multiple">
+				<ul>
+					<li><a href='#work-1'>工作1</a></li>
+					<li><a id="newWork" href='#NEWWORK'>新增一筆工作</a></li>
+				</ul>
+				<div id="work-1" class="work multiple">
 					起薪：<input class="money salary" value="40000"/>元/月<br/>
 					年終：<input class="month bonus"  value="1.5">個月<br/>
 					工作起始年紀：<input class="year workAge"/>歲<br/>
@@ -83,6 +87,7 @@
 					調薪幅度(年)：<input class="percentage salaryAdjust" value="3">%/年 <span style="color:rgb(200,57,57);">=</span> 退休時年薪：<input class="wanMoney finalYearSalary"/>萬元<br/>
 					退休金：一次領<input class="money retirementPayOnce" value="0"/>元 <span style="color:rgb(200,57,57);">+</span> 月領<input class="money retirementPayMonthly" value="0"/>元<br/>
 				</div>
+				<div id="NEWWORK"></div>
 				每日工時(不含通勤)：<input class="hour" id="workHourPerDay" value="9"/>小時<br/>
 				週休<input class="day" id="restPerWeek" value="2"/>日 + 月休<input class="day" id="restPerMonth" value="0"/>日 + 年休<input class="day" id="restPerYear" value="10"/>日
 			</div>

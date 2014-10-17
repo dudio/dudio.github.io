@@ -6,7 +6,7 @@
 	color: rgba(255,255,255,1);
 	-o-text-overflow: ellipsis;
 	text-overflow: ellipsis;
-	background: #0199d9;
+	background: #0199d9 !important;
 	-webkit-box-shadow: 3px 3px 6px 1px rgba(0,0,0,0.3) ;
 	box-shadow: 3px 3px 6px 1px rgba(0,0,0,0.3) ;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.2) ;
