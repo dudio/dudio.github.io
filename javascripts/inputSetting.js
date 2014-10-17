@@ -4,14 +4,14 @@ function countHouseEqual(){
 }
 
 function countFinalSalary(){
-	age = parseInt($("#age").val());//當前年齡
 	$(".work").each(function(i){
 		var $t = $(this);
+		work[i]['workAge']	= $t.find(".workAge").val();//退休年齡
 		work[i]['retireAge']	= $t.find(".retireAge").val();//退休年齡
 		work[i]['salary']	= parseInt($t.find(".salary").val());//月薪
 		work[i]['bonus']	= parseFloat($t.find(".bonus").val());//年終
 	        work[i]['salaryAdjust']    = 1+$t.find(".salaryAdjust").val()/100;//調薪
-		$t.find(".finalYearSalary").val(Math.round((work[i]['salary'] * (12+work[i]['bonus']) * Math.pow( work[i]['salaryAdjust'], work[i]['retireAge'] - age))/10000));
+		$t.find(".finalYearSalary").val(Math.round((work[i]['salary'] * (12+work[i]['bonus']) * Math.pow( work[i]['salaryAdjust'], work[i]['retireAge'] - work[i]['workAge']))/10000));
 	});
 }
 
@@ -19,7 +19,7 @@ function countSalaryAdjust(){
 	$(".work").each(function(i){
 		var $t = $(this);
 		var finalYearSalary = $t.find(".finalYearSalary").val()*10000;
-		$t.find(".salaryAdjust").val(Math.round((Math.pow(finalYearSalary / (work[i]['salary'] * (12+work[i]['bonus'])), 1/(work[i]['retireAge'] - age))-1)*100000)/1000);
+		$t.find(".salaryAdjust").val(Math.round((Math.pow(finalYearSalary / (work[i]['salary'] * (12+work[i]['bonus'])), 1/(work[i]['retireAge'] - work[i]['workAge']))-1)*100000)/1000);
 	});
 }
 
@@ -50,12 +50,16 @@ $(function(){
 		var age = parseInt($(this).val());
 		//自動計算預期壽命
 		$("#life").val(Math.ceil(Math.max(80+age/5,age+10)));
+		$(".workAge").each(function(){
+			var $t = $(this);
+			if(age > $t.val()) $t.val(age);
+		});
 		countProperty();
 	});
 
 	//自動計算最終年薪/調薪
 	$(".finalYearSalary").change(countSalaryAdjust);
-	$("#age, .retireAge, .salary, .bonus, .salaryAdjust").change(countFinalSalary);
+	$("#age, .workAge, .retireAge, .salary, .bonus, .salaryAdjust").change(countFinalSalary);
 
 	//切換住家裡文字顯示
 	$(".home").change(function(){

@@ -32,7 +32,7 @@ function setBasicData(){
 }
 
 function copyBasicData(){
-	$("#age").val($("#copy-age").val());
+	$("#age,.workAge").val($("#copy-age").val());
 	$(".salary").val($("#copy-salary").val());
 	$(".bonus").val(parseFloat($("#salaryMonth").val())-12);
 	$("#rent .cost").val($("#rentCost").val());

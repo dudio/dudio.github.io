@@ -5,6 +5,8 @@ body {
 	background-color:#e8ecf0;
 	width:100%;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.25) ;
+	color:#333;
+	line-height:1.3em;
 }
 
 #banner {
@@ -45,6 +47,7 @@ body {
 #basicData {
 	padding:0 6%;
 	line-height:2em;
+	overflow: hidden;
 }
 #highchartContent-best, #highchartContent-house {
 	border: 2px solid rgba(165,165,165,0.7);
