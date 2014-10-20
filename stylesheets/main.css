@@ -1,4 +1,4 @@
-﻿body {
+body {
 	font-size:1.5em;
 	font-family: "微軟正黑體", "Microsoft JhengHei", "標楷體", "DFKai-sb", "Times New Roman", Times, serif;
 	margin:10px auto 50px auto;
@@ -35,11 +35,10 @@
 }
 
 #background {
-	background-color:white;
-	background-image:url('../images/background-2.gif');
+	background-image:url('../images/background-1.jpg');
 	background-repeat: no-repeat;
-	background-position:50% 15%;
-	background-size:125% auto;
+	background-position:50% 0%;
+	background-size:100% auto;
 }
 #content{
 	width:55%;
