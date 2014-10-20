@@ -4,6 +4,7 @@ var yearIncome, yearOutgoing;
 var nowSalary=[], nowOutgoing, nowCash, nowPriceIndex;
 
 var priceIndex;
+var member = [];//家庭成員
 var age, life, cash, outgoing, betterLife, invest, saveMoney;
 var work = [];//工作資料
 var workNum;
@@ -17,8 +18,18 @@ function getData(){
 	nowPriceIndex		= 1;
 
 	//個人資料
-	age		= parseInt($("#age").val());//當前年齡
-	life		= parseInt($("#life").val());//預期壽命
+	age		= parseInt($(".age").val());//當前年齡
+	life		= parseInt($(".life").val());//預期壽命
+	//成員資料
+	member = [];
+	$(".member").each(function(i){
+		var thisMember = {};
+		var $t = $(this);
+		thisMember['age']	= $t.find(".age").val();//當前年齡
+		thisMember['life']	= $t.find(".life").val();//預期壽命
+		member[i] = thisMember;
+	});
+
 	cash		= parseFloat($("#cash").val())*10000;//當前現金
 	outgoing	= parseInt($("#outgoing").val());//支出/月
 	betterLife	= 1+$("#betterLife").val()/100;//生活水平改善幅度
@@ -30,9 +41,15 @@ function getData(){
 	$(".work").each(function(i){
 		var thisWork = {};
 		var $t = $(this);
+
 		thisWork['workAge']		= $t.find(".workAge").val();//工作起始年齡
 		thisWork['retireAge']		= $t.find(".retireAge").val();//退休年齡
 		thisWork['salary']		= parseInt($t.find(".salary").val());//月薪
+		var workMember = $(":input[name='workMember"+i+"']:checked").val();
+		if(workMember > 0) {
+			thisWork['workAge']	= thisWork['workAge']-member[workMember]['age']+age;
+			thisWork['retireAge']	= thisWork['retireAge']-member[workMember]['age']+age;
+		}
 		thisWork['bonus']		= parseFloat($t.find(".bonus").val());//年終
 		thisWork['salaryAdjust']	= 1+$t.find(".salaryAdjust").val()/100;//調薪
 		thisWork['retirementPayOnce']	= parseInt($t.find(".retirementPayOnce").val());//退休金 - 一次領
@@ -81,7 +98,7 @@ function rentTo(y, data) {
 	
 	for(year=age;year<=y;year++){
 		yearIncome = yearOutgoing = yearMaterialLife = 0;
-		var working = false;//是否正在工作
+		var working = 0;//目前有幾份工作
 			
 		//計算每月收支
 		for(month = 1;month<=12;month++) {
@@ -89,7 +106,7 @@ function rentTo(y, data) {
 				if(year<=work[i]['retireAge']) {
 					if(year >= work[i]['workAge']) {
 						yearIncome += nowSalary[i];
-						if(nowSalary[i]>0) working = true;
+						if(nowSalary[i]>0) working++;
 					}
 				} else
 					yearIncome += work[i]['retirementPayMonthly'];
@@ -98,7 +115,7 @@ function rentTo(y, data) {
 			if($(".home:checked").val()!="1")
 				yearOutgoing += parseInt(rent['cost']);
 			if(working)
-				yearOutgoing += parseInt(rent['transCostPerMonth']);
+				yearOutgoing += parseInt(rent['transCostPerMonth'])*working;
 			yearMaterialLife += outgoing;
 			yearMaterialLife += rentValue;
 		}
@@ -180,7 +197,7 @@ function buyHouseFrom(y, data) {
 	
 	for(year=y;year<=life;year++){
 		yearIncome = yearOutgoing = perYearPaidLoan = yearMaterialLife = 0;
-		var working = false;//是否正在工作
+		var working = 0;//目前有幾份工作
 			
 		//計算每月收支
 		for(month = 1;month<=12;month++) {
@@ -188,7 +205,7 @@ function buyHouseFrom(y, data) {
 				if(year<=work[i]['retireAge']) {
 					if(year >= work[i]['workAge']) {
 						yearIncome += nowSalary[i];
-						if(nowSalary[i]>0) working = true;
+						if(nowSalary[i]>0) working++;
 					}
 				} else
 					yearIncome += work[i]['retirementPayMonthly'];
@@ -196,7 +213,7 @@ function buyHouseFrom(y, data) {
 			yearOutgoing += nowOutgoing;
 			yearOutgoing += house["cost"]*house["maintainCost"]/12;
 			if(working)
-				yearOutgoing += houseTransCostPerMonth;
+				yearOutgoing += houseTransCostPerMonth*working;
 			yearMaterialLife += outgoing;
 			yearMaterialLife += house["equalRent"];
 		}
@@ -356,5 +373,12 @@ function countProperty(){
 $(function(){
 	//$(":input").not("#basicData :input,#showOndo,#buyYear").change(countProperty);
 	//delay0.1秒 在切換input時會比較順暢
-	$(":input").not("#age,#basicData :input,#showOndo,#buyYear").change(function(){setTimeout(function(){countProperty();},100);});
+	$(":input").not(".age,#basicData :input,#showOndo,#buyYear").change(function(){setTimeout(function(){countProperty();},100);});
+	//workMember是動態生成的~要用on來綁定事件
+	$(document).on("change",".workMember :input",function(){
+		var $t = $(this);
+		var workAge = Math.max($(".member").eq($t.val()).find(".age").val(),25);
+		$(".work").eq($t.attr("name").substring(10)).find(".workAge").val(workAge);
+		setTimeout(function(){countProperty();},100);
+	});
 });

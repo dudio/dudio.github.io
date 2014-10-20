@@ -8,7 +8,7 @@ function countHouseMulti(){
 }
 
 function setBasicData(){
-	$("#copy-age").val($("#age").val());
+	$("#copy-age").val($(".age").val());
 	$("#copy-salary").val($(".salary").val());
 
 	//月薪年薪設定
@@ -32,7 +32,7 @@ function setBasicData(){
 }
 
 function copyBasicData(){
-	$("#age,.workAge").val($("#copy-age").val());
+	$(".age,.workAge").val($("#copy-age").val());
 	$(".salary").val($("#copy-salary").val());
 	$(".bonus").val(parseFloat($("#salaryMonth").val())-12);
 	$("#rent .cost").val($("#rentCost").val());
@@ -45,7 +45,7 @@ function copyBasicData(){
 	$("#outgoing").val(Math.min(Math.round(Math.pow(Math.max($("#yearSalary").val()/12-$("#rentCost").val()-15000,0),0.8)/50)*100+15000,$("#copy-salary").val()-$("#rentCost").val()));
 
 	//自動計算現有資金 ~= (年薪 - 12*(月支出+房租)) * (年齡-24)
-	$("#cash").val(Math.round(($("#yearSalary").val()-12*(parseInt($("#outgoing").val())+parseInt($("#rentCost").val())))*($("#age").val()-24)/10000));
+	$("#cash").val(Math.round(($("#yearSalary").val()-12*(parseInt($("#outgoing").val())+parseInt($("#rentCost").val())))*($(".age").val()-24)/10000));
 
 	countProperty();
 	countFinalSalary();

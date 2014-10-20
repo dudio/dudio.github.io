@@ -33,8 +33,7 @@ $(function(){
 	});
 
 	//設定分頁
-	$("#inputTabs").tabs();
-	$("#tabs-2").tabs();
+	$("#inputTabs,#tabs-1,#tabs-2").tabs();
 
 	//設定基本輸入欄位
 	$("input").css("text-align","right");
@@ -47,20 +46,25 @@ $(function(){
 	$("input.year").attr("size","3");
 	$("input.percentage").attr("size","5");
 
-	$("#age").change(function(){
+	$(".age").change(function(){
 		var age = parseInt($(this).val());
 		//自動計算預期壽命
-		$("#life").val(Math.ceil(Math.max(80+age/5,age+10)));
+		$(this).siblings(".life").val(Math.ceil(Math.max(80+age/5,age+10)));
 		$(".workAge").each(function(){
 			var $t = $(this);
-			if(age > $t.val()) $t.val(age);
+			var $workMember = $t.siblings(".workMember");
+			if($workMember.length) {
+				var memberNum = $workMember.find(":input:checked").val();
+				var memberAge = $(".member").eq(memberNum).find(".age").val();
+				if(memberAge > $t.val()) $t.val(memberAge);
+			} else if(age > $t.val()) $t.val(age);
 		});
 		countProperty();
 	});
 
 	//自動計算最終年薪/調薪
 	$(".finalYearSalary").change(countSalaryAdjust);
-	$("#age, .workAge, .retireAge, .salary, .bonus, .salaryAdjust").change(countFinalSalary);
+	$(".age, .workAge, .retireAge, .salary, .bonus, .salaryAdjust").change(countFinalSalary);
 
 	//切換住家裡文字顯示
 	$(".home").change(function(){

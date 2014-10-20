@@ -63,16 +63,24 @@
 		<br/>
 		<div id="inputTabs">
 			<ul>
-				<li><a href="#tabs-1">個人</a></li>
+				<li><a href="#tabs-1">成員</a></li>
 				<li><a href="#tabs-2">工作</a></li>
 				<li><a href="#tabs-3">收支</a></li>
-				<li><a href="#tabs-4">可租房產</a></li>
+				<li><a href="#tabs-4">現租房產</a></li>
 				<li><a href="#tabs-5">可購房產</a></li>
 				<li><a href="#tabs-6">外在環境</a></li>
 			</ul>
 			<div id="tabs-1">
-				現在年齡:<input class="year" id="age" value="27"/>歲<br/>
-				預期壽命:<input class="year" id="life" value="86"/>歲
+				<ul>
+					<li><a href='#member-1'>自己</a></li>
+					<li><a id="newMember" href='#NEWMEMBER'>新增成員</a></li>
+				</ul>
+				<div id="member-1" class="member multiple">
+					<span style="display:none" class="inputTitle">稱呼：<input class="title"/><br/></span>
+					現在年齡:<input class="year age" value="27"/>歲<span style="display:none;font-size:0.7em;" class="ageIntro">&nbsp;(未出生可用負值，Ex:-5  代表五年後出生)</span><br/>
+					預期壽命:<input class="year life" value="86"/>歲
+				</div>
+				<div id="NEWMEMBER"></div>
 			</div>
 			<div id="tabs-2">
 				<ul>
@@ -88,11 +96,11 @@
 					退休金：一次領<input class="money retirementPayOnce" value="0"/>元 <span style="color:rgb(200,57,57);">+</span> 月領<input class="money retirementPayMonthly" value="0"/>元<br/>
 				</div>
 				<div id="NEWWORK"></div>
-				每日工時(不含通勤)：<input class="hour" id="workHourPerDay" value="9"/>小時<br/>
+				每人每日工時(不含通勤)：<input class="hour" id="workHourPerDay" value="9"/>小時<br/>
 				週休<input class="day" id="restPerWeek" value="2"/>日 + 月休<input class="day" id="restPerMonth" value="0"/>日 + 年休<input class="day" id="restPerYear" value="10"/>日
 			</div>
 			<div id="tabs-3">
-				現有資金:<input class="wanMoney" id="cash" value="30"/>萬元<br/>
+				現有資金：<input class="wanMoney" id="cash" value="30"/>萬元<br/>
 				支出(不含住宿/工作通勤)：<input class="money" id="outgoing"/> /月<br/>
 				實值支出(生活水平)年增率：<input class="percentage" id="betterLife" value="0"/>%<br/>
 				閒錢投資年報酬率：<input class="percentage" id="invest" value="1.3"/>%<br/>
@@ -113,13 +121,13 @@
 				<div id="rent" class="multipleXX">
 					<span class="homeWord">住家等值</span>月租：<input class="money cost" value="8000"/>元(我住家裡免房租<input class="home" type="checkbox" value="1"/>)<br/>
 					預期月租漲幅：<input class="percentage priceChange" value="1.5" /> %/年<br/>
-					通勤時間(含往返)：<input class="minite transTime" value="60"/>分/日<br/>
-					通勤支出(含往返)：<input class="money transCost" value="100"/>元/日<br/>
+					每份工作通勤時間(含往返)：<input class="minite transTime" value="60"/>分/日<br/>
+					每份工作通勤支出(含往返)：<input class="money transCost" value="100"/>元/日<br/>
 				</div>
 			</div>
 			<div id="tabs-5">
 				<div id="house" class="multipleXX">
-					目標房價(現值)：<input class="money cost" value="700" /> 萬元<br/>
+					房價(現值)：<input class="money cost" value="700" /> 萬元<br/>
 					願付多少月租入住：<input class="money equalRent" value="14000"/>元<br/>
 					預期20年後房價是現在的<input class="houseMulti" size="4"/>倍 = <input class="percentage priceChange" value="1.5" />%/年<br/>
 					持屋成本(稅金及維護費用)：<input class="percentage maintainCost" value="0.5" /> %/年<br/>
@@ -128,8 +136,8 @@
 					<div class="ondo">
 						允許提前一次清償貸款<input type="checkbox" checked=true/>
 					</div>
-					通勤時間(含往返)：<input class="minite transTime" value="60"/>分/日<br/>
-					通勤支出(含往返)：<input class="money transCost" value="100"/>元/日<br/>
+					每份工作通勤時間(含往返)：<input class="minite transTime" value="60"/>分/日<br/>
+					每份工作通勤支出(含往返)：<input class="money transCost" value="100"/>元/日<br/>
 				</div>
 			</div>
 			<div id="tabs-6">
@@ -153,6 +161,7 @@
 		<div class="fb-comments" data-href="https://dudio.github.io/house.html" data-numposts="7" data-colorscheme="light"></div>
 	</div>
 </div>
+<div id="rabbit"></div>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -199,6 +208,7 @@ function setDimensions(){
 
 	//$("#topM").height(w*0.53);
 	$(".topM").height(w*0.06);
+
 }
 
 $(function(){
