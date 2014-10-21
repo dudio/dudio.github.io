@@ -46,6 +46,18 @@ $(function(){
 	$("input.year").attr("size","3");
 	$("input.percentage").attr("size","5");
 
+
+	$(".title").change(function(){
+		var $t = $(this);
+		var newTitle = $t.val();
+		var memberNum = $t.parents("div:first").attr("id").substring(7)-1;
+		//改成員上方tab文字
+		$("#tabs-1 > ul a").eq(memberNum).text(newTitle);
+		//改工作
+		$(".title-"+memberNum).text(newTitle);
+		//改支出
+	});
+
 	$(".age").change(function(){
 		var age = parseInt($(this).val());
 		//自動計算預期壽命
@@ -89,5 +101,6 @@ $(function(){
 			countChart2(buyYear);
 		}
 	});
+
 	
 });

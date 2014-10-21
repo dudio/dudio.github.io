@@ -9,18 +9,21 @@ $(function(){
 		$c.find(".ageIntro, .inputTitle").show();
 		$c.insertAfter($w);
 		var memberNum = $(".member").length;
-		$c.find(".title").val("成員"+memberNum);
+		var title = "成員"+memberNum;
+		$c.find(".title").val(title);
+
+		//將現有工作新增成員選擇
 		if(memberNum==2)
 			$("#tabs-2 > div").each(function(i){
 				$(this).prepend("<span class='workMember'>工作者：<input type='radio' checked='checked' name='workMember"+i+"' value=0 />自己</span><br/>");
 			});
 		$(".workMember").each(function(i){
 			var v = memberNum-1;
-			$(this).append("<input type='radio' name='workMember"+i+"' value="+v+" />成員"+memberNum);
+			$(this).append("<input type='radio' name='workMember"+i+"' value="+v+" /><span class='title-"+v+"'>"+title+"</span>");
 		});
 
 		$c.attr("id","member-"+memberNum);
-		$("<li><a href='#member-"+memberNum+"'>成員"+memberNum+"</a></li>").insertBefore($("#newMember").parent());
+		$("<li><a href='#member-"+memberNum+"'>"+title+"</a></li>").insertBefore($("#newMember").parent());
 
 		//目前上面都塞0 先不用呼叫countProperty() 但要getData() 重建member
 		getData();
