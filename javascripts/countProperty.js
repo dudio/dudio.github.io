@@ -373,7 +373,7 @@ function countProperty(){
 $(function(){
 	//$(":input").not("#basicData :input,#showOndo,#buyYear").change(countProperty);
 	//delay0.1秒 在切換input時會比較順暢
-	$(":input").not(".age,#basicData :input,#showOndo,#buyYear").change(function(){setTimeout(function(){countProperty();},100);});
+	$(":input").not(".age,#basicData :input,#showOndo,#buyYear,.title").change(function(){setTimeout(function(){countProperty();},100);});
 	//workMember是動態生成的~要用on來綁定事件
 	$(document).on("change",".workMember :input",function(){
 		var $t = $(this);
