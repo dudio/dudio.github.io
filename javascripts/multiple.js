@@ -22,6 +22,13 @@ $(function(){
 			$(this).append("<input type='radio' name='workMember"+i+"' value="+v+" /><span class='title-"+v+"'>"+title+"</span>");
 		});
 
+		//將現有支出新增成員選擇
+		if(memberNum==2)
+			$("#outgoingArea").prepend("個人");
+		var v = memberNum-1;
+		$("#outgoingArea").append("<span class='title-"+v+"'>"+title+'</span>支出<span style="font-size:0.85em;">(不含住宿/工作通勤)</span>：<input class="money" id="outgoing-'+v+'" size="10" style="text-align:right;" value="0" /> /月<br/>');
+		$("#outgoing-"+v).change(function(){setTimeout(function(){countProperty();},100);});
+
 		$c.attr("id","member-"+memberNum);
 		$("<li><a href='#member-"+memberNum+"'>"+title+"</a></li>").insertBefore($("#newMember").parent());
 

@@ -1,11 +1,14 @@
 var xAxis;
-var year,month;
+var year,month,w;
+var nowMemberAge=[];
 var yearIncome, yearOutgoing;
-var nowSalary=[], nowOutgoing, nowCash, nowPriceIndex;
+var nowSalary=[], nowCash, nowPriceIndex;
 
 var priceIndex;
 var member = [];//家庭成員
-var age, life, cash, outgoing, betterLife, invest, saveMoney;
+var nowOutgoing = [];
+var outgoing = [];
+var age, life, cash, betterLife, invest, saveMoney;
 var work = [];//工作資料
 var workNum;
 var workHourPerDay, workDayPerYear;
@@ -25,13 +28,13 @@ function getData(){
 	$(".member").each(function(i){
 		var thisMember = {};
 		var $t = $(this);
-		thisMember['age']	= $t.find(".age").val();//當前年齡
-		thisMember['life']	= $t.find(".life").val();//預期壽命
+		thisMember['age']	= parseInt($t.find(".age").val());//當前年齡
+		thisMember['life']	= parseInt($t.find(".life").val());//預期壽命
+		thisMember['outgoing']	= $("#outgoing-"+i).val();//支出
 		member[i] = thisMember;
 	});
 
 	cash		= parseFloat($("#cash").val())*10000;//當前現金
-	outgoing	= parseInt($("#outgoing").val());//支出/月
 	betterLife	= 1+$("#betterLife").val()/100;//生活水平改善幅度
 	invest		= $("#invest").val()/100;//投資報酬率
 	saveMoney	= parseFloat($("#saveMoney").val())*10000;//最低現金
@@ -96,6 +99,9 @@ function rentTo(y, data) {
 	rent["transTime"] = parseFloat($("#rent .transTime").val());//每上班日通勤時間(分)
 	var transTimeRatio = rent["transTime"]/(workHourPerDay*60+rent["transTime"]);//通勤佔工時比例
 	
+	for(w=0;w<member.length;w++)
+		nowMemberAge[w] = member[w]['age'];
+
 	for(year=age;year<=y;year++){
 		yearIncome = yearOutgoing = yearMaterialLife = 0;
 		var working = 0;//目前有幾份工作
@@ -111,12 +117,16 @@ function rentTo(y, data) {
 				} else
 					yearIncome += work[i]['retirementPayMonthly'];
 			}
-			yearOutgoing += nowOutgoing;
+			for(w=0;w<member.length;w++) {
+				if((nowMemberAge[w] >= 0) && (nowMemberAge[w] <= member[w]['life'])) {
+					yearOutgoing += parseFloat(nowOutgoing[w]);
+					yearMaterialLife += parseFloat(outgoing[w]);
+				}
+			}
 			if($(".home:checked").val()!="1")
 				yearOutgoing += parseInt(rent['cost']);
 			if(working)
 				yearOutgoing += parseInt(rent['transCostPerMonth'])*working;
-			yearMaterialLife += outgoing;
 			yearMaterialLife += rentValue;
 		}
 		
@@ -144,12 +154,18 @@ function rentTo(y, data) {
 		}
 		nowCash = parseFloat(nowCash) + parseFloat(yearIncome) - parseFloat(yearOutgoing);
 
-		//調整生活水平
-		outgoing *= betterLife;
 
 		//調整物價指數
 		nowPriceIndex *= priceIndex;
-		nowOutgoing = nowPriceIndex * outgoing;
+
+		//調整生活水平
+		for(w=0;w<member.length;w++) {
+			if((nowMemberAge[w] >= 0) && (nowMemberAge[w] <= member[w]['life'])) {
+				outgoing[w] *= betterLife;
+				nowOutgoing[w] = nowPriceIndex * outgoing[w];
+			}
+			nowMemberAge[w]++;
+		}
 		
 		//計算通勤成本漲幅
 		rent['transCostPerMonth'] *= priceIndex;//每月通勤成本
@@ -168,6 +184,7 @@ function rentTo(y, data) {
 		data['property'].push(Math.round(nowCash));
 		data['loan'].push(null);
 		data['life'].push(Math.round(yearMaterialLife));
+
 	}
 
 }
@@ -195,6 +212,9 @@ function buyHouseFrom(y, data) {
 		}
 	}
 	
+	for(w=0;w<member.length;w++)
+		nowMemberAge[w] = member[w]['age']+y-member[0]['age'];
+
 	for(year=y;year<=life;year++){
 		yearIncome = yearOutgoing = perYearPaidLoan = yearMaterialLife = 0;
 		var working = 0;//目前有幾份工作
@@ -210,11 +230,15 @@ function buyHouseFrom(y, data) {
 				} else
 					yearIncome += work[i]['retirementPayMonthly'];
 			}
-			yearOutgoing += nowOutgoing;
+			for(w=0;w<member.length;w++) {
+				if((nowMemberAge[w] >= 0) && (nowMemberAge[w] <= member[w]['life'])) {
+					yearOutgoing += parseFloat(nowOutgoing[w]);
+					yearMaterialLife += parseFloat(outgoing[w]);
+				}
+			}
 			yearOutgoing += house["cost"]*house["maintainCost"]/12;
 			if(working)
 				yearOutgoing += houseTransCostPerMonth*working;
-			yearMaterialLife += outgoing;
 			yearMaterialLife += house["equalRent"];
 		}
 
@@ -274,12 +298,17 @@ function buyHouseFrom(y, data) {
 
 		}
 
-		//調整生活水平
-		outgoing *= betterLife;
-
 		//調整物價指數
 		nowPriceIndex *= priceIndex;
-		nowOutgoing = nowPriceIndex * outgoing;
+
+		//調整生活水平
+		for(w=0;w<member.length;w++) {
+			if((nowMemberAge[w] >= 0) && (nowMemberAge[w] <= member[w]['life'])) {
+				outgoing[w] *= betterLife;
+				nowOutgoing[w] = nowPriceIndex * outgoing[w];
+			}
+			nowMemberAge[w]++;
+		}
 		
 		//計算通勤成本漲幅
 		houseTransCostPerMonth *= priceIndex;
@@ -309,7 +338,11 @@ function buyHouseOn(buyOn){
 	//資產計算
 	for(var i=0;i<workNum;i++)
 		nowSalary[i] = work[i]['salary']; //當前月薪
-	nowOutgoing = outgoing = parseInt($("#outgoing").val());//當前每月支出
+	nowOutgoing.length = 0;
+	outgoing.length = 0;
+	for(i=0;i<member.length;i++)
+		nowOutgoing[i] = outgoing[i] = member[i]['outgoing'];//當前每月支出
+
 	nowCash = cash; //現金
 	totalMaterialLife = 0;//一生物質生活累計
 	houseTransCostPerMonth = house['transCostPerMonth'];

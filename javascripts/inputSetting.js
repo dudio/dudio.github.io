@@ -53,9 +53,8 @@ $(function(){
 		var memberNum = $t.parents("div:first").attr("id").substring(7)-1;
 		//改成員上方tab文字
 		$("#tabs-1 > ul a").eq(memberNum).text(newTitle);
-		//改工作
+		//改工作及支出
 		$(".title-"+memberNum).text(newTitle);
-		//改支出
 	});
 
 	$(".age").change(function(){
