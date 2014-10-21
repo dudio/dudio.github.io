@@ -4,13 +4,18 @@ http://thenuschool.com/how-much/#/after
 ====<<修正現有功能>>====
 
 ====<<改善操作&介面>>====
+畫面太花
+	http://css-tricks.com/snippets/css/transparent-background-images/
+
+圖表高度太短 不易看
+
+自填貸款及頭期款
+----------------
 預計幾歲買屋
 	改文字說明
 	加底色
 
-願付多少錢入住 要加到basicData 影響太大
-
-新增tab icon
+(待考慮)願付多少錢入住 要加到basicData 影響太大
 
 (待考慮)說明的部份 最佳生活要改成每人每年幾萬
 
