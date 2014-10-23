@@ -39,12 +39,16 @@ function writeSummary(){
 			balance = bestLife[i]*nowPriceIndex+bestData[i];
 		}
 	}
+	balance = Math.round(balance/nowPriceIndex/10000);
+	var warn="";
+	if(finalCash[bestAge]-leftLoan[bestAge]<-500000)
+		warn = "目標房價過高，建議調降目標房價<br/>";
 	bestAge = bestAge + parseInt(age);
 	report += "<br/>";
 	if(bestAge == life)
-		report += "<span style='color:rgb(255,49,49);font-size: 1.1em;line-height: 2em;'>本站建議：不要買房，較能兼顧生活品質及投資需求</span>";
+		report += "<span style='color:rgb(255,49,49);font-size: 1.1em;line-height: 2em;'>本站建議：不要買房，較能兼顧生活品質及投資需求，綜合積分"+balance+"</span>";
 	else
-		report += "<span style='color:rgb(255,49,49);font-size: 1.1em;line-height: 2em;'>本站建議：在<span style='color:blue;'>"+bestAge+"</span>歲的時候購買房產，較能兼顧生活品質及投資需求</span>";
+		report += "<span style='color:rgb(255,49,49);font-size: 1.1em;line-height: 2em;'>本站建議："+warn+"在<span style='color:blue;'>"+bestAge+"</span>歲的時候購買房產，較能兼顧生活品質及投資需求，綜合積分"+balance+"</span>";
 
 	$("#report").html(report);
 	return bestAge;

@@ -342,6 +342,12 @@ function buyHouseFrom(y, data) {
 		data['property'].push(Math.round(house["cost"]-loan+nowCash));
 		data['life'].push(Math.round(yearMaterialLife));
 	}
+
+	//有欠債心情會不好~
+	if(loan>0)
+		totalMaterialLife -= loan/nowPriceIndex;
+	if(nowCash<0)
+		totalMaterialLife += nowCash/nowPriceIndex;
 }
 
 // 從<buyOn>歲開始買房子 在這之前都是租房子
