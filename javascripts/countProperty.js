@@ -154,6 +154,12 @@ function rentTo(y, data) {
 		}
 		nowCash = parseFloat(nowCash) + parseFloat(yearIncome) - parseFloat(yearOutgoing);
 
+		//負債會增加利息支出
+		if(nowCash<0) {
+			yearOutgoing -= nowCash * (house['loanRatePerYear']-1);
+			nowCash *= house['loanRatePerYear'];
+		}
+
 
 		//調整物價指數
 		nowPriceIndex *= priceIndex;
@@ -265,6 +271,12 @@ function buyHouseFrom(y, data) {
 		//先加上基本花費跟扣除基本開銷
 		nowCash = parseFloat(nowCash) + parseFloat(yearIncome) - parseFloat(yearOutgoing);
 
+		//負債會增加利息支出
+		if(nowCash<0) {
+			yearOutgoing -= nowCash * (house['loanRatePerYear']-1);
+			nowCash *= house['loanRatePerYear'];
+		}
+
 		//將餘錢繳納貸款
 		if(nowCash > saveMoney) {
 			if(nowCash-saveMoney >= loan) {
@@ -323,11 +335,12 @@ function buyHouseFrom(y, data) {
 		data['cash'].push(Math.round(nowCash));
 		data['income'].push(Math.round(yearIncome));
 		data['outgoing'].push(Math.round(yearOutgoing));
-		if(perYearPaidLoan)
+		if(loan > 0)
 			data['loan'].push(Math.round(loan));
+		else
+			data['loan'].push(null);
 		data['property'].push(Math.round(house["cost"]-loan+nowCash));
 		data['life'].push(Math.round(yearMaterialLife));
-
 	}
 }
 
@@ -362,6 +375,7 @@ function countChart1(){
 	bestData = [];
 	finalCash = [];
 	bestLife = [];
+	leftLoan = [];
 	var oriBuyYear = buyYear;
 	for(buyYear=age;buyYear<=life;buyYear++) {
 		var tempData = {};
@@ -370,6 +384,7 @@ function countChart1(){
 		bestData.push(tempData['property'][i-1]);
 		finalCash.push(tempData['cash'][i-1]);
 		bestLife.push(parseInt(totalMaterialLife));
+		leftLoan.push(tempData['loan'][i-1]);
 	}
 	buyYear = oriBuyYear; //算完最佳解後要還原原本的buyYear值
 

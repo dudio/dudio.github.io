@@ -16,9 +16,12 @@ function drawHighchart1() {
 	},{
 		name: "最終現金",
 		data: finalCash
+	},{
+		name: "未償貸款",
+		data: leftLoan
 	}];
 
-	var showLegend = [1,1,0];
+	var showLegend = [1,1,0,0];
 	$("#highchartContent-best .highcharts-legend").each(function(){
 		$(this).find(".highcharts-legend-item").each(function(i){
 			showLegend[i] = ($(this).children("text").css("color")=="rgb(51, 51, 51)");
@@ -34,7 +37,7 @@ function drawHighchart1() {
 			text: '買房時間點比較圖(藍線/紅線高點為適合買房的時間點)',
 			x: -20 //center
 		},
-		colors: ['#7cb5ec','#f15c80','#434348'],
+		colors: ['#7cb5ec','#f15c80','#434348','#8085e9'],
 		xAxis: {
 			title: {
 				text: '買房年紀'
