@@ -4,6 +4,9 @@ http://thenuschool.com/how-much/#/after
 ====<<修正現有功能>>====
 
 ====<<改善操作&介面>>====
+加fb meta
+	title describes url 
+
 計算最佳目標房價 目前速度較慢
 	修正迴圈累計方式
 	另寫較有效率的countProperty() 省去顯示的時間

@@ -32,6 +32,9 @@ function setBasicData(){
 }
 
 function copyBasicData(){
+//	$("#basicData :input").attr("disabled","disabled");
+	alert("資料計算中，請耐心等待");
+
 	$(".age,.workAge").val($("#copy-age").val());
 	$(".salary").val($("#copy-salary").val());
 	$(".bonus").val(parseFloat($("#salaryMonth").val())-12);
@@ -56,7 +59,7 @@ $(function(){
 	//設定初始資料
 	setBasicData();
 	$("#basicData").dialog({
-		title:"幾歲買屋好勒？ - 填寫基本資料",
+		title:"幾歲買屋好哩？ - 填寫基本資料",
 		width:"auto",
 		close: copyBasicData,
 		position: { my: "center", at: "center", of: window },
