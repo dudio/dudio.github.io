@@ -32,6 +32,9 @@ $(function(){
 		$(".ondo").toggle();
 	});
 
+	//設定button樣式
+	$(".button").addClass("ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only").children().addClass("ui-button-text");
+
 	//設定分頁
 	$("#inputTabs,#tabs-1,#tabs-2").tabs();
 
