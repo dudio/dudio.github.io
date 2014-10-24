@@ -51,6 +51,7 @@ function writeSummary(){
 		report += "<span style='color:rgb(255,49,49);font-size: 1.1em;line-height: 2em;'>本站建議："+warn+"在<span style='color:blue;'>"+bestAge+"</span>歲的時候購買房產，較能兼顧生活品質及投資需求，綜合積分"+balance+"</span>";
 
 	$("#report").html(report);
+	score[$("#house .cost").val()/100] = balance;
 	return bestAge;
 }
 $(function(){

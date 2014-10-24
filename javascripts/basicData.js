@@ -47,7 +47,8 @@ function copyBasicData(){
 	//自動計算現有資金 ~= (年薪 - 12*(月支出+房租)) * (年齡-24)
 	$("#cash").val(Math.round(($("#yearSalary").val()-12*(parseInt($("#outgoing-0").val())+parseInt($("#rentCost").val())))*($(".age").val()-24)/10000));
 
-	countProperty();
+	alert(autoCount());
+//	countProperty();
 	countFinalSalary();
 }
 
