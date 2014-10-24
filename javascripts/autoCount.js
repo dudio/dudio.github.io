@@ -20,7 +20,9 @@ function autoCount(){
 		houseCost++;
 	}
 	houseCost--;
-	countScore(houseCost);
+	$("#house .cost").val(houseCost*100);
+	$("#house .equalRent").val(houseCost*2000);
+	countProperty();
 	houseCost*=100;
 	if(houseCost)
 		return "最佳目標房價為"+houseCost+"萬元";
