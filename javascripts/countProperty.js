@@ -375,8 +375,7 @@ function buyHouseOn(buyOn){
 	return data;
 }
 
-function countChart1(){
-
+function countBestAge(){
 	//計算最佳買房時機
 	bestData = [];
 	finalCash = [];
@@ -394,7 +393,11 @@ function countChart1(){
 	}
 	buyYear = oriBuyYear; //算完最佳解後要還原原本的buyYear值
 
-	var bestAge = writeSummary();
+	return writeSummary();
+}
+
+function countChart1(){
+	var bestAge = countBestAge();
 	drawHighchart1();
 
 	return bestAge;

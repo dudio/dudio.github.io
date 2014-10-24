@@ -1,23 +1,20 @@
 var score = [];
 
 function isHighScore(c){
-	if(c==0) return false;
-	else if(score[c]<score[c-1]) return true;
-	else return false;
+	return c>0 && (score[c]<score[c-1]) ;
 }
 
 function countScore(c){
 	$("#house .cost").val(c*100);
 	$("#house .equalRent").val(c*2000);
-	countProperty();
+	getData();
+	countBestAge();
 }
 
 function autoCount(){
 	var houseCost=0;
 	score = [];
-	
 	while(1){
-		console.log("計算房價"+houseCost+"百萬元");
 		countScore(houseCost);
 		if(isHighScore(houseCost)) break;
 		houseCost++;
