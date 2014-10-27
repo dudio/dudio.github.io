@@ -33,7 +33,6 @@ function setBasicData(){
 
 function copyBasicData(){
 //	$("#basicData :input").attr("disabled","disabled");
-	alert("資料計算中，請耐心等待");
 
 	$(".age,.workAge").val($("#copy-age").val());
 	$(".salary").val($("#copy-salary").val());

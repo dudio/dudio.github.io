@@ -43,6 +43,7 @@ function writeSummary(){
 	var warn="";
 	if(finalCash[bestAge]-leftLoan[bestAge]<-500000)
 		warn = "目標房價過高，建議調降目標房價<br/>";
+	predict[$("#house .cost").val()/100] = finalCash[bestAge]-leftLoan[bestAge];
 	bestAge = bestAge + parseInt(age);
 	report += "<br/>";
 	if(bestAge == life)
