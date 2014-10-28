@@ -50,7 +50,6 @@ $(function(){
 	//自動計算最佳房價
 	$("#autoCount").click(function(){
 //		if(confirm("此項計算耗時較久，是否確定執行？"))
-//			alert(autoCount());
-		autoCount();
+			alert(autoCount());
 	});
 });
