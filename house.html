@@ -152,6 +152,7 @@
 		2014/10/23 修正負債利率，顯示未償貸款，調整計分方式，使建議年齡的負債程度降低，新增房價過高警示<br/>
 		2014/10/24 自動估算最佳目標房價v1.0 效率未最佳化<br/>
 		2014/10/27 加快估算房價速度，改善說明<br/>
+		2014/10/31 縮小本站建議浮動訊息框尺寸<br/>
 		<hr/>
 		未來預計更新功能<br/>
 		1.投資型房產計算(目前僅有自住房產計算)<br/>
@@ -170,7 +171,6 @@
 		<div class="fb-comments" data-href="https://dudio.github.io/house.html" data-numposts="7" data-colorscheme="light"></div>
 	</div>
 </div>
-<div id="rabbit"></div>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -222,6 +222,9 @@ function setDimensions(){
 }
 
 $(function(){
+	//set page title
+	$("title").text($("#title").text());
+
 	setDimensions();
 	window.onresize=setDimensions;
 });
