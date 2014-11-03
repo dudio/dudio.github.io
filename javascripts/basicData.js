@@ -61,7 +61,8 @@ $(function(){
 		width:"auto",
 		close: copyBasicData,
 		position: { my: "center", at: "center", of: window },
-		modal: true
+		modal: true,
+		autoOpen: false
 	});
 
 	$("#closeBasicData").click(function(){$("#basicData").dialog("close");});

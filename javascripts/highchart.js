@@ -31,7 +31,7 @@ function drawHighchart1() {
 	//console.log(colors);
 	$('#highchartContent-best').highcharts({
 		chart: {
-			height: 300
+			height: 350
 		},
 		title: {
 			text: '買房時間點比較圖(藍線/紅線高點為適合買房的時間點)',
@@ -104,7 +104,7 @@ function drawHighchart2() {
 
 	$('#highchartContent-house').highcharts({
 		chart: {
-			height: 300
+			height: 350
 		},
 		title: {
 			text: buyYear+'歲買屋資產變化圖',

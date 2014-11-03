@@ -9,6 +9,11 @@
 	line-height:1.3em;
 }
 
+.underline{
+	border-bottom:1px solid #222;
+}
+
+
 #banner {
 	text-align:center;
 	padding:5em 2em;
@@ -46,7 +51,7 @@
 	width:55%;
 	margin-left:35%;
 }
-#basicData {
+#intro, #basicData {
 	padding:0 6%;
 	line-height:2em;
 	overflow: hidden;

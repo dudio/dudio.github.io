@@ -38,10 +38,16 @@
 		<div class="fb-like-box" data-href="https://www.facebook.com/foresttranquille" data-height="60" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false" style="height:70px;"></div>
 	</div>
 	<div class="topM"></div>
+	<div id="intro">
+		1.<span style="color:#2e6e9e;">適用族群</span>：適用目前正在租屋，但有意買屋的人，根據經濟情況計算出較佳的買房年紀。<br/>
+		2.以"<span style="color:#7cb5ec;">投資角度</span>"及"<span style="color:#f15c80;">生活品質</span>"兩項指標分別計算何時適合購買房子，並推薦適合的平衡點。<br/>
+		3."<span style="color:#f15c80;">生活品質</span>"考量<span class="underline">居住品質</span>、<span class="underline">通勤成本</span>、<span class="underline">實值支出</span>、<span class="underline">是否負債</span>四項因素，評估買房後對生活的改善程度。<br/>
+		4.可合併計算家庭所有成員的工作收入及支出。<br/>
+		5.可輸入薪水、支出、房價、物價的成長率。<br/>
+		6.自動計算適合的房價。
+		<div style="text-align:center;margin-top:1em;"><button id="closeIntro" class="button"><span>填寫基本資料</span></button></div>
+	</div>
 	<div id="basicData">
-		本站適用目前正在租屋，但有意買屋的人，根據個人經濟情況計算出較佳的買房年紀<br/>
-		目前自動估算最佳房價功能測試中，耗時較久請見諒
-		<hr/>
 		1.目前年齡：<input class="year" id="copy-age" /><br/>
 		2.月薪：<input class="money" id="copy-salary" /> x 薪水月數<input class="month" id="salaryMonth"/> = 年薪<input class="money" id="yearSalary"/><br/>
 		3.當前房租：<input class="money" id="rentCost"/>/月<br/>
@@ -148,11 +154,12 @@
 		</div>
 <!--		顯示未完成功能<input type="checkbox" id="showOndo" /><br/><br/>-->
 		近期更新<br/>
-		2014/10/21 可新增家庭成員，並設定每個人的工作及支出<br/>
-		2014/10/23 修正負債利率，顯示未償貸款，調整計分方式，使建議年齡的負債程度降低，新增房價過高警示<br/>
-		2014/10/24 自動估算最佳目標房價v1.0 效率未最佳化<br/>
-		2014/10/27 加快估算房價速度，改善說明<br/>
+		2014/11/03 新增進站說明<br/>
 		2014/10/31 縮小本站建議浮動訊息框尺寸<br/>
+		2014/10/27 加快估算房價速度，改善說明<br/>
+		2014/10/24 自動估算最佳目標房價v1.0 效率未最佳化<br/>
+		2014/10/23 修正負債利率，顯示未償貸款，調整計分方式，使建議年齡的負債程度降低，新增房價過高警示<br/>
+		2014/10/21 可新增家庭成員，並設定每個人的工作及支出<br/>
 		<hr/>
 		未來預計更新功能<br/>
 		1.投資型房產計算(目前僅有自住房產計算)<br/>
@@ -186,10 +193,13 @@
 <script src="javascripts/highchart/highcharts.js"></script>
 <script src="javascripts/highchart/modules/exporting.js"></script>
 
+<script src="javascripts/cookie.js"></script>
 <script src="javascripts/questionbox.js"></script>
 <script src="javascripts/highchart.js"></script>
 <script src="javascripts/summary.js"></script>
+<script src="javascripts/helper.js"></script>
 
+<script src="javascripts/intro.js"></script>
 <script src="javascripts/basicData.js"></script>
 <script src="javascripts/inputSetting.js"></script>
 <script src="javascripts/multiple.js"></script>
