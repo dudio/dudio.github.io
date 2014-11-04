@@ -1,7 +1,7 @@
 var $tmpModel;
 var emptyMsg = "目前沒有相關說明";
 var passMsg  = [];
-var $openHelper = $(".log_area");
+var $openHelper = $("#openHelper");
 
 /*
  * msg: 訊息內容 必填
@@ -10,7 +10,7 @@ var $openHelper = $(".log_area");
  * */
 function addHelp(msg, $model, priority){
 	if(!priority) priority=2;
-        if(!msg || parseInt($("input[name='msgDensity']:checked").val()) < priority) return false;
+        if(!msg) return false;
 	if($.inArray(msg, passMsg)) passMsg.push(msg);
 	else return false;
 
@@ -48,13 +48,14 @@ function clearHelp() {
 }
 
 $(function(){
+
 	var $arrow = $("<img>")
 		.attr("src","./images/arrow.png")
 		.attr("id","helpArrow")
 		.height("50px")
 		.width("50px")
 		.appendTo($("body"))
-		.css("position","absolute")
+//		.css("position","absolute")
 //		.css("top",offset.top-35)
 //		.css("left",offset.left-15)
 		.hide()
@@ -62,41 +63,24 @@ $(function(){
 		.click(function(){
 			$(this).hide();
 		});
-	var openHelpButton = $('<li><a id="openHelp" src="#">開啟小幫手</a></li>').appendTo($openHelper);
-	var helpDialog = $('<div id="helpler" style="display:none;" title="我是小幫手"> <div id="msgbox" style="color:red;font-size:16px;">'+emptyMsg+'</div> <hr/> 自動開啟小幫手： <input type="radio" name="openHelp" checked="checked" value="on">開啟 <input type="radio" name="openHelp" value="off">關閉<br/> 訊息數量： <input type="radio" name="msgDensity" value="3">多 <input type="radio" name="msgDensity" checked="checked" value="2">適中 <input type="radio" name="msgDensity" value="1">少</div>').appendTo($("body"));
+	var openHelpButton = $('<button class="button"><a id="openHelp" src="#">開啟說明</a></button>').appendTo($openHelper);
+	var helpDialog = $('<div id="helpler" style="display:none;" title="說明"> <div id="msgbox" style="color:red;font-size:16px;">'+emptyMsg+'</div> <hr/> 自動開啟說明： <input type="radio" name="openHelp" checked="checked" value="on">開啟 <input type="radio" name="openHelp" value="off">關閉</div>').appendTo($("body"));
         $("#helpler").dialog({
                 autoOpen:false,
                 height: "auto",
                 width: "auto",
                 open: function(e, ui){
         		if($tmpModel) $tmpModel.css("border","3px solid violet");
-                        $('.ui-dialog-titlebar')
-                                .height("auto")
-                                .css('background','#94C128')
-                                .children('a')
-                                        .css('background-color','#94C128')
-                                        .hover(function(){
-                                                $(this).css('background','#94C128');
-                                        },function(){
-                                                $(this).css('background','#94C128');
-                                        }).children('span')
-                                                .css('background-image','url(\'/css/smoothness/images/ui-icons_ffffff_256x240.png\')');
                 },
                 close: function(e, ui){
-                        $tmpModel.css("border","");
-			$arrow.hide();
-			$("#openHelp")
-				.animate({color:"yellow"},1000)
-				.animate({color:"white"},1500)
-				.animate({color:"#dcf819"},2000)
-				.animate({color:"white"},2000)
-				.animate({color:"#b8f031"},1500)
-				.animate({color:"white"},1000);
+			if($tmpModel) {
+	                        $tmpModel.css("border","");
+				$arrow.hide();
+			}
                 },
                 position: {
                         my: "left",
-                        at: "left",
-                        of: ".viewport"
+                        at: "left"
                 }
         });
         $("#openHelp").click(function(){
@@ -109,12 +93,5 @@ $(function(){
 	})
 	$(":radio[name='openHelp']").change(function(){
 		setCookie('openHelp',$(this).val(),1000);
-	});
-	$(":radio[name='msgDensity']").each(function(){
-		if($(this).val()==getCookie('msgDensity'))
-			$(this).attr('checked','checked');
-	})
-	$(":radio[name='msgDensity']").change(function(){
-		setCookie('msgDensity',$(this).val(),1000);
 	});
 });

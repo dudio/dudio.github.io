@@ -51,7 +51,7 @@
 	width:55%;
 	margin-left:35%;
 }
-#intro, #basicData {
+#intro, #basicData, #intro1, #intro2, #intro3{
 	padding:0 6%;
 	line-height:2em;
 	overflow: hidden;

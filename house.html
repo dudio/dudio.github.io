@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta property="og:url" content="https://dudio.github.io/house.html" /> 
+<meta property="og:title" content="幾歲買屋好哩？" />
+<meta property="og:description" content="何時購買房子，才能兼顧生活品質及經濟狀況？" /> 
+<meta property="og:image" content="https://dudio.github.io/images/background-1.gif" /> 
 <title>幾歲買屋好哩？</title>
 <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="javascripts/jquery-ui-1.11.1.custom/jquery-ui.min.css">
@@ -34,6 +38,9 @@
 	<div class="topM"></div>
 	<div id="summary">
 		<div id="report"></div>
+<!--
+		<div id="openHelper"></div>
+-->
 		<div>本站插圖由<span style="color:green;">小森一點</span>協助製作，問題回報請mail至 <span style='color:rgb(223,72,72);'>dudiolin@gmail.com</span></div>
 		<div class="fb-like-box" data-href="https://www.facebook.com/foresttranquille" data-height="60" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false" style="height:70px;"></div>
 	</div>
@@ -46,6 +53,28 @@
 		5.可輸入薪水、支出、房價、物價的成長率。<br/>
 		6.自動計算適合的房價。
 		<div style="text-align:center;margin-top:1em;"><button id="closeIntro" class="button"><span>填寫基本資料</span></button></div>
+	</div>
+	<div id="intro1">
+		太早買房背的貸款會太重，太晚買房則房價可能更高更買不起<br/>
+		最佳投資告訴你何時購買房子，這輩子將賺取最多的資產<br/>
+		計算方式為估計臨終時的 <span class="underline">房價</span> + <span class="underline">現金</span><br/>
+		參看第一張曲線圖的<span style='color:#7cb5ec;'>藍色曲線</span>，30歲時顯示最終資產1000萬，代表30歲時買房，臨終時會有1000萬的資產(房+現金)，目前網站未能同時比較多筆房產，因此主要差別即為最終的現金總額<br/>
+		想要在買房後存最多錢，就在曲線圖上藍線最高點的年紀買房即可
+	</div>
+	<div id="intro2">
+		早買房早點享受，晚買房貸款壓力較低<br/>
+		最佳生活告訴你何時購買房子，這輩子將過著比較好的生活<br/>
+		計算方式為跟下面四點有關<br/>
+		<span class="underline">居住品質</span>：你所願意付出的租金，代表了住處帶給你的居住品質<br/>
+		<span class="underline">通勤成本</span>：通勤時間越長，生活品質越低，降低程度用當時的工作時薪來計算<br/>
+		<span class="underline">實值支出</span>：花費越多~過得越爽！(本站會用物價指數計算實值購買力)<br/>
+		<span class="underline">是否負債</span>：負債一向不是令人開心的事，試試看把另一半及子女的薪資也考慮進來，也許會有不一樣的結果唷<br/>
+		參看第一張曲線圖的<span style='color:#f15c80;'>紅色曲線</span>，代表不同時間點買房，生活品質會有怎樣的改變<br/>
+		如果你是注重生活品質的人~不妨考慮在紅線最高點的年紀買房吧
+	</div>
+	<div id="intro3">
+		最佳投資及最佳生活時常無法兼顧，本站在兩個買房時間點之間推薦一個較適合的買房年紀，但您也可以視自己情況決定多存一點錢，或是過好一點的生活<br/>
+		<span class="underline">計算最適合自己的房價</span>：填寫完家庭/工作/收支等欄位後，點選"可購房產"內的"自動計算房價"看看~可知道在幾歲購買多少錢的房子會最適合你唷！
 	</div>
 	<div id="basicData">
 		1.目前年齡：<input class="year" id="copy-age" /><br/>
@@ -154,10 +183,11 @@
 		</div>
 <!--		顯示未完成功能<input type="checkbox" id="showOndo" /><br/><br/>-->
 		近期更新<br/>
+		2014/11/04 新增最佳投資/最佳生活/本站建議的說明區塊<br/>
 		2014/11/03 新增進站說明<br/>
 		2014/10/31 縮小本站建議浮動訊息框尺寸<br/>
 		2014/10/27 加快估算房價速度，改善說明<br/>
-		2014/10/24 自動估算最佳目標房價v1.0 效率未最佳化<br/>
+		2014/10/24 自動估算最佳目標房價 效率未最佳化<br/>
 		2014/10/23 修正負債利率，顯示未償貸款，調整計分方式，使建議年齡的負債程度降低，新增房價過高警示<br/>
 		2014/10/21 可新增家庭成員，並設定每個人的工作及支出<br/>
 		<hr/>
