@@ -7,26 +7,31 @@ function setDimentions(){
 
 }
 $(function(){
-	//避免主選單在不同字型下過長折行
-/*	var $mainMenu = $("#mainMenu");
-	var $li = $("#mainMenu li");
-	var liMarginRight = 4.2;
-	while($mainMenu.height()>25) {
-		liMarginRight -= 0.5;
-		if(liMarginRight < 0) break;
-		$li.css("margin-right",liMarginRight+"%");
-	};
-	var mainMenuPaddingLeft = 21.55;
-	while($mainMenu.height()>25) {
-		mainMenuPaddingLeft -= 0.5;
-		if(mainMenuPaddingLeft<15) break;
-		$mainMenu.css("padding-left",mainMenuPaddingLeft+"%");
-	};*/
-
 	//將主選單增加分隔線
 	$("#mainMenu > div:not(:last)").each(function(i){
 		$('<img src="../images/menuline.jpg" />').insertAfter($(this));
 	});
+
+	// ---- news ----
+	//增加前置icon
+	$("#bkNews > .title").prepend('<img src="../demo/blueArrow.jpg">');
+	//增加圖片下方分隔條
+	$("#bkNews .news > img").after("<div class='grayLine'></div>");
+	
+	$("#bkNews .news")
+	//分隔條 hover變色
+	.hover(function(){		
+		$(this).find(".grayLine").addClass("hover");
+	},function(){
+		$(this).find(".grayLine").removeClass("hover");
+	})
+	//增加 Read more
+	.append('<div class="readmore">Read More</div>')
+	//綁定click事件
+	.click(function(){
+		document.location.href = $(this).attr("href");
+	});
+
 	
 	//變動視窗寬度事件
 	setDimentions();
@@ -34,17 +39,15 @@ $(function(){
 
 	//設定幻燈片(要先設定完setDimention 這樣計算圖片張數才會正確)
 	$('.jcarousel').jcarousel({wrap:'circular'}).jcarouselAutoscroll({
-            interval: 4000,
-            target: '+=1',
-            autostart: true
+		interval: 5200,
+		target: '+=1',
+		autostart: true
         });
         $('.jcarousel-pagination')
         .on('jcarouselpagination:active', 'a', function() {
-            $(this).addClass('active');
-        })
-        .on('jcarouselpagination:inactive', 'a', function() {
-            $(this).removeClass('active');
-        })
-        .jcarouselPagination();
+		$(this).addClass('active');
+        }).on('jcarouselpagination:inactive', 'a', function() {
+		$(this).removeClass('active');
+        }).jcarouselPagination();
 
 });
