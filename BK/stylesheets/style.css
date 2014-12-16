@@ -203,6 +203,10 @@ a {
 #bkNews .news > img{
 	width:100%;
 	margin-bottom: 0.9em;
+
+	-moz-box-shadow:.1em .4em .6em rgba(20%,20%,20%,0.5);
+	-webkit-box-shadow:.1em .4em .6em rgba(20%,20%,20%,0.5);
+	box-shadow:.1em .4em .6em rgba(20%,20%,20%,0.5);
 }
 
 #bkNews .news > .grayLine{
