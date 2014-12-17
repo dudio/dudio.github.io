@@ -32,7 +32,11 @@ $(function(){
 		document.location.href = $(this).attr("href");
 	});
 
-	
+	//將sitemap增加分隔線
+	$("#sitemap > div:not(:last)").each(function(i){
+		$('<img src="../images/sitemapline.jpg" />').insertAfter($(this));
+	});
+
 	//變動視窗寬度事件
 	setDimentions();
 	window.onresize = setDimentions;
