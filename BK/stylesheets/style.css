@@ -267,10 +267,41 @@ button {
 
 /*******************************/
 #shareArea {
-	border: 1px solid skyblue;
 	height: 5em;
+	background-color: #F2F2F2;
+	color: #858585;
+	padding-top: 1.2em;
+	padding-left: 13.3%;
+	white-space:nowrap;
+	font-size: .9em;
+	letter-spacing: .1em;
 }
 
+#shareArea > * {
+	float:left;
+	width: auto;
+	overflow: visible;
+	margin-right: 5.7%;
+	
+}
+
+#shareArea > *:hover {
+	cursor: pointer;
+}
+
+#shareArea .fbShare img{
+	height:3.45em;
+	margin-right: 9%;
+}
+
+#shareArea .fbShare > span {
+	position: relative;
+	top: -1.2em;
+}
+
+#shareArea .androidApp {
+	height:3.45em;
+}
 /*******************************/
 #footer {
 	background-color: #959595;
@@ -363,9 +394,4 @@ button {
 	font-size: 0.8em;
 	line-height: 1.7em;
 }
-#company > div:nth-child(1) {
 
-}
-
-#company > div:nth-child(1) {
-}
