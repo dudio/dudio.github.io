@@ -258,10 +258,34 @@ button {
 /*******************************/
 
 #deviceDemo {
-	border: 1px solid gray;
 	height: 40em;
 }
 
+#deviceDemo .switchDevice {
+	margin-top: 4.3em;
+	margin-left: 12.2%;
+	height: 2.38em;
+	background-image: url('../images/switchDevice.jpg');
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+	background-position-x: 0%;
+}
+
+#deviceDemo .switchDevice > a:nth-child(1) {
+	color: white;
+	line-height: 2em;
+	margin-left: 2.5%;
+	font-size: 1.33em;
+}
+#deviceDemo .switchDevice > a:nth-child(2) {
+	color: #4B4B4B;
+	margin-left: 5%;
+	position: relative;
+	top: -.3em;
+}
+#deviceDemo .learnMore a{
+	color: #818181;
+}
 /*******************************/
 #airMedia {
 	height: 28.7em;
