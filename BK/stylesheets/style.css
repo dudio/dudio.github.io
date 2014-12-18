@@ -4,8 +4,8 @@ body {
 	font-family: "微軟正黑體","Microsoft JhengHei",sans-serif;
 
 	/*Dudio*/
-
-/*	height: 3000px;
+/*
+	height: 3000px;
 	opacity: 0.7;
 	overflow: hidden;
 	background-image: url('../demo/home.jpg');
@@ -97,6 +97,9 @@ button {
     overflow: hidden;
     width: 100%;
     height: 23.2em;
+	-webkit-box-shadow: 0 0 4em silver;
+	-moz-box-shadow: 0 0 4em silver;
+	box-shadow: 0 0 3em silver;
 }
 
 .jcarousel ul {
@@ -261,13 +264,49 @@ button {
 
 /*******************************/
 #airMedia {
-	border: 1px solid slategray;
 	height: 28.7em;
+	color: #6B6B6B;
 }
 
+#airMedia > * {
+	float: left;
+}
+
+#airMedia > div {
+	width:45%;
+	padding-top: 5.25em;
+	padding-left: 13.8%;
+
+}
+#airMedia > div > .title{
+	font-size: 2em;
+	font-family: Arial;
+	letter-spacing: .06em;
+}
+
+#airMedia > div > .content{
+	font-size: .78em;
+	line-height: 1.6em;
+}
+#airMedia > div > .googlePlay {
+	text-align:right;
+	margin-top: .4em;
+}
+
+#airMedia > div > .googlePlay > img {
+	height:3.15em;
+	margin-right: 2%;
+	cursor: pointer;
+}
+#airMedia > img {
+	width: 38%;
+	margin-top: 1em;
+	margin-left: 3.5%;
+}
 /*******************************/
 #shareArea {
-	height: 5em;
+	height: 5.5em;
+	width:100%;
 	background-color: #F2F2F2;
 	color: #858585;
 	padding-top: 1.2em;

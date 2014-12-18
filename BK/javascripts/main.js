@@ -33,8 +33,8 @@ $(function(){
 	});
 
 
-	//綁定shareArea click事件
-	$("#shareArea > *").click(function(){
+	//綁定click事件
+	$(".googlePlay > img, #shareArea > *").click(function(){
 		document.location.href = $(this).attr("href");
 	});
 
