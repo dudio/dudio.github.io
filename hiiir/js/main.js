@@ -129,12 +129,11 @@ $(function(){
 
 		var windowWidth = $("#mobile-worldEarthDay").width();
 		var windowHeight = $(window).height();
+		var dx = windowWidth/764;
 
+		//設定topSec底圖
 		$("#mobile-topSec").height(windowHeight);
-		$("#mobile-sec1").height(windowWidth*0.548).css("border","1px solid red");
-		//$("#mobile-sec2").height(windowWidth*0.567);
-		//$("#mobile-sec3").height(windowWidth*0.498);
-		//$("#mobile-sec4").height(windowWidth*0.567);
+		$("#mobile-worldEarthDay").css("font-size", windowWidth*0.04);
 
 		var earthWidth = windowHeight*1017/931;
 		$("#mobile-earth")
@@ -143,11 +142,68 @@ $(function(){
 			.css("left",-windowHeight/200);
 		if(earthWidth > windowWidth) $("#mobile-earth").css("left", (windowWidth-earthWidth)/2-windowHeight/200);
 
+		//設定sec底圖
 		$(".sec").each(function(){
 			var $t = $(this);
 			var bg = $t.find(".mback > img").attr("src");
-			$(".mback").remove();
 			$t.css("background-image", "url('"+bg+"')");
+		});
+		$(".mback").remove();
+
+		$("#mobile-worldEarthDay .product:even").css("text-align", "right");
+
+		//添加buy
+		$(".product").append("<div class='buy'><div class='leftArrow'></div> <div>&nbsp;BUY&nbsp;</div> <div class='rightArrow'></div></div>");
+		
+		$("#mobile-sec1 > .describe").height(215*dx);
+
+		//設定youtube影片高度
+		var $video = $(".video iframe");
+		var videoWidth = $video.width();
+		$video.height(videoWidth*0.6);
+		$(".video").height(videoWidth*0.75);
+
+		$("body").css("background-color","rgb(72,204,131)");
+
+
+		$(".product").each(function(i){
+			var $t = $(this);
+			var href = $t.attr("link");
+			$t.css("cursor","pointer").click(function(){
+				document.location.href = href;
+			});
+		});
+
+		$("#mobile-menu > div").each(function(i){
+			var $t = $(this);
+			var j = i+1;
+			$t.click(function(){
+				document.location.href = "#mobile-sec"+j;
+			});
+		});
+
+		var lastScrollTop = 0;
+		$(window).scroll(function(event){
+			var s1 = $("#mobile-sec1").offset().top-20;
+			var s2 = $("#mobile-sec2").offset().top-20;
+			var s3 = $("#mobile-sec3").offset().top-20;
+			var s4 = $("#mobile-sec4").offset().top-20;
+			var tar;
+			var st = $(this).scrollTop();
+			if(st >= s1 && st < s2) tar = 1;
+			else if(st >= s2 && st < s3) tar = 2;
+			else if(st >= s3 && st < s4) tar = 3;
+			else if(st >= s4) tar = 4;
+			else tar = 0;
+			$("#mobile-menu > div").removeClass("on");
+			if(tar) $("#mobile-menu > div").eq(tar-1).addClass("on");
+
+			if (st > lastScrollTop){
+				$("#mobile-menu").animate({opacity:0});
+			} else {
+				$("#mobile-menu").animate({opacity:0.85});
+			}
+			lastScrollTop = st;
 		});
 
 		return;

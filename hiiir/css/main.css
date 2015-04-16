@@ -477,18 +477,21 @@
 /* Mobile CSS */
 #mobile-worldEarthDay {
 	/*Dudio*/
-	background-image: url('../手機動態_150409.jpg');
+	/*background-image: url('../手機動態_150409.jpg');*/
 	background-size: 100% auto;
 	text-align:left;
 	font-family: "微軟正黑體", "Microsoft JhengHei", "\5FAE\8EDF\6B63\9ED1\9AD4", MingLiU, sans-serif;
+	font-size: 1.8em;
+	font-weight:bold;
 }
 
 #mobile-worldEarthDay * {
 	-webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    position: relative;
 	/*Dudio*/
-	opacity:.5;
+	/*opacity:.7;*/
 }
 
 #mobile-worldEarthDay #mobile-topSec {
@@ -504,18 +507,25 @@
 
 #mobile-worldEarthDay #mobile-topSec #mobile-slogan {
 	width: 95%;
-	top: 10%;
+	top: 15%;
 	left:2.5%;
 	position: absolute;
 	height: auto;
-}
-
-#mobile-worldEarthDay #mobile-menu {
-	position: absolute;
+	z-index:1;
 }
 
 #mobile-worldEarthDay .sec {
+	position: relative;
 	background-repeat: no-repeat; 
+	background-size: 100% auto;
+	z-index:2;
+}
+
+#mobile-worldEarthDay .describe,
+#mobile-worldEarthDay .title
+{
+	padding-left: 3%;
+	padding-right: 3%;
 }
 
 #mobile-worldEarthDay .sec > .title{
@@ -526,3 +536,420 @@
 	font-style: italic;
 	color: rgb(1,46,163);
 }
+
+
+#mobile-worldEarthDay #mobile-sec1 {
+	background-color: rgb(204,244,132);
+}
+
+#mobile-worldEarthDay #mobile-sec2 {
+	padding-top: 10.7em;
+	background-color: rgb(127,221,133);
+}
+
+#mobile-worldEarthDay #mobile-sec3 {
+	background-color: rgb(72,204,131);
+}
+
+#mobile-worldEarthDay #mobile-sec4 {
+	background-color: rgb(0,161,130);
+}
+
+#mobile-worldEarthDay .product .img {
+	width:100%;
+	height:0;
+}
+
+#mobile-sec1 > .describe {
+	padding-top: 27%;
+}
+#mobile-worldEarthDay img {
+	position: relative;
+}
+
+#mobile-worldEarthDay .product img {
+	z-index: 3;
+}
+#mobile-worldEarthDay #mobile-sec2 {
+	position: relative;
+	z-index: 0;
+}
+#mobile-worldEarthDay #p1-1{
+	padding-top:30%;
+	font-size: 1.5em;
+}
+#mobile-worldEarthDay #p1-1 img {
+	float:left;
+	top: -14em;
+  	width: 48%;
+}
+
+#mobile-worldEarthDay #p1-1 iframe {
+	margin-right: 3%;
+	margin-left: 3%;
+	top: -13em;
+}
+
+#mobile-worldEarthDay #p1-1 .buy {
+	top: -11.5em;
+	 left: 30%;
+}
+
+#mobile-worldEarthDay #p1-2 {
+	padding-top: 11%;
+	padding-left: 2%;
+	padding-bottom: 1.5em;
+	font-size: 1.5em;
+	background-color: rgb(0,161,130);
+}
+
+#mobile-worldEarthDay #p1-2 img {
+	float: right;
+  	top: -5.6em;
+  	width: 36%;
+  	left: -10%;
+}
+
+#mobile-worldEarthDay #p1-2 .buy {
+	 left: 3%;
+}
+
+#mobile-sec2 > .describe {
+	padding-top: 3%;
+	border-top: 5px solid rgb(0,34,160);
+}
+
+#mobile-worldEarthDay #p2-1 {
+	padding-top: 3%;
+	padding-left: 2%;
+	padding-bottom: 2.2em;
+	font-size: 1.5em;
+	line-height: 1.2em;
+}
+
+#mobile-worldEarthDay #p2-1 img {
+	float: left;
+	top: -4.5em;
+	width: 65%;
+	left: 4%;
+}
+
+#mobile-worldEarthDay #p2-1 .buy {
+	 left: 13%;
+	 top: .5em;
+}
+
+#mobile-worldEarthDay #p2-2 {
+	padding-top: 25%;
+	padding-left: 2%;
+	padding-bottom: 1em;
+	font-size: 1.5em;
+	line-height: 1.2em;
+	background-color: rgb(0,161,130);
+}
+#mobile-worldEarthDay #p2-2 .title {
+	top: -3.5em;
+}
+
+#mobile-worldEarthDay #p2-2 img {
+	float: right;
+	top: -6.2em;
+	width: 47%;
+	left: -3%;
+}
+
+#mobile-worldEarthDay #p2-2 .buy {
+	 left: 3%;
+	 top: -2.9em;
+}
+
+#mobile-worldEarthDay #p2-3 {
+	padding-top: 35%;
+	padding-right: 1%;
+	padding-left: 2%;
+	font-size: 1.5em;
+	line-height: 1.2em;
+	background-color: rgb(204,244,132);
+}
+
+#mobile-worldEarthDay #p2-3 .title {
+	top: -5.3em;
+}
+
+#mobile-worldEarthDay #p2-3 img {
+	float: left;
+	top: -11em;
+	width: 50%;
+	left: 2%;
+}
+
+#mobile-worldEarthDay #p2-3 .buy {
+	 left: 28%;
+	 top: -4.7em;
+}
+
+#mobile-worldEarthDay #p2-4 {
+	top:-2em;
+	padding-top: 52%;
+	padding-right: 1%;
+	padding-left: 2%;
+	font-size: 1.5em;
+	line-height: 1.2em;
+	background-color: rgb(0,161,130);
+}
+
+#mobile-worldEarthDay #p2-4 .title {
+	top: -8.2em;
+}
+
+#mobile-worldEarthDay #p2-4 img {
+	float: right;
+	top: -14.4em;
+	width: 53%;
+	left: -4%;
+}
+
+#mobile-worldEarthDay #p2-4 .buy {
+	 left: 3%;
+	 top: -7.8em;
+}
+#mobile-worldEarthDay #mobile-sec3 {
+	padding-top: 10.7em;
+	top:-12em;
+}
+
+#mobile-sec3 > .describe {
+	padding-top: 5%;
+	border-top: 5px solid rgb(0,34,160);
+	text-align: right;
+}
+
+#mobile-worldEarthDay #p3-1 {
+	padding-top: 7%;
+	padding-right: 1%;
+	padding-left: 2%;
+	font-size: 1.5em;
+	line-height: 1.2em;
+	padding-bottom: 3.3em;
+}
+
+#mobile-worldEarthDay #p3-1 img {
+	float: left;
+	top: -5.5em;
+	width: 63%;
+	left: 1%;
+}
+
+#mobile-worldEarthDay #p3-1 .buy {
+	 left: 15%;
+	 top: .2em;
+}
+
+#mobile-worldEarthDay #p3-2 {
+	padding-top: 31%;
+	padding-right: 1%;
+	padding-left: 2%;
+	font-size: 1.5em;
+	line-height: 1.2em;
+	background-color: rgb(127,221,133);
+}
+
+#mobile-worldEarthDay #p3-2 .title {
+	top: -3.2em;
+}
+
+#mobile-worldEarthDay #p3-2 img {
+	float: right;
+	top: -10.5em;
+	width: 49%;
+	left: -2.5%;
+}
+
+#mobile-worldEarthDay #p3-2 .buy {
+	left: 3%;
+	top: -2.8em;
+}
+
+#mobile-worldEarthDay #mobile-sec4 {
+	padding-top: 10.7em;
+	top:-14em;
+}
+
+#mobile-sec4 > .describe {
+	padding-top: 3%;
+	border-top: 5px solid rgb(0,34,160);
+}
+
+#mobile-worldEarthDay #p4-1 {
+	padding-top: 44%;
+	padding-right: 1%;
+	padding-left: 2%;
+	padding-bottom: .5em;
+	font-size: 1.5em;
+	line-height: 1.2em;
+}
+
+
+#mobile-worldEarthDay #p4-1 img {
+	float: left;
+	top: -9em;
+	width: 77%;
+	left: -1%;
+}
+
+#mobile-worldEarthDay #p4-1 .buy {
+	left: 1%;
+	top: -3.8em;
+}
+
+#mobile-worldEarthDay #p4-2 {
+	padding-top: 58%;
+	padding-right: 1%;
+	padding-left: 2%;
+	font-size: 1.5em;
+	line-height: 1.2em;
+	background-color: rgb(72,204,131);
+}
+
+#mobile-worldEarthDay #p4-2 .title {
+	top: -9em;
+}
+
+#mobile-worldEarthDay #p4-2 img {
+	float: right;
+	top: -12em;
+	width: 60%;
+	left: 1%;
+}
+
+#mobile-worldEarthDay #p4-2 .buy {
+	left: 3%;
+	top: -8.5em;
+}
+
+#mobile-worldEarthDay #p4-3 {
+	top: -5.78em;
+	padding-top: 32%;
+	padding-right: 1%;
+	padding-left: 2%;
+	font-size: 1.5em;
+	line-height: 1.2em;
+	background-color: rgb(0,161,130);
+}
+
+#mobile-worldEarthDay #p4-3 .title {
+	  top: -4.5em;
+}
+
+#mobile-worldEarthDay #p4-3 img {
+	float: left;
+	top: -9.1em;
+	width: 53%;
+	left: 1%;
+}
+
+#mobile-worldEarthDay #p4-3 .buy {
+	left: 25%;
+	top: -4em;
+}
+	
+#mobile-worldEarthDay #p4-4 {
+	top: -6em;
+	padding-top: 64%;
+	padding-right: 1%;
+	padding-left: 2%;
+	font-size: 1.5em;
+	line-height: 1.2em;
+	background-color: rgb(72,204,131);
+}
+
+#mobile-worldEarthDay #p4-4 .title {
+	top: -6em;
+}
+
+#mobile-worldEarthDay #p4-4 img {
+	float: right;
+	top: -14.8em;
+	width: 54%;
+	left: -2%;
+}
+
+#mobile-worldEarthDay #p4-4 .buy {
+	left: 3%;
+	top: -5.4em;
+}
+
+
+#mobile-worldEarthDay .buy {
+	text-align: center;
+	color: rgb(1,46,163);
+	font-weight: bold;
+}
+
+#mobile-worldEarthDay .buy > div {
+	font-size: 33px;
+	width: 84px;
+	height:32px;
+	float: left;
+	z-index: 3;
+	text-align: center;
+	line-height: 1em;
+}
+
+#mobile-worldEarthDay .leftArrow {
+	height:16px !important;
+	overflow: visible !important;
+	width:0 !important;
+	position: relative;
+	top:2px;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 16px 27.72px 16px .0;
+	border-color: transparent #012fa3 transparent transparent ;
+}
+
+#mobile-worldEarthDay .rightArrow {
+	margin-right: 26px;
+	height:16px !important;
+	overflow: visible !important;
+	width:0 !important;
+	position: relative;
+	top:2px;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 16px 0 16px 27.72px;
+	border-color: transparent transparent transparent #012fa3;
+}
+
+#mobile-menu {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	z-index: 100;
+}
+
+#mobile-menu > div {
+	padding-top: .7em;
+	text-align: center;
+	letter-spacing: .1em;
+	opacity: .85;
+	width: 25%;
+	float: left;
+	color: white;
+	cursor: pointer;
+	height: 2.8em;
+}
+#mobile-menu > div.on,
+#mobile-menu > div:hover {
+	color: rgb(123,222,129);
+}
+#mobile-menu> div:nth-child(odd){
+	background-color: rgb(1,46,163);
+}
+
+#mobile-menu > div:nth-child(even) {
+	background-color: rgb(20, 90, 144);
+}
+
