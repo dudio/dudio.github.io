@@ -200,7 +200,7 @@ $(function(){
 
 			if (st > lastScrollTop){
 //				$("#mobile-menu").animate({opacity:0});
-				$("#mobile-menu").remove();
+				$("#mobile-menu").hide();
 			} else {
 //				$("#mobile-menu").animate({opacity:0.85});
 				$("#mobile-menu").show();
