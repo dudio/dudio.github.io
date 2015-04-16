@@ -123,10 +123,36 @@ function setDimensions(){
 
 
 $(function(){
+	//手機版
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 1) {
+		$("#header, #worldEarthDay").remove();
+
+		var windowWidth = $("#mobile-worldEarthDay").width();
+		var windowHeight = $(window).height();
+
+		$("#mobile-topSec").height(windowHeight);
+		$("#mobile-sec1").height(windowWidth*0.548).css("border","1px solid red");
+		//$("#mobile-sec2").height(windowWidth*0.567);
+		//$("#mobile-sec3").height(windowWidth*0.498);
+		//$("#mobile-sec4").height(windowWidth*0.567);
+
+		var earthWidth = windowHeight*1017/931;
+		$("#mobile-earth")
+			.width(earthWidth)
+			.css("top",windowHeight*.3324)
+			.css("left",-windowHeight/200);
+		if(earthWidth > windowWidth) $("#mobile-earth").css("left", (windowWidth-earthWidth)/2-windowHeight/200);
+
+		$(".sec").each(function(){
+			var $t = $(this);
+			var bg = $t.find(".mback > img").attr("src");
+			$(".mback").remove();
+			$t.css("background-image", "url('"+bg+"')");
+		});
+
+		return;
+	}
 	$("#mobile-worldEarthDay").remove();
-if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
- alert("mobile detect");
-}
 
 	//添加buy
 	$(".product").append("<div class='buy'><div class='leftArrow'></div><div><div class='up'><div>&nbsp;BUY&nbsp;</div></div><div class='down'><div>&nbsp;BUY&nbsp;</div></div></div><div class='rightArrow'></div></div>");

@@ -2,17 +2,15 @@
 	margin:0px;
 	text-align: center;
 	overflow-x: hidden;
-	min-width: 1000px !important;
 }
 
 #header {/*Dudio*/
 	height: 40px;
-	min-width: 1000px !important;
 }
 
 #worldEarthDay {
 	/*Dudio*/
-	/*background-image: url('../hiiir活動頁前端spec_150407.jpg');*/
+/*	background-image: url('../hiiir活動頁前端spec_150407.jpg');*/
 	background-size: 100% auto;
 	text-align:left;
 	font-family: "微軟正黑體", "Microsoft JhengHei", "\5FAE\8EDF\6B63\9ED1\9AD4", MingLiU, sans-serif;
@@ -473,4 +471,58 @@
 	border-bottom-color: rgb(0,191,132);
 	position: relative;
 	z-index: 2;
+}
+
+
+/* Mobile CSS */
+#mobile-worldEarthDay {
+	/*Dudio*/
+	background-image: url('../手機動態_150409.jpg');
+	background-size: 100% auto;
+	text-align:left;
+	font-family: "微軟正黑體", "Microsoft JhengHei", "\5FAE\8EDF\6B63\9ED1\9AD4", MingLiU, sans-serif;
+}
+
+#mobile-worldEarthDay * {
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+	/*Dudio*/
+	opacity:.5;
+}
+
+#mobile-worldEarthDay #mobile-topSec {
+	background-size: auto 100%;
+	background-position: center; 
+	overflow: hidden;
+	text-align: center;
+}
+
+#mobile-worldEarthDay #mobile-topSec #mobile-earth {
+	position: relative;
+}
+
+#mobile-worldEarthDay #mobile-topSec #mobile-slogan {
+	width: 95%;
+	top: 10%;
+	left:2.5%;
+	position: absolute;
+	height: auto;
+}
+
+#mobile-worldEarthDay #mobile-menu {
+	position: absolute;
+}
+
+#mobile-worldEarthDay .sec {
+	background-repeat: no-repeat; 
+}
+
+#mobile-worldEarthDay .sec > .title{
+	display: none;
+}
+
+#mobile-worldEarthDay .sec > .describe{
+	font-style: italic;
+	color: rgb(1,46,163);
 }
