@@ -199,9 +199,11 @@ $(function(){
 			if(tar) $("#mobile-menu > div").eq(tar-1).addClass("on");
 
 			if (st > lastScrollTop){
-				$("#mobile-menu").animate({opacity:0});
+//				$("#mobile-menu").animate({opacity:0});
+				$("#mobile-menu").remove();
 			} else {
-				$("#mobile-menu").animate({opacity:0.85});
+//				$("#mobile-menu").animate({opacity:0.85});
+				$("#mobile-menu").show();
 			}
 			lastScrollTop = st;
 		});
