@@ -212,6 +212,8 @@ $(function(){
 	}
 	$("#mobile-worldEarthDay").remove();
 
+	$("#whiteTri, #line").remove();
+
 	//添加buy
 	$(".product").append("<div class='buy'><div class='leftArrow'></div><div><div class='up'><div>&nbsp;BUY&nbsp;</div></div><div class='down'><div>&nbsp;BUY&nbsp;</div></div></div><div class='rightArrow'></div></div>");
 
