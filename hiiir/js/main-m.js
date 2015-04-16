@@ -23,49 +23,37 @@ function setFont(target, color, fontSize, letterSpacing, bold, fontFamily, lineH
 
 function setDimensions(){
 	//設定各區塊高度
-	var windowWidth = $("#worldEarthDay").width();
+	var windowWidth = $("#MworldEarthDay").width();
 	var windowHeight = $(window).height();
 
-	$("#worldEarthDay").css("font-size",windowWidth/100+"px");
-	$("#topSec").height(windowWidth*0.438);
-	$("#sec1").height(windowWidth*0.548);
-	$("#sec2").height(windowWidth*0.567);
-	$("#sec3").height(windowWidth*0.498);
-	$("#sec4").height(windowWidth*0.567);
+	//$("#MworldEarthDay").css("font-size",windowWidth/100+"px");
+	$("#topSec").height(windowHeight);
+	//$("#sec1").height(windowWidth*0.548);
+	//$("#sec2").height(windowWidth*0.567);
+	//$("#sec3").height(windowWidth*0.498);
+	//$("#sec4").height(windowWidth*0.567);
 
-	$("#earth").css("top",windowWidth*15.2/100+"px");
-	$("#slogan").css("top",-windowWidth*43/100+"px");
+	var earthWidth = windowHeight*1017/931;
+	$("#earth")
+		.width(earthWidth)
+		.css("top",windowHeight*.3324)
+		.css("left",-windowHeight/200);
+	if(earthWidth > windowWidth) $("#earth").css("left", (windowWidth-earthWidth)/2-windowHeight/200);
 
-	$("#menu").css("top",windowHeight-windowWidth*0.13);
+	//$("#menu").css("top",windowHeight-windowWidth*0.13);
 }
 
 $(function(){
-
 	//添加元素
 	$("#topSec").append("<img id='earth' src='images/earth.gif'>");
-	$("#topSec").append("<br/><img id='slogan' src='images/slogan.png'>");
-	//各區塊前方的icon
-	$("#sec1 > .title").prepend("<img src='images/p1icon.png'>");
-	$("#sec2 > .title").append("<img src='images/p2icon.png'>");
-	$("#sec3 > .title").prepend("<img src='images/p3icon.png'>");
-	$("#sec4 > .title").prepend("<img src='images/p4icon.png'>");
+	$("#topSec").append("<img id='slogan' src='images/mslogan.png'>");
 	//添加buy
-	$(".product").append("<div class='buy'><div><div class='up'><div class='leftArrow'></div><div>&nbsp;BUY&nbsp;</div><div class='rightArrow'></div></div><div class='down'><div class='leftArrow'></div><div>&nbsp;BUY&nbsp;</div><div class='rightArrow'></div></div></div></div>");
-
-	//添加變色小三角
-	$("body").append("<div class='upTri' statu=0></div>");
-	$(".upTri,.downTri").each(function(){
-		var $t = $(this);
-		$t.animate({color:"rgb(0,35,129)"});
-//		209 246 132 淡
-//0 35 129 深
-		//alert($t.attr("statu"));
-	});
+	//$(".product").append("<div class='buy'><div><div class='up'><div class='leftArrow'></div><div>&nbsp;BUY&nbsp;</div><div class='rightArrow'></div></div><div class='down'><div class='leftArrow'></div><div>&nbsp;BUY&nbsp;</div><div class='rightArrow'></div></div></div></div>");
 
 	//視窗變動
 	setDimensions();
 	window.onresize=setDimensions;
-
+return;
 	//共用CSS
 	$(".sec").each(function(){
 		$(this).find(".describe").first().css("font-style","italic");
