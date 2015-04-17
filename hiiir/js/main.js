@@ -124,8 +124,9 @@ function setDimensions(){
 
 $(function(){
 	//手機版
-	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 1) {
-		$("#header, #worldEarthDay").remove();
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+		$("#header,#worldEarthDay").remove();
+		$("").remove();
 
 		var windowWidth = $("#mobile-worldEarthDay").width();
 		var windowHeight = $(window).height();
@@ -197,22 +198,21 @@ $(function(){
 			else tar = 0;
 			$("#mobile-menu > div").removeClass("on");
 			if(tar) $("#mobile-menu > div").eq(tar-1).addClass("on");
-
 			if (st > lastScrollTop){
-//				$("#mobile-menu").animate({opacity:0});
 				$("#mobile-menu").hide();
 			} else {
-//				$("#mobile-menu").animate({opacity:0.85});
-				$("#mobile-menu").show();
+				$("#mobile-menu").show().css("top",st+$(this).height()-$("#mobile-menu").height());
 			}
 			lastScrollTop = st;
 		});
-
+		console.log($("html").height());
+		console.log($("#p4-4").offset().top+$("#p4-4").height());
+		$("html,body").height($("#p4-4").offset().top+$("#p4-4").height());
+		console.log($("html").height());
 		return;
 	}
 	$("#mobile-worldEarthDay").remove();
-
-	$("#whiteTri, #line").remove();
+//	$("#upWhiteTri").
 
 	//添加buy
 	$(".product").append("<div class='buy'><div class='leftArrow'></div><div><div class='up'><div>&nbsp;BUY&nbsp;</div></div><div class='down'><div>&nbsp;BUY&nbsp;</div></div></div><div class='rightArrow'></div></div>");

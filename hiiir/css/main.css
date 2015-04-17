@@ -8,9 +8,16 @@
 	height: 40px;
 }
 
+.upWhiteTri,
+.downWhiteTri,
+.lineA,
+.lineB {
+	position: absolute;
+}
+
 #worldEarthDay {
 	/*Dudio*/
-/*	background-image: url('../hiiir活動頁前端spec_150407.jpg');*/
+	background-image: url('../hiiir活動頁前端spec_150407.jpg');
 	background-size: 100% auto;
 	text-align:left;
 	font-family: "微軟正黑體", "Microsoft JhengHei", "\5FAE\8EDF\6B63\9ED1\9AD4", MingLiU, sans-serif;
@@ -28,7 +35,7 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 	/*Dudio*/
-/*	opacity: .7;*/
+	opacity: .7;
 }
 #worldEarthDay .describe {
 	text-align: justify;
@@ -483,6 +490,7 @@
 	font-family: "微軟正黑體", "Microsoft JhengHei", "\5FAE\8EDF\6B63\9ED1\9AD4", MingLiU, sans-serif;
 	font-size: 1.8em;
 	font-weight:bold;
+	width: 100%;
 }
 
 #mobile-worldEarthDay * {
@@ -924,14 +932,13 @@
 }
 
 #mobile-menu {
-	position: fixed;
-	bottom: 0;
+	position: absolute;
 	width: 100%;
 	z-index: 100;
 }
 
 #mobile-menu > div {
-	padding-top: .7em;
+	padding: .7em 0 0 0 !important;
 	text-align: center;
 	letter-spacing: .1em;
 	opacity: .85;
