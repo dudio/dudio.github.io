@@ -59,7 +59,9 @@
 	text-align: center;
 }
 
-
+#worldEarthDay .buy .up {
+	display: hidden;
+}
 
 #worldEarthDay .buy > div > div {
 	width:100%;

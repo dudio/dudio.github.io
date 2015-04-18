@@ -152,15 +152,6 @@ function setDimensions(){
 
 
 $(function(){
-	$(".upWhiteTri-h").attr("id","tri-h1");
-	$(".downWhiteTri-h").attr("id","tri-h2");
-	$("#tri-h1").clone().attr("id","tri-h3").insertAfter($("#tri-h1"));
-	$("#tri-h1").clone().attr("id","tri-h4").insertAfter($("#tri-h1"));
-	$("#tri-h1").clone().attr("id","tri-h5").insertAfter($("#tri-h1"));
-	$("#tri-h2").clone().attr("id","tri-h6").insertAfter($("#tri-h1"));
-	$("#tri-h1").clone().attr("id","tri-h7").insertAfter($("#tri-h1"));
-	$("#tri-h2").clone().attr("id","tri-h8").insertAfter($("#tri-h1"));
-
 	//手機版
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 		$("#header,#worldEarthDay").remove();
@@ -248,6 +239,18 @@ $(function(){
 	}
 	$("#mobile-worldEarthDay").remove();
 
+	//添加空白三角框
+	$(".upWhiteTri-h").attr("id","tri-h1");
+	$(".downWhiteTri-h").attr("id","tri-h2");
+	$("#tri-h1").clone().attr("id","tri-h3").insertAfter($("#tri-h1"));
+	$("#tri-h1").clone().attr("id","tri-h4").insertAfter($("#tri-h1"));
+	$("#tri-h1").clone().attr("id","tri-h5").insertAfter($("#tri-h1"));
+	$("#tri-h2").clone().attr("id","tri-h6").insertAfter($("#tri-h1"));
+	$("#tri-h1").clone().attr("id","tri-h7").insertAfter($("#tri-h1"));
+	$("#tri-h2").clone().attr("id","tri-h8").insertAfter($("#tri-h1"));
+
+
+
 	//添加buy
 	$(".product").append("<div class='buy'><div class='leftArrow'></div><div><div class='up'><div>&nbsp;BUY&nbsp;</div></div><div class='down'><div>&nbsp;BUY&nbsp;</div></div></div><div class='rightArrow'></div></div>");
 
@@ -289,7 +292,7 @@ $(function(){
 		var key = Math.floor(Math.random()*6);
 		var time = Math.random()*1800+1000;
 		colorArray = ["#d1f684","rgb(0,191,132)","rgb(0,157,130)","rgb(1,119,120)","rgb(0,97,129)","#002373"];
-		if($t.hasClass("downTri"))
+		if($t.hasClass("downTri") || $t.hasClass("downWhiteTri"))
 			$t.animate({borderTopColor:colorArray[key]},time,function(){changeColor(t);});
 		else
 			$t.animate({borderBottomColor:colorArray[key]},time,function(){changeColor(t);});
@@ -429,6 +432,7 @@ $(function(){
 	setPosition(".product4_4.describe", "10.3%", "79.6%", "65.2%");
 	setFont(".product4_4.describe", "black", ".8em", "", "", "", "1.9em");
 
+
 	//主選單
 	$("#menu > div").each(function(i){
 		var $t = $(this);
@@ -466,6 +470,7 @@ $(function(){
 	$(".buy > div").each(function(){
 		var $t = $(this);
 		$t.hover(function(){
+			$t.find(".up").show();
 			if($t.parent().attr("hover")!="1") {
 				$t.parent().attr("hover","1");
 				$t.children().animate({top:"+=16px"});
