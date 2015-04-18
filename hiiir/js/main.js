@@ -1,11 +1,22 @@
 ﻿function setPosition(target, width, top, left, zIndex) {
 	var $t = typeof(target)=='object' ? target : $(target);
-	$t.width(width).css({
-		position:	"relative",
-		top:		top,
-		left:		left,
-		"z-index": 	zIndex || 3
-	});
+	$t.width(width);
+	if($t.css("position")!="absolute") {
+		$t.css({
+			position: "relative", 
+			top:		top,
+			left:		left,
+			"z-index": 	zIndex || 3
+		});
+	} else {
+		$t.css({
+			top:		top,
+			left:		left,
+			"z-index": 	zIndex || 0
+		});
+
+		$t.css("top", $t.offset().top+$("#header").height());
+	}
 }
 
 function setFont(target, color, fontSize, letterSpacing, bold, fontFamily, lineHeight) {
@@ -37,7 +48,7 @@ function setDimensions(){
 	var windowWidth = $window.width();
 	var windowHeight = $window.height();
 
-	$world.css("font-size",worldWidth/100+"px");
+	$world.css("font-size",	worldWidth/100+"px");
 	$("#topSec").height(worldWidth*0.438);
 	$("#sec1").height(worldWidth*0.548);
 	$("#sec2").height(worldWidth*0.567);
@@ -94,7 +105,7 @@ function setDimensions(){
 	setTriPosition("#upTri-23",91.3,67.4+l*4, docOffset);
 	setTriPosition("#upTri-24",91.3+t,67.4+l*1, docOffset);
 	setTriPosition("#upTri-25",91.3+t,67.4+l*3, docOffset);
-	setTriPosition("#upTri-26",91.3+t*2,67.4+l*2, docOffset);
+	setTriPosition("#upTri-26",91.3+t*2,67.4+l*2, docOffset);	
 	var l = 2.85;
 	var t = 10;
 	setTriPosition("#downTri-31",0,73.08, docOffset);
@@ -119,10 +130,37 @@ function setDimensions(){
 	setTriPosition("#tri-55", 0, 51.1, docOffset);
 	setTriPosition("#tri-56", 75.8, 31.7, docOffset);
 	setTriPosition("#tri-57", 83.5, 37.5, docOffset);
+
+	setPosition("#tri-h1",0.115*worldWidth,61.5*worldWidth/100,0.499*worldWidth+docOffset);
+	setPosition("#tri-h2",0.115*worldWidth,75.4*worldWidth/100,0.189*worldWidth+docOffset);
+	setPosition("#tri-h3",0.115*worldWidth,107.7*worldWidth/100,0.624*worldWidth+docOffset);
+	setPosition("#tri-h4",0.115*worldWidth,137.6*worldWidth/100,0.181*worldWidth+docOffset);
+	setPosition("#tri-h5",0.115*worldWidth,177.4*worldWidth/100,0.181*worldWidth+docOffset);
+	setPosition("#tri-h6",0.115*worldWidth,214.4*worldWidth/100,0.181*worldWidth+docOffset);
+	setPosition("#tri-h7",0.115*worldWidth,242.1*worldWidth/100,0.685*worldWidth+docOffset);
+	setPosition("#tri-h8",0.115*worldWidth,243.7*worldWidth/100,0.237*worldWidth+docOffset);
+
+	var $img = $("#worldEarthDay .img.product1_1 > img");
+	$img.css({
+		margin: "6% 0 0 55.5%",
+		position: "relative",
+		top:0,
+		left:0
+	});
+
 }
 
 
 $(function(){
+	$(".upWhiteTri-h").attr("id","tri-h1");
+	$(".downWhiteTri-h").attr("id","tri-h2");
+	$("#tri-h1").clone().attr("id","tri-h3").insertAfter($("#tri-h1"));
+	$("#tri-h1").clone().attr("id","tri-h4").insertAfter($("#tri-h1"));
+	$("#tri-h1").clone().attr("id","tri-h5").insertAfter($("#tri-h1"));
+	$("#tri-h2").clone().attr("id","tri-h6").insertAfter($("#tri-h1"));
+	$("#tri-h1").clone().attr("id","tri-h7").insertAfter($("#tri-h1"));
+	$("#tri-h2").clone().attr("id","tri-h8").insertAfter($("#tri-h1"));
+
 	//手機版
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 		$("#header,#worldEarthDay").remove();
@@ -205,14 +243,10 @@ $(function(){
 			}
 			lastScrollTop = st;
 		});
-		console.log($("html").height());
-		console.log($("#p4-4").offset().top+$("#p4-4").height());
 		$("html,body").height($("#p4-4").offset().top+$("#p4-4").height());
-		console.log($("html").height());
 		return;
 	}
 	$("#mobile-worldEarthDay").remove();
-//	$("#upWhiteTri").
 
 	//添加buy
 	$(".product").append("<div class='buy'><div class='leftArrow'></div><div><div class='up'><div>&nbsp;BUY&nbsp;</div></div><div class='down'><div>&nbsp;BUY&nbsp;</div></div></div><div class='rightArrow'></div></div>");
