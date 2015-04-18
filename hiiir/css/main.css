@@ -3,17 +3,76 @@
 	text-align: center;
 	overflow-x: hidden;
 }
-
-.upWhiteTri-h,
-.downWhiteTri-h,
-.lineA,
-.lineB {
+.maskBar {
+	z-index: 1000;
+}
+#maskBar-1 {
+	width:400px;
+	height:12px;
 	position: absolute;
+	background-color: rgb(29,217,133);
 }
 
+#maskBar-2 {
+	width:16px;
+	height:100px;
+	position: absolute;
+	background-color: rgb(205,243,134);
+    -webkit-transform: skew(-30deg);  
+    -moz-transform: skew(-30deg);  
+    -o-transform: skew(-30deg);  
+    -ms-transform: skew(-30deg);  
+    transform: skew(-30deg);  
+}
+
+#maskBar-3 {
+	width:200px;
+	height:12px;
+	position: absolute;
+	background-color: rgb(205,243,134);
+}
+
+#maskBar-4 {
+	width:15px;
+	height:170px;
+	position: absolute;
+	background-color: rgb(140,221,126);
+    -webkit-transform: skew(30deg);  
+    -moz-transform: skew(30deg);  
+    -o-transform: skew(30deg);  
+    -ms-transform: skew(30deg);  
+    transform: skew(30deg);  
+}
+
+#maskBar-5 {
+	width:15px;
+	height:250px;
+	position: absolute;
+	background-color: rgb(72,204,131);
+    -webkit-transform: skew(30deg);  
+    -moz-transform: skew(30deg);  
+    -o-transform: skew(30deg);  
+    -ms-transform: skew(30deg);  
+    transform: skew(30deg);  
+}
+
+#maskBar-6 {
+	width:250px;
+	height:12px;
+	position: absolute;
+	background-color: rgb(72,204,131);
+}
+.moreTri {
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 13.856px 8px 0 8px;
+	border-color: white transparent transparent transparent;
+	margin: 25% auto 0 auto;
+}
 #worldEarthDay {
 	/*Dudio*/
-/*	background-image: url('../hiiir活動頁前端spec_150407.jpg');*/
+	/*background-image: url('../hiiir活動頁前端spec_150407.jpg');*/
 	background-size: 100% auto;
 	text-align:left;
 	font-family: "微軟正黑體", "Microsoft JhengHei", "\5FAE\8EDF\6B63\9ED1\9AD4", MingLiU, sans-serif;
@@ -31,8 +90,45 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 	/*Dudio*/
-/*	opacity: .7;*/
+	/*opacity: .7;*/
 }
+
+.line {
+	width: 600px;  
+    position: absolute;
+    overflow: hidden;
+    -webkit-transform: skew(30deg);  
+    -moz-transform: skew(30deg);  
+    -o-transform: skew(30deg);  
+    -ms-transform: skew(30deg);  
+    transform: skew(30deg);  
+}
+.line > img{
+    -webkit-transform: skew(-30deg);  
+    -moz-transform: skew(-30deg);  
+    -o-transform: skew(-30deg);  
+    -ms-transform: skew(-30deg);  
+    transform: skew(-30deg);
+}
+#line-2 > img,
+#line-4 > img
+{
+	float: right;
+}
+
+#line-3 {
+	-webkit-transform: skew(-30deg);  
+    -moz-transform: skew(-30deg);  
+    -o-transform: skew(-30deg);  
+    -ms-transform: skew(-30deg);  
+    transform: skew(-30deg);  
+}
+.upWhiteTri-h,
+.downWhiteTri-h
+{
+	position: absolute;
+}
+
 #worldEarthDay .describe {
 	text-align: justify;
 	text-justify: inter-ideograph;
@@ -348,6 +444,8 @@
 }
 
 #worldEarthDay .img.product1_1 > img {
+	position: relative !important;
+	z-index: 2 !important;
 	margin: 6% 0 0 55.5%;
 	width: 23.1%;
 }
@@ -390,11 +488,16 @@
 }
 
 #worldEarthDay .img.product3_2 > img {
+	position: relative !important;
+	z-index: 2 !important;
 	margin: 24.2% 0 0 40.3%;
 	width: 28.2%;
 }
 
 #worldEarthDay .img.product4_1 > img {
+	position: relative !important;
+	z-index: 2 !important;
+
 	margin: .8% 0 0 25.8%;
 	width: 25%;
 }
@@ -407,6 +510,8 @@
 	overflow: hidden;
 }
 #worldEarthDay .img.product4_3 > img {
+	position: relative !important;
+	z-index: 0 !important;
 	margin: 29% 0 0 23.8%;
 	width: 22.2%;
 }

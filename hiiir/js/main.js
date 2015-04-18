@@ -140,18 +140,71 @@ function setDimensions(){
 	setPosition("#tri-h7",0.115*worldWidth,242.1*worldWidth/100,0.685*worldWidth+docOffset);
 	setPosition("#tri-h8",0.115*worldWidth,243.7*worldWidth/100,0.237*worldWidth+docOffset);
 
-	var $img = $("#worldEarthDay .img.product1_1 > img");
-	$img.css({
-		margin: "6% 0 0 55.5%",
-		position: "relative",
-		top:0,
-		left:0
+	$("#line-1").height(0.1*worldWidth).css({
+		top: 77.9*worldWidth/100,
+		left:-0.148*worldWidth+docOffset
 	});
 
+	$("#line-2").height(0.1*worldWidth).css({
+		top: 110.1*worldWidth/100,
+		left:0.71*worldWidth+docOffset
+	});
+
+	$("#line-3").height(0.1*worldWidth).css({
+		top: 140*worldWidth/100,
+		left:-0.148*worldWidth+docOffset
+	});
+
+	$("#line-4").height(0.1*worldWidth).css({
+		top: 193.5*worldWidth/100,
+		left:0.655*worldWidth+docOffset
+	});
+
+	$("#line-5").height(0.1*worldWidth).css({
+		top: 216.8*worldWidth/100,
+		left:-0.148*worldWidth+docOffset
+	});
+
+	$("#maskBar-1").css({
+		top: 96.72*worldWidth/100,
+		left:0.32*worldWidth+docOffset
+	});
+
+	$("#maskBar-2").css({
+		top: 118.8*worldWidth/100,
+		left:0.286*worldWidth+docOffset
+	});
+
+	$("#maskBar-3").css({
+		top: 129.6*worldWidth/100,
+		left:0.316*worldWidth+docOffset
+	});
+
+	$("#maskBar-4").css({
+		top: 192*worldWidth/100,
+		left:0.637*worldWidth+docOffset
+	});
+
+	$("#maskBar-5").css({
+		top: 218*worldWidth/100,
+		left:0.6835*worldWidth+docOffset
+	});
+
+	$("#maskBar-6").css({
+		top: 236.8*worldWidth/100,
+		left:0.60*worldWidth+docOffset
+	});
 }
 
 
 $(function(){
+	$("<div></div>").addClass("maskBar").attr("id","maskBar-1").appendTo("body");
+	$("<div></div>").addClass("maskBar").attr("id","maskBar-2").appendTo("body");
+	$("<div></div>").addClass("maskBar").attr("id","maskBar-3").appendTo("body");
+	$("<div></div>").addClass("maskBar").attr("id","maskBar-4").appendTo("body");
+	$("<div></div>").addClass("maskBar").attr("id","maskBar-5").appendTo("body");
+	$("<div></div>").addClass("maskBar").attr("id","maskBar-6").appendTo("body");
+
 	//手機版
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 		$("#header,#worldEarthDay").remove();
@@ -239,8 +292,15 @@ $(function(){
 	}
 	$("#mobile-worldEarthDay").remove();
 
+	//會亂跑的斜線
+	$(".lineA").wrap("<div id='line-1'></div>");
+	$("#line-1").addClass("line").clone().attr("id","line-2").insertAfter($("#line-1"));
+	$("#line-1").clone().attr("id","line-3").insertAfter($("#line-2"));
+	$("#line-1").clone().attr("id","line-4").insertAfter($("#line-3"));
+	$("#line-1").clone().attr("id","line-5").insertAfter($("#line-4"));
+
 	//添加空白三角框
-	$(".upWhiteTri-h").attr("id","tri-h1");
+	$(".upWhiteTri-h").attr("id","tri-h1").prependTo("worldEarthDay");
 	$(".downWhiteTri-h").attr("id","tri-h2");
 	$("#tri-h1").clone().attr("id","tri-h3").insertAfter($("#tri-h1"));
 	$("#tri-h1").clone().attr("id","tri-h4").insertAfter($("#tri-h1"));
@@ -265,8 +325,10 @@ $(function(){
 		$("#sec2").append("<div class='upTri' id='upTri-"+i+"''></div>");
 	for(var i=31;i<=36;i++)
 		$("#sec3").append("<div class='downTri' id='downTri-"+i+"''></div>");
-	for(var i=41;i<=46;i++)
+	for(var i=41;i<=46;i++) {
 		$("#sec4").append("<div class='upTri' id='upTri-"+i+"''></div>");
+		$("#upTri-"+i).css("z-index","2");
+	}
 
 	//添加實心白三角
 	$("#sec1").append("<div class='upWhiteTri' id='tri-51'></div>");
@@ -437,6 +499,7 @@ $(function(){
 	$("#menu > div").each(function(i){
 		var $t = $(this);
 		var $more = $t.find(".more").prependTo($t);
+		$("<div>").addClass("moreTri").appendTo($more);
 		var $other = $t.find(".icon,.title");
 		$t.hover(function(){
 			if($t.attr("hover")!="1") {
@@ -558,6 +621,17 @@ $(function(){
 		$(".sec").animate({backgroundColor:"rgb("+r+","+g+",132)"});
 		$(".mask").animate({borderBottomColor:"rgb("+r+","+g+",132)"});
 		//$(".mask").css("border-bottom-color","rgb("+r+","+g+",132)");
+
+		var lp = ($("#line-1").offset().top - $window.scrollTop()) / wh;
+		$("#line-1 > img").animate({marginLeft:100 + 500 * lp});
+		var lp = ($("#line-2").offset().top - $window.scrollTop()) / wh;
+		$("#line-2 > img").animate({marginRight:100 + 500 * lp});
+		var lp = ($("#line-3").offset().top - $window.scrollTop()) / wh;
+		$("#line-3 > img").animate({marginLeft:100 + 500 * lp});
+		var lp = ($("#line-4").offset().top - $window.scrollTop()) / wh;
+		$("#line-4 > img").animate({marginRight:100 + 500 * lp});
+		var lp = ($("#line-5").offset().top - $window.scrollTop()) / wh;
+		$("#line-5 > img").animate({marginLeft:100 + 500 * lp});
 	});
 
 	$("#menu, #smallMenu").click(function(){
