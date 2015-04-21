@@ -219,7 +219,7 @@ $(function(){
 		var windowHeight = $(window).height();
 		var dx = windowWidth/764;
 
-		console.log(windowWidth);
+//		console.log(windowWidth);
 
 		//設定topSec底圖
 		$("#mobile-topSec").height(windowHeight);
@@ -537,27 +537,6 @@ $(function(){
 			document.location.href="#sec"+j;
 		});
 	});
-
-/*	$(".buy > div").each(function(){
-		var $t = $(this);
-		$t.hover(function(){
-			console.log("A");
-			$t.find(".up").css("visibility","visible");
-			$t.children().stop(true,true).animate({top:"+=16px"},function(){
-				$t.find(".down").css("visibility","hidden");
-				$t.children().css("top","-3px");
-				console.log("a");
-			});
-		}, function(){
-			console.log("B");
-			$t.find(".down").css("visibility","visible");
-			$t.children().stop(true,true).animate({top:"-=16px"},function(){
-				$t.find(".up").css("visibility","hidden");
-				$t.children().css("top","-19px");
-				console.log("b");
-			});
-		});
-	});*/
 
 	$(".buy").each(function(){
 		var $t = $(this);

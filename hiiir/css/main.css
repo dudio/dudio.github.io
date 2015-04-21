@@ -649,7 +649,8 @@
 
 #mobile-worldEarthDay #mobile-topSec #mobile-slogan {
 	width: 95%;
-	top: 15%;
+	/*top: 15%;*/
+	bottom: 0%;
 	left:2.5%;
 	position: absolute;
 	height: auto;
@@ -1029,9 +1030,9 @@
 }
 
 #mobile-worldEarthDay .buy > div {
-	font-size: 33px;
-	width: 84px;
-	height:32px;
+	font-size: .5em;
+	width: 10%;
+	height:.5em;
 	float: left;
 	z-index: 3;
 	text-align: center;
@@ -1039,29 +1040,28 @@
 }
 
 #mobile-worldEarthDay .leftArrow {
-	height:16px !important;
+	height:.5em !important;
 	overflow: visible !important;
 	width:0 !important;
 	position: relative;
-	top:2px;
+	top:.125em;
 	width: 0;
 	height: 0;
 	border-style: solid;
-	border-width: 16px 27.72px 16px .0;
+	border-width: .5em .866em .5em .0;
 	border-color: transparent #012fa3 transparent transparent ;
 }
 
 #mobile-worldEarthDay .rightArrow {
-	margin-right: 26px;
-	height:16px !important;
+	height:.5em !important;
 	overflow: visible !important;
 	width:0 !important;
 	position: relative;
-	top:2px;
+	top:.125em;
 	width: 0;
 	height: 0;
 	border-style: solid;
-	border-width: 16px 0 16px 27.72px;
+	border-width: .5em 0 .5em .866em;
 	border-color: transparent transparent transparent #012fa3;
 }
 
