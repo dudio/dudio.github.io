@@ -274,6 +274,7 @@ setTimeout(function(){
 			});
 		});
 
+$("#p4-1 .title").attr("id","bottom");
 		var lastScrollTop = 0;
 		$(window).scroll(function(event){
 			var s1 = $("#mobile-sec1").offset().top-20;
@@ -295,6 +296,9 @@ setTimeout(function(){
 				$("#mobile-menu").show().css("top",st+$(this).height()-$("#mobile-menu").height());
 			}
 			lastScrollTop = st;
+			if(st>9300) {
+				document.location.href="#bottom";
+			}
 		});
 		$("html,body").height($("#p4-4").offset().top+$("#p4-4").height());
 },100);
