@@ -3,6 +3,13 @@
 	text-align: center;
 	overflow-x: hidden;
 }
+.navbar-logo {height: 40px;}
+.navbar-logo img {height: 40px;}
+.pull-left {float: left;}
+.pull-right {float: right;}
+.text-right {text-align:right;}
+.static-menu > a > img {padding-top:10px;padding-left:15px;}
+
 .maskBar {
 	z-index: 1000;
 }
@@ -14,7 +21,7 @@
 }
 
 #maskBar-2 {
-	width:16px;
+	width:15px;
 	height:100px;
 	position: absolute;
 	background-color: rgb(205,243,134);
@@ -275,7 +282,7 @@
 	width:25%;
 	float: left;
 	height: 13em;
-	opacity: .7;
+	opacity: .9;
 }
 
 #worldEarthDay #menu > div:nth-child(odd){
@@ -327,7 +334,7 @@
 	width:25%;
 	float: left;
 	height: 40px;
-	opacity: .7;
+	opacity: .9;
 }
 
 #smallMenu > div:nth-child(odd){
@@ -463,6 +470,8 @@
 }
 
 #worldEarthDay .img.product2_2 > img {
+	position: relative !important;
+	z-index: 2 !important;
 	margin: 2% 0 0 46%;
 	width: 28%;
 }
@@ -540,6 +549,13 @@
 	transform:scale(1.1);
 }
 
+
+#worldEarthDay .upWhiteTri-hb,
+#worldEarthDay .downWhiteTri-hb {
+	display: hidden;
+	position: absolute;
+}
+
 #worldEarthDay .upTri,
 #worldEarthDay .downTri,
 #worldEarthDay .upWhiteTri,
@@ -574,7 +590,7 @@
 
 
 #tri-53 {
-	border-top-color: white !important;
+/*	border-top-color: white !important;*/
 }
 
 #tri-56, #tri-57{
@@ -603,6 +619,14 @@
     position: relative;
 	/*Dudio*/
 	/*opacity:.7;*/
+}
+
+#mobile-worldEarthDay .describe {
+	z-index: 50;
+}
+
+#mobile-worldEarthDay .title {
+	z-index: 100;
 }
 
 #mobile-worldEarthDay #mobile-topSec {

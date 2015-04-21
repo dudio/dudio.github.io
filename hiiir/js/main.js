@@ -15,7 +15,7 @@
 			"z-index": 	zIndex || 0
 		});
 
-		$t.css("top", $t.offset().top+$("#header").height());
+		$t.css("top", $t.offset().top+$("header").height());
 	}
 }
 
@@ -48,6 +48,8 @@ function setDimensions(){
 	var windowWidth = $window.width();
 	var windowHeight = $window.height();
 
+	$("body").css("overflow-x",(windowWidth<1000)?"scroll":"hidden");
+
 	$world.css("font-size",	worldWidth/100+"px");
 	$("#topSec").height(worldWidth*0.438);
 	$("#sec1").height(worldWidth*0.548);
@@ -58,10 +60,9 @@ function setDimensions(){
 	$("#earth").css("top",worldWidth*15.2/100+"px");
 	$("#slogan").css("top",-worldWidth*43/100+"px");
 
-	$("#menu").css("top",$("#sec1").offset().top-worldWidth*0.08);
-
 	var docOffset = windowWidth<1600 ? Math.max((windowWidth - worldWidth)/2,-380) : 0;
 	$world.css("margin-left", docOffset);
+	$("body").width($("body").width()-docOffset);
 	
 	//設定小三角尺寸
 	var triWidth = worldWidth*0.0571/2;
@@ -142,7 +143,7 @@ function setDimensions(){
 
 	$("#line-1").height(0.1*worldWidth).css({
 		top: 77.9*worldWidth/100,
-		left:-0.148*worldWidth+docOffset
+		left:-0.151*worldWidth+docOffset
 	});
 
 	$("#line-2").height(0.1*worldWidth).css({
@@ -152,7 +153,7 @@ function setDimensions(){
 
 	$("#line-3").height(0.1*worldWidth).css({
 		top: 140*worldWidth/100,
-		left:-0.148*worldWidth+docOffset
+		left:-0.151*worldWidth+docOffset
 	});
 
 	$("#line-4").height(0.1*worldWidth).css({
@@ -162,7 +163,7 @@ function setDimensions(){
 
 	$("#line-5").height(0.1*worldWidth).css({
 		top: 216.8*worldWidth/100,
-		left:-0.148*worldWidth+docOffset
+		left:-0.155*worldWidth+docOffset
 	});
 
 	$("#maskBar-1").css({
@@ -172,7 +173,7 @@ function setDimensions(){
 
 	$("#maskBar-2").css({
 		top: 118.8*worldWidth/100,
-		left:0.286*worldWidth+docOffset
+		left:0.287*worldWidth+docOffset
 	});
 
 	$("#maskBar-3").css({
@@ -206,13 +207,19 @@ $(function(){
 	$("<div></div>").addClass("maskBar").attr("id","maskBar-6").appendTo("body");
 
 	//手機版
-	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-		$("#header,#worldEarthDay").remove();
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		$("#worldEarthDay,.maskBar").remove();
 		$("").remove();
+
+		$("header").css({
+			display: "absolute"
+		});
 
 		var windowWidth = $("#mobile-worldEarthDay").width();
 		var windowHeight = $(window).height();
 		var dx = windowWidth/764;
+
+		console.log(windowWidth);
 
 		//設定topSec底圖
 		$("#mobile-topSec").height(windowHeight);
@@ -496,6 +503,10 @@ $(function(){
 
 
 	//主選單
+	var $menu = $("#menu");
+	var menuTop = $menu.offset().top - 0.6*$menu.height();
+	$menu.css("top",menuTop);
+
 	$("#menu > div").each(function(i){
 		var $t = $(this);
 		var $more = $t.find(".more").prependTo($t);
@@ -512,6 +523,17 @@ $(function(){
 				});
 				$other.animate({
 					top: "+=13em"
+				});
+			} else {
+				$t.attr("hover","0");
+				$t.animate({
+					opacity: "0.9"
+				});
+				$more.animate({
+					top: "-=13em"
+				});
+				$other.animate({
+					top: "-=13em"
 				});
 			}
 		},function(){
@@ -533,10 +555,15 @@ $(function(){
 	$(".buy > div").each(function(){
 		var $t = $(this);
 		$t.hover(function(){
-			$t.find(".up").show();
-			if($t.parent().attr("hover")!="1") {
-				$t.parent().attr("hover","1");
-				$t.children().animate({top:"+=16px"});
+			var top = $t.children().css("top");
+			if(top=="-19px") {
+				$t.find(".up").show();
+				$t.children().animate({top:"+=16px"},function(){
+					$t.find(".down").hide();
+				});
+			} else {
+				$t.find(".down").show();
+				$t.children().animate({top:"-=16px"});
 			}
 		}, function(){
 //			$t.children().animate({top:"-=1.4em"});
@@ -571,6 +598,17 @@ $(function(){
 				});
 				$other.animate({
 					top: "+=40px"
+				});
+			} else {
+				$t.attr("hover","0");
+				$t.animate({
+					opacity: ".9"
+				});
+				$more.animate({
+					top: "-=40px"
+				});
+				$other.animate({
+					top: "-=40px"
 				});
 			}
 		},function(){
@@ -618,24 +656,95 @@ $(function(){
 		else windowTop = s4;
 		var r = Math.max(Math.min(Math.round(204*(windowTop-s4)/(s1-s4)),255),0);
 		var g = Math.max(Math.min(Math.round(83*(windowTop-s4)/(s1-s4)+161),255),0);
-		$(".sec").animate({backgroundColor:"rgb("+r+","+g+",132)"});
-		$(".mask").animate({borderBottomColor:"rgb("+r+","+g+",132)"});
+		$(".sec,body").animate({backgroundColor:"rgb("+r+","+g+",132)"},100);
+		$(".mask").animate({borderBottomColor:"rgb("+r+","+g+",132)"},100);
 		//$(".mask").css("border-bottom-color","rgb("+r+","+g+",132)");
 
 		var lp = ($("#line-1").offset().top - $window.scrollTop()) / wh;
-		$("#line-1 > img").animate({marginLeft:100 + 500 * lp});
+		//$("#line-1 > img").animate({marginLeft:100 + 500 * lp});
+		$("#line-1 > img").css("margin-left", 100 + 500 * lp);
 		var lp = ($("#line-2").offset().top - $window.scrollTop()) / wh;
-		$("#line-2 > img").animate({marginRight:100 + 500 * lp});
+		//$("#line-2 > img").animate({marginRight:100 + 500 * lp});
+		$("#line-2 > img").css("margin-right", 100 + 500 * lp);
 		var lp = ($("#line-3").offset().top - $window.scrollTop()) / wh;
-		$("#line-3 > img").animate({marginLeft:100 + 500 * lp});
+		//$("#line-3 > img").animate({marginLeft:100 + 500 * lp});
+		$("#line-3 > img").css("margin-left", 100 + 500 * lp);
 		var lp = ($("#line-4").offset().top - $window.scrollTop()) / wh;
-		$("#line-4 > img").animate({marginRight:100 + 500 * lp});
+		//$("#line-4 > img").animate({marginRight:100 + 500 * lp});
+		$("#line-4 > img").css("margin-right", 100 + 500 * lp);
 		var lp = ($("#line-5").offset().top - $window.scrollTop()) / wh;
-		$("#line-5 > img").animate({marginLeft:100 + 500 * lp});
+		//$("#line-5 > img").animate({marginLeft:100 + 500 * lp});
+		$("#line-5 > img").css("margin-left", 100 + 500 * lp);
 	});
 
 	$("#menu, #smallMenu").click(function(){
 		$(window).scroll();
 	});
-	
+	$(".product1_1").hover(function(){
+		$("#tri-h1").attr("src",$(".upWhiteTri-hb").attr("src"));
+	},function(){
+		$("#tri-h1").attr("src",$("#tri-h3").attr("src"));
+	});
+
+	$(".product1_2").hover(function(){
+		$("#tri-h2").attr("src",$(".downWhiteTri-hb").attr("src"));
+//		$(".product1_2.buy > div").hover();
+	},function(){
+		$("#tri-h2").attr("src",$("#tri-h6").attr("src"));
+	});
+
+	$(".product2_1").hover(function(){
+		$("#tri-53").css("border-top-color","rgb(0,46,162)");
+	},function(){
+		$("#tri-53").css("border-top-color","white");
+	});
+
+	$(".product2_2").hover(function(){
+		$("#tri-h3").attr("src",$(".upWhiteTri-hb").attr("src"));
+	},function(){
+		$("#tri-h3").attr("src",$("#tri-h1").attr("src"));
+	});
+
+	$(".product2_4").hover(function(){
+		$("#tri-h4").attr("src",$(".upWhiteTri-hb").attr("src"));
+	},function(){
+		$("#tri-h4").attr("src",$("#tri-h1").attr("src"));
+	});
+
+	$(".product3_1").hover(function(){
+		$("#tri-h5").attr("src",$(".upWhiteTri-hb").attr("src"));
+	},function(){
+		$("#tri-h5").attr("src",$("#tri-h1").attr("src"));
+	});
+
+	$(".product3-2").hover(function(){
+		$("#tri-54").css("border-top-color","rgb(0,46,162)");
+	},function(){
+		$("#tri-54").css("border-top-color","white");
+	});
+
+	$(".product4_1").hover(function(){
+		$("#tri-h6").attr("src",$(".downWhiteTri-hb").attr("src"));
+	},function(){
+		$("#tri-h6").attr("src",$("#tri-h2").attr("src"));
+	});
+
+	$(".product4-2").hover(function(){
+		$("#tri-55").css("border-top-color","rgb(0,46,162)");
+	},function(){
+		$("#tri-55").css("border-top-color","white");
+	});
+
+	$(".product4_3").hover(function(){
+		$("#tri-h8").attr("src",$(".downWhiteTri-hb").attr("src"));
+	},function(){
+		$("#tri-h8").attr("src",$("#tri-h2").attr("src"));
+	});
+
+	$(".product4_4").hover(function(){
+		$("#tri-h7").attr("src",$(".upWhiteTri-hb").attr("src"));
+	},function(){
+		$("#tri-h7").attr("src",$("#tri-h1").attr("src"));
+	});
+
 });
