@@ -211,6 +211,8 @@ $(function(){
 		$("#worldEarthDay,.maskBar").remove();
 		$("").remove();
 
+setTimeout(function(){
+
 		$("header").css({
 			display: "absolute"
 		});
@@ -295,8 +297,7 @@ $(function(){
 			lastScrollTop = st;
 		});
 		$("html,body").height($("#p4-4").offset().top+$("#p4-4").height());
-		alert($(window).width());
-		alert($("#mobile-worldEarthDay").width());
+},100);
 		return;
 	}
 	$("#mobile-worldEarthDay").remove();
