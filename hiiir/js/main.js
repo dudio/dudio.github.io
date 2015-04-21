@@ -274,7 +274,7 @@ setTimeout(function(){
 			});
 		});
 
-$("#p4-1 .title").attr("id","bottom");
+		$("#p4-2 .title").attr("id","bottom");
 		var lastScrollTop = 0;
 		$(window).scroll(function(event){
 			var s1 = $("#mobile-sec1").offset().top-20;
@@ -296,7 +296,7 @@ $("#p4-1 .title").attr("id","bottom");
 				$("#mobile-menu").show().css("top",st+$(this).height()-$("#mobile-menu").height());
 			}
 			lastScrollTop = st;
-			if(st>9300) {
+			if(st>9500) {
 				document.location.href="#bottom";
 			}
 		});
