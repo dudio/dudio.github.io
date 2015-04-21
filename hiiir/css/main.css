@@ -617,6 +617,7 @@
 	font-size: 1.8em;
 	font-weight:bold;
 	width: 100%;
+	overflow: hidden;
 }
 
 #mobile-worldEarthDay * {

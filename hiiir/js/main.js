@@ -295,6 +295,8 @@ $(function(){
 			lastScrollTop = st;
 		});
 		$("html,body").height($("#p4-4").offset().top+$("#p4-4").height());
+		alert($(window).width());
+		alert($("#mobile-worldEarthDay").width());
 		return;
 	}
 	$("#mobile-worldEarthDay").remove();
