@@ -2,6 +2,7 @@
 	margin:0px;
 	text-align: center;
 	overflow-x: hidden;
+	background-color: rgb(204,244,132);
 }
 .navbar-logo {height: 40px;}
 .navbar-logo img {height: 40px;}
@@ -15,13 +16,13 @@
 }
 #maskBar-1 {
 	width:400px;
-	height:12px;
+	height:14px;
 	position: absolute;
 	background-color: rgb(29,217,133);
 }
 
 #maskBar-2 {
-	width:15px;
+	width:17px;
 	height:100px;
 	position: absolute;
 	background-color: rgb(205,243,134);
@@ -34,13 +35,13 @@
 
 #maskBar-3 {
 	width:200px;
-	height:12px;
+	height:14px;
 	position: absolute;
 	background-color: rgb(205,243,134);
 }
 
 #maskBar-4 {
-	width:15px;
+	width:17px;
 	height:170px;
 	position: absolute;
 	background-color: rgb(140,221,126);
@@ -52,7 +53,7 @@
 }
 
 #maskBar-5 {
-	width:15px;
+	width:16px;
 	height:250px;
 	position: absolute;
 	background-color: rgb(72,204,131);
@@ -65,7 +66,7 @@
 
 #maskBar-6 {
 	width:250px;
-	height:12px;
+	height:15px;
 	position: absolute;
 	background-color: rgb(72,204,131);
 }
@@ -77,19 +78,22 @@
 	border-color: white transparent transparent transparent;
 	margin: 25% auto 0 auto;
 }
+
 #worldEarthDay {
 	/*Dudio*/
 	/*background-image: url('../hiiir活動頁前端spec_150407.jpg');*/
 	background-size: 100% auto;
 	text-align:left;
 	font-family: "微軟正黑體", "Microsoft JhengHei", "\5FAE\8EDF\6B63\9ED1\9AD4", MingLiU, sans-serif;
-	min-width: 1600px !important;
+	/*min-width: 1600px !important;*/
+	width: 1920px;
 }
 
 #worldEarthDay > #topSec,
 #worldEarthDay > .sec
 {
-	min-width: 1600px !important;
+	width: 1920px;
+	/*min-width: 1600px !important;*/
 }
 
 #worldEarthDay * {
@@ -116,6 +120,7 @@
     -o-transform: skew(-30deg);  
     -ms-transform: skew(-30deg);  
     transform: skew(-30deg);
+    height: 193px;
 }
 #line-2 > img,
 #line-4 > img
@@ -155,7 +160,7 @@
 #worldEarthDay .buy > div {
 	width: 48px;
 	overflow: hidden;
-	height:16px;
+	height:19px;
 	float: left;
 	position:relative;
 	z-index: 3;
@@ -163,7 +168,7 @@
 }
 
 #worldEarthDay .buy .up {
-	display: hidden;
+	visibility: hidden;
 }
 
 #worldEarthDay .buy > div > div {
@@ -186,9 +191,11 @@
 	border-style: solid;
 	border-width: 8px 13.86px 8px .0;
 	border-color: transparent #012fa3 transparent transparent ;
+	margin-top: 3px;
 }
 
 #worldEarthDay .rightArrow {
+	margin-top: 3px;
 	margin-right: 26px;
 	height:16px !important;
 	overflow: visible !important;
@@ -269,7 +276,7 @@
 	color: white;
 	z-index: 200;
 	width: 52%;
-	min-width: 520px !important;
+	min-width: 550px !important;
 	left:24%;
 	cursor: pointer;
 }
