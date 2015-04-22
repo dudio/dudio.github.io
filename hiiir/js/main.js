@@ -547,7 +547,7 @@ setTimeout(function(){
 	$(".buy").each(function(){
 		var $t = $(this);
 
-		$("."+$t.attr("class").substring(4)).hover(function(){
+		$("."+$t.attr("class").substring(4)).not(".describe").hover(function(){
 			var $up = $t.find(".up").css("top","-19px");
 			var $down = $t.find(".down").css("top","-19px");
 			$up.css("visibility","visible");
@@ -648,13 +648,12 @@ setTimeout(function(){
 		else if(windowTop<s3-40) windowTop = s2;
 		else if(windowTop<s4-40) windowTop = s3;
 		else windowTop = s4;
-		console.log("start");
 		var r = Math.max(Math.min(Math.round(204*(windowTop-s4)/(s1-s4)),255),0);
 		var g = Math.max(Math.min(Math.round(83*(windowTop-s4)/(s1-s4)+161),255),0);
 		$(".sec,body").stop(false, false);
 		$(".mask").stop(false, false);
 		$(".sec,body").animate({backgroundColor:"rgb("+r+","+g+",132)"},3000);
-		$(".mask").animate({borderBottomColor:"rgb("+r+","+g+",132)"},3000,function(){console.log("stop");});
+		$(".mask").animate({borderBottomColor:"rgb("+r+","+g+",132)"},3000);
 
 		var lp = ($("#line-1").offset().top - $window.scrollTop()) / wh;
 		$("#line-1 > img").css("margin-left", 100 + 500 * lp);
@@ -671,68 +670,68 @@ setTimeout(function(){
 	$("#menu, #smallMenu").click(function(){
 		$(window).scroll();
 	});
-	$(".product1_1").hover(function(){
+	$(".product1_1").not(".describe").hover(function(){
 		$("#tri-h1").attr("src",$(".upWhiteTri-hb").attr("src"));
 	},function(){
 		$("#tri-h1").attr("src",$("#tri-h3").attr("src"));
 	});
 
-	$(".product1_2").hover(function(){
+	$(".product1_2").not(".describe").hover(function(){
 		$("#tri-h2").attr("src",$(".downWhiteTri-hb").attr("src"));
 //		$(".product1_2.buy > div").hover();
 	},function(){
 		$("#tri-h2").attr("src",$("#tri-h6").attr("src"));
 	});
 
-	$(".product2_1").hover(function(){
+	$(".product2_1").not(".describe").hover(function(){
 		$("#tri-53").css("border-top-color","rgb(0,46,162)");
 	},function(){
 		$("#tri-53").css("border-top-color","white");
 	});
 
-	$(".product2_2").hover(function(){
+	$(".product2_2").not(".describe").hover(function(){
 		$("#tri-h3").attr("src",$(".upWhiteTri-hb").attr("src"));
 	},function(){
 		$("#tri-h3").attr("src",$("#tri-h1").attr("src"));
 	});
 
-	$(".product2_4").hover(function(){
+	$(".product2_4").not(".describe").hover(function(){
 		$("#tri-h4").attr("src",$(".upWhiteTri-hb").attr("src"));
 	},function(){
 		$("#tri-h4").attr("src",$("#tri-h1").attr("src"));
 	});
 
-	$(".product3_1").hover(function(){
+	$(".product3_1").not(".describe").hover(function(){
 		$("#tri-h5").attr("src",$(".upWhiteTri-hb").attr("src"));
 	},function(){
 		$("#tri-h5").attr("src",$("#tri-h1").attr("src"));
 	});
 
-	$(".product3-2").hover(function(){
+	$(".product3-2").not(".describe").hover(function(){
 		$("#tri-54").css("border-top-color","rgb(0,46,162)");
 	},function(){
 		$("#tri-54").css("border-top-color","white");
 	});
 
-	$(".product4_1").hover(function(){
+	$(".product4_1").not(".describe").hover(function(){
 		$("#tri-h6").attr("src",$(".downWhiteTri-hb").attr("src"));
 	},function(){
 		$("#tri-h6").attr("src",$("#tri-h2").attr("src"));
 	});
 
-	$(".product4-2").hover(function(){
+	$(".product4-2").not(".describe").hover(function(){
 		$("#tri-55").css("border-top-color","rgb(0,46,162)");
 	},function(){
 		$("#tri-55").css("border-top-color","white");
 	});
 
-	$(".product4_3").hover(function(){
+	$(".product4_3").not(".describe").hover(function(){
 		$("#tri-h8").attr("src",$(".downWhiteTri-hb").attr("src"));
 	},function(){
 		$("#tri-h8").attr("src",$("#tri-h2").attr("src"));
 	});
 
-	$(".product4_4").hover(function(){
+	$(".product4_4").not(".describe").hover(function(){
 		$("#tri-h7").attr("src",$(".upWhiteTri-hb").attr("src"));
 	},function(){
 		$("#tri-h7").attr("src",$("#tri-h1").attr("src"));
