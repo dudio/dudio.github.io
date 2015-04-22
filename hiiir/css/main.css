@@ -12,7 +12,7 @@
 .static-menu > a > img {padding-top:10px;padding-left:15px;}
 
 .maskBar {
-	z-index: 1000;
+	z-index: 100;
 }
 #maskBar-1 {
 	width:400px;
