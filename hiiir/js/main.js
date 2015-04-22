@@ -293,7 +293,7 @@ setTimeout(function(){
 			if (st > lastScrollTop){
 				$("#mobile-menu").hide();
 			} else {
-				$("#mobile-menu").show().css("top",st+$(this).height()-$("#mobile-menu").height());
+				$("#mobile-menu").show();//.css("top",st+$(this).height()-$("#mobile-menu").height());
 			}
 			lastScrollTop = st;
 			if(st>9500) {
