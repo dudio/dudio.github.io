@@ -652,8 +652,8 @@ setTimeout(function(){
 		var g = Math.max(Math.min(Math.round(83*(windowTop-s4)/(s1-s4)+161),255),0);
 		$(".sec,body").stop(false, false);
 		$(".mask").stop(false, false);
-		$(".sec,body").animate({backgroundColor:"rgb("+r+","+g+",132)"},3000);
-		$(".mask").animate({borderBottomColor:"rgb("+r+","+g+",132)"},3000);
+		$(".sec,body").animate({backgroundColor:"rgb("+r+","+g+",132)"},1500);
+		$(".mask").animate({borderBottomColor:"rgb("+r+","+g+",132)"},1500);
 
 		var lp = ($("#line-1").offset().top - $window.scrollTop()) / wh;
 		$("#line-1 > img").css("margin-left", 100 + 500 * lp);
