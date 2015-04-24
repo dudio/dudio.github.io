@@ -221,8 +221,6 @@ setTimeout(function(){
 		var windowHeight = $(window).height();
 		var dx = windowWidth/764;
 
-//		console.log(windowWidth);
-
 		//設定topSec底圖
 		$("#mobile-topSec").height(windowHeight);
 		$("#mobile-worldEarthDay").css("font-size", windowWidth*0.04);
@@ -230,7 +228,8 @@ setTimeout(function(){
 		var earthWidth = windowHeight*1017/931;
 		$("#mobile-earth")
 			.width(earthWidth)
-			.css("top",windowHeight*.3324)
+			//.css("top",windowHeight*0.3324) 對齊V的底部
+			.css("top",windowHeight*0.3)
 			.css("left",-windowHeight/200);
 		if(earthWidth > windowWidth) $("#mobile-earth").css("left", (windowWidth-earthWidth)/2-windowHeight/200);
 
@@ -296,8 +295,14 @@ setTimeout(function(){
 			}
 			lastScrollTop = st;
 			var top = $("#p4-4 img").offset().top+$("#p4-4 img").height()-$(window).height()+100;
-			if(st>top)
+			if(st>top) {
 				window.scrollTo(0,top);
+				$("footer").css({
+					position: "absolute",
+					top: $(window).scrollTop()+$(window).height()-$("footer").height()
+				});
+				setTimeout(function(){ $("#mobile-menu").hide(); }, 50 );
+			}
 		});
 		$("html,body").height($("#p4-4").offset().top+$("#p4-4").height());
 },100);
