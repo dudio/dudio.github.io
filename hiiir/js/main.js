@@ -250,7 +250,7 @@ setTimeout(function(){
 		$("#mobile-sec1 > .describe").height(215*dx);
 
 		//設定youtube影片高度
-		var $video = $(".video iframe");
+		var $video = $(".video object");
 		var videoWidth = $video.width();
 		$video.height(videoWidth*0.6);
 		$(".video").height(videoWidth*0.75);
@@ -262,7 +262,7 @@ setTimeout(function(){
 			var $t = $(this);
 			var href = $t.attr("link");
 			$t.css("cursor","pointer").click(function(){
-				document.location.href = href;
+				window.open(href, '_blank');
 			});
 		});
 
@@ -398,7 +398,7 @@ setTimeout(function(){
 			j++;
 			var newClass = $t.attr("class")+"_"+j;
 			$t.children().addClass(newClass).appendTo($sec).css("cursor","pointer").click(function(){
-				document.location.href = href;
+				window.open(href, '_blank');
 			});
 		});
 	});

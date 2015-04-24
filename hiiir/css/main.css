@@ -728,15 +728,19 @@
   	width: 48%;
 }
 
-#mobile-worldEarthDay #p1-1 iframe {
-	margin-right: 3%;
-	margin-left: 3%;
-	top: -13em;
+#mobile-worldEarthDay #p1-1 .video {
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 4.5em;
+	width:94%;
+}
+#mobile-worldEarthDay #p1-1 object {
+	top: -11em;
 }
 
 #mobile-worldEarthDay #p1-1 .buy {
-	top: -11.5em;
-	 left: 30%;
+	top: -15em;
+	left: 76%;
 }
 
 #mobile-worldEarthDay #p1-2 {
