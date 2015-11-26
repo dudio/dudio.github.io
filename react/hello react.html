@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Hello React!</title>
+<script src="../javascripts/react/react.min.js"></script>
+<script src="../javascripts/react/react-dom.min.js"></script>
+<script src="../javascripts/jquery/jquery-2.1.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+</head>
+<body>
+<div id="content"></div>
+
+
+<!--
+- CommentBox
+  - CommentList
+    - Comment
+  - CommentForm
+-->
+<script type="text/babel">
+	var data = [
+	  {author: "Pete Hunt", text: "This is one comment", key: 1},
+	  {author: "Jordan Walke", text: "This is *another* comment", key: 2}
+	];
+
+
+	var Comment = React.createClass({
+		render: function(){
+			return (<div>This is a Comment{this.props.children}</div>);
+		}
+	});
+
+
+	var CommentList = React.createClass({
+	  render: function() {
+	  	var commentNodes = this.props.data.map(function (comment) {
+	    	return (
+				<Comment author={comment.author} key={comment.key}>
+					{comment.text}
+				</Comment>
+			);
+	    });
+	    return (
+	      <div className="commentList">
+	      	{ commentNodes }
+	      </div>
+	    );
+	  }
+	});
+
+	var CommentForm = React.createClass({
+		render: function(){
+			return (
+				<div>
+					this is CommentFormmm
+				</div>
+			);
+		}
+	});
+	var CommentBox = React.createClass({
+		getInitialState: function(){
+			return {data:[]};
+		},
+		componentDisMount: function(){
+			
+		},
+		render: function() {
+			return (
+			  <div className="commentBox">
+			    <h1>Comments</h1>
+			    <CommentList data={this.props.data}/>
+			    <CommentForm />
+			  </div>
+			);
+		}
+	});
+
+	
+	ReactDOM.render(
+	  <CommentBox data={data} />,
+	  document.getElementById('content')
+	);
+
+
+
+
+
+</script>
+
+<!-------------------------------------------------->
+
+<div id="helloTime"></div>
+
+<script type="text/bable">
+	var HelloWorld = React.createClass({
+		render: function(){
+			return (
+				<p>
+					Hello, <input type="text" placeholder='Name?' />
+					It is {this.props.date.toTimeString()}
+				</p>
+			);
+		}
+	});
+
+	ReactDOM.render(
+		React.createElement(
+			'HelloWorld',
+			{date: '2011-11-7'},
+			'ttt',
+			'sss'
+		),
+		document.getElementById('helloTime')
+	);
+
+	
+
+</script>
+</body>
+</html>
