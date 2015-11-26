@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta property="og:url" content="https://dudio.github.io/house.html" /> 
+<meta property="og:title" content="幾歲買屋好哩？" />
+<meta property="og:description" content="何時購買房子，才能兼顧生活品質及經濟狀況？" /> 
+<meta property="og:image" content="https://dudio.github.io/images/background-1.gif" /> 
+<title>幾歲買屋好哩？</title>
+<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="../javascripts/jquery-ui/jquery-ui-1.11.1.custom/jquery-ui.min.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/main.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/questionbox.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/multiple.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/summary.css">
+<style type="text/css">
+.ondo {
+	display:none;
+	background-color:lightgray;
+	color:gray;
+}
+.ondo input{
+	color:gray;
+}
+
+#buyYear {
+	margin: 5px 115px 0 86px;
+}
+
+</style>
+</head>
+<body>
+<script src="../javascripts/googleAnalytics.js"></script>
+<div id="background">
+	<div id="banner">
+		<span id="title">幾歲買屋好哩？</span><br/>
+		<span id="subtitle">何時購買房子，才能兼顧生活品質及經濟狀況？</span>
+	</div>
+	<div class="topM"></div>
+	<div id="summary">
+		<div id="report"></div>
+<!--
+		<div id="openHelper"></div>
+-->
+		<div>本站插圖由<span style="color:green;">小森一點</span>協助製作，問題回報請mail至 <span style='color:rgb(223,72,72);'>dudiolin@gmail.com</span></div>
+		<div class="fb-like-box" data-href="https://www.facebook.com/siaosenyidian" data-height="60" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false" style="height:70px;"></div>
+	</div>
+	<div class="topM"></div>
+	<div id="intro">
+		1.<span style="color:#2e6e9e;">適用族群</span>：適用目前正在租屋，但有意買屋的人，根據經濟情況計算出較佳的買房年紀。<br/>
+		2.以"<span style="color:#7cb5ec;">投資角度</span>"及"<span style="color:#f15c80;">生活品質</span>"兩項指標分別計算何時適合購買房子，並推薦適合的平衡點。<br/>
+		3."<span style="color:#f15c80;">生活品質</span>"考量<span class="underline">居住品質</span>、<span class="underline">通勤成本</span>、<span class="underline">實值支出</span>、<span class="underline">是否負債</span>四項因素，評估買房後對生活的改善程度。<br/>
+		4.可合併計算家庭所有成員的工作收入及支出。<br/>
+		5.可輸入薪水、支出、房價、物價的成長率。<br/>
+		6.自動計算適合的房價。
+		<div style="text-align:center;margin-top:1em;"><button id="closeIntro" class="button"><span>填寫基本資料</span></button></div>
+	</div>
+	<div id="intro1">
+		太早買房背的貸款會太重，太晚買房則房價可能更高更買不起<br/>
+		最佳投資告訴你何時購買房子，這輩子將賺取最多的資產<br/>
+		計算方式為估計臨終時的 <span class="underline">房價</span> + <span class="underline">現金</span><br/>
+		參看第一張曲線圖的<span style='color:#7cb5ec;'>藍色曲線</span>，30歲時顯示最終資產1000萬，代表30歲時買房，臨終時會有1000萬的資產(房+現金)，目前網站未能同時比較多筆房產，因此主要差別即為最終的現金總額<br/>
+		想要在買房後存最多錢，就在曲線圖上藍線最高點的年紀買房即可
+	</div>
+	<div id="intro2">
+		早買房早點享受，晚買房貸款壓力較低<br/>
+		最佳生活告訴你何時購買房子，這輩子將過著比較好的生活<br/>
+		計算方式為跟下面四點有關<br/>
+		<span class="underline">居住品質</span>：你所願意付出的租金，代表了住處帶給你的居住品質<br/>
+		<span class="underline">通勤成本</span>：通勤時間越長，生活品質越低，降低程度用當時的工作時薪來計算<br/>
+		<span class="underline">實值支出</span>：花費越多~過得越爽！(本站會用物價指數計算實值購買力)<br/>
+		<span class="underline">是否負債</span>：負債一向不是令人開心的事，試試看把另一半及子女的薪資也考慮進來，也許會有不一樣的結果唷<br/>
+		參看第一張曲線圖的<span style='color:#f15c80;'>紅色曲線</span>，代表不同時間點買房，生活品質會有怎樣的改變<br/>
+		如果你是注重生活品質的人~不妨考慮在紅線最高點的年紀買房吧
+	</div>
+	<div id="intro3">
+		最佳投資及最佳生活時常無法兼顧，本站在兩個買房時間點之間推薦一個較適合的買房年紀，但您也可以視自己情況決定多存一點錢，或是過好一點的生活<br/>
+		<span class="underline">計算最適合自己的房價</span>：填寫完家庭/工作/收支等欄位後，點選"可購房產"內的"自動計算房價"看看~可知道在幾歲購買多少錢的房子會最適合你唷！
+	</div>
+	<div id="basicData">
+		1.目前年齡：<input class="year" id="copy-age" /><br/>
+		2.月薪：<input class="money" id="copy-salary" /> x 薪水月數<input class="month" id="salaryMonth"/> = 年薪<input class="money" id="yearSalary"/><br/>
+		3.當前房租：<input class="money" id="rentCost"/>/月<br/>
+<!--		4.想購買的房產當前價格：<input class="wanMoney" id="houseCost"/>萬元<br/>-->
+		4.預期20年後房價是現在的<input id="houseMulti" size="4"/>倍 = <input class="percentage" id="copy-priceChange" />%/年<br/>
+		<div style="text-align:center;margin-top:1em;"><button id="closeBasicData" class="button"><span>開始估算</span></button></div>
+	</div>
+	<div id="content">
+		<!--最佳買屋時機圖-->
+		<div id="highchartContent-best">
+		</div>
+		<hr/>
+<!--		<div class="graphicIntro">
+		</div>-->
+		<!--買屋資產變化-->
+		<div id="highchartContent-house">
+		</div>
+		<div id="buyYear"></div>
+		<div style="text-align:center;margin-top:3px;">預計幾歲買屋？(調整上方拉bar，查看不同年紀買房的資產變化)</div>
+
+		<br/>
+		<div id="inputTabs">
+			<ul>
+				<li><a href="#tabs-1">家庭</a></li>
+				<li><a href="#tabs-2">工作</a></li>
+				<li><a href="#tabs-3">收支</a></li>
+				<li><a href="#tabs-4">現租房產</a></li>
+				<li><a href="#tabs-5">可購房產</a></li>
+				<li><a href="#tabs-6">外在環境</a></li>
+			</ul>
+			<div id="tabs-1">
+				<ul>
+					<li><a href='#member-1'>自己</a></li>
+					<li><a id="newMember" href='#NEWMEMBER'>新增成員</a></li>
+				</ul>
+				<div id="member-1" class="member multiple">
+					<span style="display:none" class="inputTitle">稱呼：<input class="title"/><br/></span>
+					現在年齡:<input class="year age" value="27"/>歲<span style="display:none;font-size:0.7em;" class="ageIntro">&nbsp;(未出生可用負值，Ex:-5  代表五年後出生)</span><br/>
+					預期壽命:<input class="year life" value="86"/>歲
+				</div>
+				<div id="NEWMEMBER"></div>
+			</div>
+			<div id="tabs-2">
+				<ul>
+					<li><a href='#work-1'>工作1</a></li>
+					<li><a id="newWork" href='#NEWWORK'>新增一筆工作</a></li>
+				</ul>
+				<div id="work-1" class="work multiple">
+					起薪：<input class="money salary" value="40000"/>元/月<br/>
+					年終：<input class="month bonus"  value="1.5">個月<br/>
+					工作起始年紀：<input class="year workAge"/>歲<br/>
+					預期退休年齡：<input class="year retireAge" value="65"/>歲<br/>
+					調薪幅度(年)：<input class="percentage salaryAdjust" value="3">%/年 <span style="color:rgb(200,57,57);">=</span> 退休時年薪：<input class="wanMoney finalYearSalary"/>萬元<br/>
+					退休金：一次領<input class="money retirementPayOnce" value="0"/>元 <span style="color:rgb(200,57,57);">+</span> 月領<input class="money retirementPayMonthly" value="0"/>元<br/>
+				</div>
+				<div id="NEWWORK"></div>
+				每人每日工時(不含通勤)：<input class="hour" id="workHourPerDay" value="9"/>小時<br/>
+				週休<input class="day" id="restPerWeek" value="2"/>日 + 月休<input class="day" id="restPerMonth" value="0"/>日 + 年休<input class="day" id="restPerYear" value="10"/>日
+			</div>
+			<div id="tabs-3">
+				現有資金：<input class="wanMoney" id="cash" value="30"/>萬元<br/>
+				<span id="outgoingArea">支出<span style="font-size:0.85em;">(不含住宿/工作通勤)</span>：<input class="money" id="outgoing-0"/> /月<br/></span>
+				實值支出(生活水平)年增率：<input class="percentage" id="betterLife" value="0"/>%<br/>
+				閒錢投資年報酬率：<input class="percentage" id="invest" value="1.3"/>%<br/>
+				<div class="ondo">
+					套用：<br/>
+					&nbsp;<input type="radio">床底下 0%<br/>
+					&nbsp;<input type="radio" checked="checked">定存年利率 1.3%<br/>
+					&nbsp;<input type="radio">放高利貸 10%<br/>
+				</div>
+				最低手頭現金額度：<input class="wanMoney" id="saveMoney" value="10" />萬元<br/>
+				(現金 - 最低現金額度 = 可投資金額/頭期款)
+				<div class="ondo">
+					額外收入/支出
+					年紀<input/>/金額<input/>
+				</div>
+			</div>
+			<div id="tabs-4">
+				<div id="rent" class="multipleXX">
+					<span class="homeWord">住家等值</span>月租：<input class="money cost" value="8000"/>元(我住家裡免房租<input class="home" type="checkbox" value="1"/>)<br/>
+					預期月租漲幅：<input class="percentage priceChange" value="1.5" /> %/年<br/>
+					每份工作通勤時間(含往返)：<input class="minite transTime" value="60"/>分/日<br/>
+					每份工作通勤支出(含往返)：<input class="money transCost" value="100"/>元/日<br/>
+				</div>
+			</div>
+			<div id="tabs-5">
+				<div id="house" class="multipleXX">
+					房價(現值)：<input class="money cost" value="500" /> 萬元&nbsp;<button id="autoCount" class="button"><span>自動計算最佳房價</span></button><br/>
+					願付多少月租入住：<input class="money equalRent" value="14000"/>元<br/>
+					預期20年後房價是現在的<input class="houseMulti" size="4"/>倍 = <input class="percentage priceChange" value="1.5" />%/年<br/>
+					持屋成本(稅金及維護費用)：<input class="percentage maintainCost" value="0.5" /> %/年<br/>
+					貸款年利率：<input class="percentage loanRatePerYear" value="3"/> % / 年<br/>
+					還款方式：<input type="radio" name="loanType" checked=true value="1"/>本息均攤+一次清償 <input type="radio" name="loanType" value="2"/>有多少閒錢還多少<span class="ondo"><input type="radio" name="loanType" value="3"/> 本金均攤</span><br/>
+					<div class="ondo">
+						允許提前一次清償貸款<input type="checkbox" checked=true/>
+					</div>
+					每份工作通勤時間(含往返)：<input class="minite transTime" value="60"/>分/日<br/>
+					每份工作通勤支出(含往返)：<input class="money transCost" value="100"/>元/日<br/>
+				</div>
+			</div>
+			<div id="tabs-6">
+				物價指數漲幅:<input class="percentage" id="priceIndex" value="1.5"/>% / 年
+			</div>
+		</div>
+<!--		顯示未完成功能<input type="checkbox" id="showOndo" /><br/><br/>-->
+		近期更新<br/>
+		2014/11/04 新增最佳投資/最佳生活/本站建議的說明區塊<br/>
+		2014/11/03 新增進站說明<br/>
+		2014/10/31 縮小本站建議浮動訊息框尺寸<br/>
+		2014/10/27 加快估算房價速度，改善說明<br/>
+		2014/10/24 自動估算最佳目標房價 效率未最佳化<br/>
+		2014/10/23 修正負債利率，顯示未償貸款，調整計分方式，使建議年齡的負債程度降低，新增房價過高警示<br/>
+		2014/10/21 可新增家庭成員，並設定每個人的工作及支出<br/>
+		<hr/>
+		未來預計更新功能<br/>
+		1.投資型房產計算(目前僅有自住房產計算)<br/>
+		2.同時多筆房產比較功能，並計算最佳買賣時間點<br/>
+		3.可輸入額外收入及支出(買車/旅遊/保險...)<br/>
+		4.貸款還款方式新增本金均攤<br/>
+		5.破產警告功能<br/>
+		6.考慮稅金計算<br/>
+		7.自訂貸款/頭期款/還款年限<br/>
+		8.修正貸款自動計算準確度
+	</div>
+	<hr/>
+	<div style="text-align:center;">
+		<div class="fb-like" data-href="https://dudio.github.io/house.html" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+		<br/>
+		<div class="fb-comments" data-href="https://dudio.github.io/house.html" data-numposts="7" data-colorscheme="light"></div>
+	</div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=175510612479767&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+</body>
+
+<script src="../javascripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="../javascripts/jquery-ui/jquery-ui-1.11.1.custom/jquery-ui.min.js"></script>
+<script src="../javascripts/highchart/highcharts.js"></script>
+<script src="../javascripts/highchart/modules/exporting.js"></script>
+
+<script src="javascripts/cookie.js"></script>
+<script src="javascripts/questionbox.js"></script>
+<script src="javascripts/highchart.js"></script>
+<script src="javascripts/summary.js"></script>
+<script src="javascripts/helper.js"></script>
+
+<script src="javascripts/intro.js"></script>
+<script src="javascripts/basicData.js"></script>
+<script src="javascripts/inputSetting.js"></script>
+<script src="javascripts/multiple.js"></script>
+<script src="javascripts/countProperty.js"></script>
+<script src="javascripts/autoCount.js"></script>
+<script>
+function setDimensions(){
+	var w = $(window).width();
+
+	if(w > 1000)
+		$("#summary").css("text-align","center");
+	else
+		$("#summary").css("text-align","left");
+
+	if(w > 1428)
+		$("#content").width("55%").css("margin-left","35%");
+	else if(w>785)
+		$("#content").width("785").css("margin-left",(w-785)*7/9);
+	else
+		$("#content").width("100%").css("margin-left","0");
+
+/*	if(w > 1428)
+		$("#inputTabs").width("64%").("margin-left","25%");
+	else if(w > 862)
+		$("#inputTabs").width("862").("margin-left","25%");*/
+
+	//$("#topM").height(w*0.53);
+	$(".topM").height(w*0.06);
+
+}
+
+$(function(){
+	//set page title
+	$("title").text($("#title").text());
+
+	setDimensions();
+	window.onresize=setDimensions;
+});
+</script>
+</html>
+
