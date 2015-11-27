@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta property="og:url" content="https://dudio.github.io/choice.html" /> 
+<meta property="og:title" content="Choice" />
+<!--<meta property="og:description" content="" /> 
+<meta property="og:image" content="https://dudio.github.io/images/background-1.gif" /> -->
+<title>Choice</title>
+<!--<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />-->
+<link rel="stylesheet" type="text/css" href="../javascripts/jquery-ui/jquery-ui-1.11.1.custom/jquery-ui.min.css">
+<style type="text/css">
+</style>
+</head>
+<body>
+<script src="../javascripts/googleAnalytics.js"></script>
+
+<!--
+====[前置問題]========================================-->
+
+
+<!--
+====[快樂度轉換函數]========================================-->
+<div>
+假如假日的快樂度是一百分 你覺得上班日的快樂度是幾分？(0~100)
+<input/>
+</div>
+
+<!--
+====[資產變化圖表]========================================-->
+
+當前存款：<input /><br/>
+年收入:<input /><br/>
+年工作日數：<input /><br/>
+平均每月支出:<input /><br/>
+預期退休年齡：<input /><br/>
+
+<!--物價指數：<input /><br/>-->
+
+<!--
+====[存活可能性]========================================-->
+<div>
+性別:
+	<input type='radio' name='sex' value="m"/>男
+	<input type='radio' name='sex' value="f"/>女
+</div>
+
+生日年份:民國<input id="birthyear" />年<br/>
+
+
+<!--
+====[幸福快樂度/生活品質期望值]========================================-->
+人生總快樂度量化
+
+
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=175510612479767&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+</body>
+
+<script src="../javascripts/jquery/jquery-2.1.4.min.js"></script>
+<script src="../javascripts/jquery-ui/jquery-ui-1.11.1.custom/jquery-ui.min.js"></script>
+<script src="../javascripts/highchart/highcharts.js"></script>
+<script src="../javascripts/highchart/modules/exporting.js"></script>
+
+<script src="people.js"></script>
+
+<script>
+function setDimensions(){
+
+
+}
+
+$(function(){
+	setDimensions();
+	window.onresize=setDimensions;
+	var year = 5;
+	var old = 1;
+	console.log(all[old][year]);
+});
+</script>
+</html>
+

@@ -93,7 +93,8 @@
 
 <div id="helloTime"></div>
 
-<script type="text/bable">
+<script type="text/babel">
+
 	var HelloWorld = React.createClass({
 		render: function(){
 			return (
@@ -115,7 +116,44 @@
 		document.getElementById('helloTime')
 	);
 
-	
+</script>
+
+<!-------------------------------------------------->
+
+<div id="showProfile"></div>
+<script type="text/babel">
+
+	var Avatar = React.createClass({
+		render: function(){
+			return (
+				<div>
+					<ProfilePic username={this.props.username} />
+					<ProfileLink username={this.props.username} />
+				</div>
+			);
+		}
+	});
+
+	var ProfilePic = React.createClass({
+		render: function(){
+			return (
+				<img src="#" />
+			);
+		}
+	});
+
+	var ProfileLink = React.createClass({
+		render: function(){
+			return (
+				<div />
+			);
+		}
+	});
+
+	ReactDOM.render(
+		<Avatar username="pwh" />,
+		document.getElementById('showProfile')
+	);
 
 </script>
 </body>
