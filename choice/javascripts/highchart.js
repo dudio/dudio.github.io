@@ -30,7 +30,7 @@ function drawHappy(){
 			text: '該日花費與快樂度比較圖',
 			x: -20 //center
 		},
-		colors: ['#f15c80','#7cb5ec','#434348','#8085e9'],
+		colors: ['#7cb5ec','#f15c80','#434348','#8085e9'],
 		xAxis: {
 			title: {
 				text: '該日花費'
@@ -187,7 +187,7 @@ function drawExpectHappy(){
 			text: '快樂度期望值',
 			x: -20 //center
 		},
-		colors: ['#7cb5ec','#f15c80','#434348','#8085e9'],
+		colors: ['#f15c80','#7cb5ec','#434348','#8085e9'],
 		xAxis: {
 			title: {
 				text: '年齡'
