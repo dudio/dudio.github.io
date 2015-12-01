@@ -3,8 +3,6 @@ var Content = React.createClass({
 		return {workdayHappiness:50};
 	},
 	setWorkdayHappiness: function(workdayHappiness){
-		console.log("good here");
-		console.log(workdayHappiness);
 		this.setState({workdayHappiness:workdayHappiness});
 	},
 	render: function(){
