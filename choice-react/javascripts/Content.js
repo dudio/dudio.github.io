@@ -22,7 +22,9 @@ var Content = React.createClass({
 	}
 });
 
-ReactDOM.render(
-	<Content />,
-	document.getElementById('content')
-);
+$(function(){
+	ReactDOM.render(
+		<Content />,
+		document.getElementById('content')
+	);	
+});

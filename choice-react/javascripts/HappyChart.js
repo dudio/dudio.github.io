@@ -1,4 +1,4 @@
-var HappyChart = React.createClass({
+HappyChart = React.createClass({
 	render: function(){
 		return (
 			<div>
