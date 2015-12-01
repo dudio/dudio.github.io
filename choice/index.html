@@ -9,10 +9,24 @@
 <!--<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />-->
 <link rel="stylesheet" type="text/css" href="../javascripts/jquery-ui/jquery-ui-1.11.1.custom/jquery-ui.min.css">
 <style type="text/css">
+body { margin:0;}
 .stage {
 	margin:5px;
 	padding: 5px;
-	border: 2px solid gray;
+	border-bottom: 2px solid #eee;
+	line-height:2em;
+	text-align: center;
+}
+#highchartProperty,
+#highchartHappy,
+#highchartLive,
+#highchartExpectHappy {
+	width: 95%;
+	margin:1em 2%;
+}
+
+#happySum {
+	color: #f15c80;
 }
 </style>
 </head>
@@ -21,35 +35,6 @@
 
 <!--
 ====[前置問題]========================================-->
-
-
-<!--
-====[快樂度轉換函數]========================================-->
-<div class="stage">
-	假如假日的快樂度是一百分 你覺得上班日的快樂度是幾分？(0~100)
-	<input class="happy" id="workdayHappiness" value="50" type="number"/>
-
-	<div id="highchartHappy">
-	</div>
-</div>
-
-<!--
-====[資產變化圖表]========================================-->
-
-<div class="stage">
-	當前存款：<input class="property" id="depositMoney" type="number" value="100"/>萬元<br/>
-	年收入:<input class="happy property" id="yearIncome" type="number" value="100" />萬元<br/>
-	年工作日數：<input class="happy property" id="yearlyWorkdays" type="number" value="250" /><br/>
-	平均每月支出:<input class="happy property" id="monthlyOutput" type="number" value="3" />萬元<br/>
-	預期退休年齡：<input class="property" id="retireAge" type="number" value="65" /><br/>
-
-	<!--物價指數：<input /><br/>-->
-
-	<div id="highchartProperty">
-	</div>
-</div>
-<!--
-====[存活可能性]========================================-->
 <div class="stage">
 	<div>
 	性別:
@@ -59,18 +44,26 @@
 
 	生日年份:民國<input type="number" class="live property" id="birthYear" value="70" />年<br/>
 
-	<div id="highchartLive">
-	</div>
+	當前存款：<input class="property" id="depositMoney" type="number" value="100"/>萬元<br/>
+	年收入:<input class="happy property" id="yearIncome" type="number" value="100" />萬元<br/>
+	年工作日數：<input class="happy property" id="yearlyWorkdays" type="number" value="250" /><br/>
+	平均每月支出:<input class="happy property" id="monthlyOutput" type="number" value="3" />萬元<br/>
+	預期退休年齡：<input class="property" id="retireAge" type="number" value="65" /><br/>
+	假如“假日”的快樂度是一百分 你覺得“上班日”的快樂度是幾分？(0~100)
+	<input class="happy" id="workdayHappiness" value="50" type="number"/><br/>
+	快樂度總分 = <span id="happySum"></span>
+
 </div>
+<!--====[幸福快樂度/生活品質期望值]========================================-->
+<div id="highchartExpectHappy"></div>
+<!--====[資產變化圖表]========================================-->
+<div id="highchartProperty"></div>
+<!--====[存活可能性]========================================-->
+<div id="highchartLive"></div>
+<!--====[快樂度轉換函數]========================================-->
+<div id="highchartHappy"></div>
 
-<!--
-====[幸福快樂度/生活品質期望值]========================================-->
-<div class="stage">
-人生總快樂度量化
-	<div id="highchartExpectHappy">
-	</div>
 
-<div>
 </body>
 
 <script src="../javascripts/jquery/jquery-2.1.4.min.js"></script>

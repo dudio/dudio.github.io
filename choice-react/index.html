@@ -91,6 +91,7 @@
 <script src="javascripts/highchart.js"></script>
 <script src="javascripts/countData.js"></script>
 
+<!--
 <script>
 var Questions, HappyChart, PropertyChart, LiveChart, ResultChart;
 </script>
@@ -99,7 +100,103 @@ var Questions, HappyChart, PropertyChart, LiveChart, ResultChart;
 <script type="text/babel" src="javascripts/PropertyChart.js"></script>
 <script type="text/babel" src="javascripts/LiveChart.js"></script>
 <script type="text/babel" src="javascripts/ResultChart.js"></script>
-<script type="text/babel" src="javascripts/Content.js"></script>
+-->
+
+<script type="text/babel">
+
+var Questions = React.createClass({
+	getInitialState: function(){
+		return {dudio:37};
+	},
+	setHappy: function(){
+		console.log("AA");
+		this.props.workdayHappiness = 30;
+		console.log(this);
+	},
+	render: function(){
+		console.log("render");
+		return (
+			<div>
+				Questions {this.props.workdayHappiness}<br/>
+				假如假日的快樂度是一百分 你覺得上班日的快樂度是幾分？(0~100)
+				現在卡在下面這個值不能修改是怎樣
+				<input value={this.state.dudio} onChange={this.setHappy}/>
+			</div>
+		);
+	}
+});
+
+var HappyChart = React.createClass({
+	render: function(){
+		return(
+			<div>
+			</div>
+		);
+	}
+});
+
+var PropertyChart = React.createClass({
+	render: function(){
+		return(
+			<div>
+			</div>
+		);
+	}
+});
+
+var LiveChart = React.createClass({
+	render: function(){
+		return(
+			<div>
+			</div>
+		);
+	}
+});
+
+var ResultChart = React.createClass({
+	render: function(){
+		return(
+			<div>
+			</div>
+		);
+	}
+});
+
+var Content = React.createClass({
+	getInitialState: function(){
+		return {workdayHappiness:50};
+	},
+	render: function(){
+		return (
+			<div>
+				<Questions
+					workdayHappiness = {this.state.workdayHappiness}
+				/> 
+				<HappyChart
+					workdayHappiness = {this.state.workdayHappiness}
+				/>
+				<PropertyChart />
+				<LiveChart />
+				<ResultChart />
+			</div>
+		);
+	}
+});
+
+$(function(){
+	ReactDOM.render(
+		<Content />,
+		document.getElementById('content')
+	);	
+});
+
+
+
+
+</script>
+
+
+
 
 <script>
 function setDimensions(){

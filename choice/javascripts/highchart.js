@@ -205,7 +205,7 @@ function drawExpectHappy(){
 			}]
 		},
 		tooltip: {
-			valueSuffix: '歲'
+			valueSuffix: ''
 		},
 		legend: {
 			layout: 'vertical',

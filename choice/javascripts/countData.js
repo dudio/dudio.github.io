@@ -77,13 +77,20 @@ function countExpectHappy(){
 	var yearlyWorkdays = parseInt($("#yearlyWorkdays").val()); //年工作日數
 	var retireAge = parseInt($("#retireAge").val());
 	var workYearHappy = (workdayHappiness*yearlyWorkdays+100*(365-yearlyWorkdays))/365;
+	var happySum = 0;
+	var thisHappy;
 	for(old = 104-birthYear; old<100; old++) {
-		if(old<retireAge)
-			expectHappyData.push(workYearHappy*liveData[old-104+birthYear]);
-		else
-			expectHappyData.push(100*liveData[old-104+birthYear]);
+		if(old<retireAge) {
+			thisHappy = workYearHappy*liveData[old-104+birthYear];
+			expectHappyData.push(Math.round(thisHappy));
+		} else {
+			thisHappy = 100*liveData[old-104+birthYear];
+			expectHappyData.push(Math.round(thisHappy));
+		}
+		happySum += thisHappy;
 		expectHappyData.push();
 	}
+	$("#happySum").text(Math.round(happySum));
 
 	drawExpectHappy();
 };
