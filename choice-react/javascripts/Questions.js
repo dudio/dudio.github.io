@@ -2,7 +2,7 @@ Questions = React.createClass({
 	render: function(){
 		return (
 			<div>
-				Questions {this.refs.workdayHappiness}
+				Questions {this.props.workdayHappiness}
 			</div>
 		);
 	}

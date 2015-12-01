@@ -8,7 +8,9 @@ var Content = React.createClass({
 				<Questions
 					workdayHappiness = {this.state.workdayHappiness}
 				/>
-				<HappyChart />
+				<HappyChart
+					workdayHappiness = {this.state.workdayHappiness}
+				/>
 				<PropertyChart />
 				<LiveChart />
 				<ResultChart />
