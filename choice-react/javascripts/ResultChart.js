@@ -1,4 +1,4 @@
-var ResultChart = React.createClass({
+ResultChart = React.createClass({
 	render: function(){
 		return (
 			<div>

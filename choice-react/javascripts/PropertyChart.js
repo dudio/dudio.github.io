@@ -1,4 +1,4 @@
-var PropertyChart = React.createClass({
+PropertyChart = React.createClass({
 	render: function(){
 		return (
 			<div>

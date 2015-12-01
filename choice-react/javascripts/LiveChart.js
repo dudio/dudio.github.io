@@ -1,4 +1,4 @@
-var LiveChart = React.createClass({
+LiveChart = React.createClass({
 	render: function(){
 		return (
 			<div>

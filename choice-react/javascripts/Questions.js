@@ -1,4 +1,4 @@
-var Questions = React.createClass({
+Questions = React.createClass({
 	render: function(){
 		return (
 			<div>
