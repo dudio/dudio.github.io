@@ -19,6 +19,8 @@
 <body>
 <script src="../javascripts/googleAnalytics.js"></script>
 
+<div id="content"></div>
+
 <!--
 ====[前置問題]========================================-->
 
@@ -72,8 +74,12 @@
 
 <div>
 </body>
-
+<script src="../javascripts/react/react.min.js"></script>
+<script src="../javascripts/react/react-dom.min.js"></script>
 <script src="../javascripts/jquery/jquery-2.1.4.min.js"></script>
+<script src="../javascripts/react/browser.min.js"></script>
+<script src="../javascripts/react/marked.min.js"></script>
+
 <script src="../javascripts/jquery-ui/jquery-ui-1.11.1.custom/jquery-ui.min.js"></script>
 <script src="../javascripts/highchart/highcharts.js"></script>
 <script src="../javascripts/highchart/modules/exporting.js"></script>
@@ -84,9 +90,33 @@
 <script src="javascripts/highchart.js"></script>
 <script src="javascripts/countData.js"></script>
 
+<script type="text/babel" src="javascripts/content.js"></script>
+<script type="text/babel">
+/*	var Content = React.createClass({
+		render: function(){
+			return (
+
+			);
+		}
+	});
+
+	var Content = React.createClass({
+		render: function(){
+			return (
+				<Questions />
+				<HappyChart />
+				<PropertyChart />
+				<LiveChart />
+				<ResultChart />
+			);
+		}
+	});*/
+
+
+</script>
+
 <script>
 function setDimensions(){
-
 
 };
 
