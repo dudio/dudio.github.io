@@ -1,8 +1,13 @@
 var Content = React.createClass({
+	getInitialState: function(){
+		return {workdayHappiness:50};
+	},
 	render: function(){
 		return (
 			<div>
-				<Questions />
+				<Questions
+					workdayHappiness = {this.state.workdayHappiness}
+				/>
 				<HappyChart />
 				<PropertyChart />
 				<LiveChart />
