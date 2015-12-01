@@ -1,11 +1,13 @@
 var Content = React.createClass({
 	render: function(){
 		return (
-			<Questions />
-			<HappyChart />
-			<PropertyChart />
-			<LiveChart />
-			<ResultChart />
+			<div>
+				<Questions />
+				<HappyChart />
+				<PropertyChart />
+				<LiveChart />
+				<ResultChart />
+			</div>
 		);
 	}
 });
