@@ -1,7 +1,8 @@
 Questions = React.createClass({
 	setWorkdayWappiness: function(){
 		console.log(this.props);
-//		this.props.setWorkdayHappiness(this.refs.workdayHappiness);
+		console.log(this.refs.workdayHappiness.value);
+		this.props.setWorkdayHappiness(this.refs.workdayHappiness.value);
 	},
 	render: function(){
 		return (
