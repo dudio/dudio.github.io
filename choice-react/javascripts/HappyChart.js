@@ -51,7 +51,7 @@ HappyChart = React.createClass({
 			series: seriesOptionsBest
 		});
 		console.log("get "+workdayHappiness);
-		console.log("this "+this);
+		console.log(this);
 
 	},
 	componentDidMount: function(){
